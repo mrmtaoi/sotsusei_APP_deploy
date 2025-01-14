@@ -31,6 +31,8 @@ services:
     stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。
     depends_on:
       - db
+    env_file:
+      - .env # この行を追加
 volumes:
   postgres_volume:
   
