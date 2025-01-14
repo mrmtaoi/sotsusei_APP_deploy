@@ -83,9 +83,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 
-production:
+production: #ここに直接書き込むときは内部情報で記載
   adapter: postgresql
-  host: dpg-cu38m2hu0jms73dma6q0-a  # Render の提供するホスト名
+  host: dpg-cu38m2hu0jms73dma6q0-a  #内部host名
   database: realworld_development_k6w8  # Render のデータベース名
   username: aoi  # Render で指定されたユーザー名
   password: gCuDLq2beM1AnCGv8wG6AjdngRm1zgOB  # Render で指定されたパスワード
