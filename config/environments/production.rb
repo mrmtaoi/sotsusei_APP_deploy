@@ -2,6 +2,9 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  # config/environments/production.rb
+
+  config.hosts << "sotsusei-app-deploy.onrender.com"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
