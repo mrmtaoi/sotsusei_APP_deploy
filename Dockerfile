@@ -18,4 +18,4 @@ COPY . /myapp
 EXPOSE 3000
 
 # デフォルトで rails server を起動
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "$PORT"]
+CMD ["sh", "-c", "rails server -b '0.0.0.0' -p $PORT"]
