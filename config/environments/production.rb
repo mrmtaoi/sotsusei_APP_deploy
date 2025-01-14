@@ -5,6 +5,10 @@ Rails.application.configure do
   # config/environments/production.rb
 
   config.hosts << "sotsusei-app-deploy.onrender.com"
+  config.hosts << /.*\.onrender\.com/ # Renderのサブドメイン全てを許可
+
+  # Render で指定されたポートを使用する
+  config.hosts << ENV["PORT"] if ENV["PORT"]
 
   # Code is not reloaded between requests.
   config.cache_classes = true
