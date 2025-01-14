@@ -82,8 +82,12 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+
 production:
-  <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  host: dpg-cu38m2hu0jms73dma6q0-a  # Render の提供するホスト名
+  database: realworld_development_k6w8  # Render のデータベース名
+  username: aoi  # Render で指定されたユーザー名
+  password: gCuDLq2beM1AnCGv8wG6AjdngRm1zgOB  # Render で指定されたパスワード
+  port: 5432  # 標準の PostgreSQL ポート
+
