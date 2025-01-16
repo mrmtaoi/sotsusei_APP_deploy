@@ -13,4 +13,4 @@ Rails.application.config.assets.version = "1.0"
 # config/initializers/assets.rb
 
 # config/initializers/assets.rb
-Rails.application.config.assets.precompile += %w( application.css )
+Rails.application.config.assets.precompile += %w( application.scss )
