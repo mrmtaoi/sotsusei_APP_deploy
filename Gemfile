@@ -17,14 +17,14 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
-# ここを修正
-gem 'sassc'  # これで問題ありません
+gem 'sassc'
 
-gem 'sassc-rails'  # 例として'sassc-rails'を追加
-
+gem 'sassc-rails'
 
 # Bootstrap 4以降を使用
 gem 'bootstrap', '~> 5.0'
+
+gem 'devise'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -37,4 +37,5 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "webdrivers"
 end

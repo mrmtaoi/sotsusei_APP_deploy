@@ -1,0 +1,28 @@
+<% provide(:title, '新規登録') %>
+<%= form_with model: @user, url: user_registration_path do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1>新規登録</h1>
+        <div class="mb-3">
+          <%= f.label :ユーザー名, class: "form-label" %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :メール, class: "form-label" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :パスワード, class: "form-label" %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+        <%= f.submit "認証メールを送信", class: "btn btn-primary" %>
+
+      <% end %>
+      <div class='text-center'>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>Find me in app/views/users/new.html.erb</p>

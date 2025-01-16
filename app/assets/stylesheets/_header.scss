@@ -5,13 +5,13 @@
 
 .navbar-nav li {
   display: inline-block; /* 横並びにする */
-  margin-right: 50px; /* 右の間隔を調整 */
-  font-size: 3rem; /* フォントサイズを調整 */
-  top: 10px; /* 10px上に移動 */
+  margin-right: 30px; /* 右の間隔を調整 */
+  font-size: 2.5rem; /* フォントサイズを調整 */
+  top: -30px; /* 上の余白 */
 }
 
 .navbar-nav li a {
-  color: hwb(194 38% 3%) ; /* デフォルトの色を変更 */
+  color: hwb(194 38% 3%); /* デフォルトの色を変更 */
   text-decoration: none; /* 下線を削除 */
   font-weight: 600;
 }
@@ -29,5 +29,5 @@
 }
 
 .navbar-nav li {
-  margin: 10px 20px; /* 各リストアイテムの左右の間隔を調整 */
+  margin: 0px 15px; /* 各リストアイテムの左右の間隔を調整（以前の20pxから少し狭くする） */
 }
