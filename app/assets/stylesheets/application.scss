@@ -1,15 +1,16 @@
-/* app/assets/stylesheets/application.scss */
-
-/* BootstrapのCSSをインポート */
+// application.scss
 @import "bootstrap";
 
 /* ヘッダーの背景色をカスタマイズ */
 .navbar {
-  background-color: hwb(61 41% 2%) !important;
-  font-size: 3rem;
-  height: 85px;
+  display: flex;                    /* flexboxを使用 */
+  justify-content: space-between;   /* 左右のスペースを均等に */
+  background-color: rgb(85, 85, 85) !important;  /* 背景色を変更 */
+  font-size: 3rem;                  /* フォントサイズ */
+  height: 85px;                     /* 高さ */
 }
 
 .navbar .navbar-brand {
-  align-items: center;
+  display: flex;                    /* flexboxを使用 */
+  align-items: center;              /* アイテムを縦方向に中央揃え */
 }

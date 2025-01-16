@@ -20,6 +20,9 @@ gem "bootsnap", require: false
 # ここを修正
 gem 'sassc'  # これで問題ありません
 
+gem 'sassc-rails'  # 例として'sassc-rails'を追加
+
+
 # Bootstrap 4以降を使用
 gem 'bootstrap', '~> 5.0'
 
