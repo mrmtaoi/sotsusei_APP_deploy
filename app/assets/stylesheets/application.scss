@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "stylesheet_name";
+ 
+/*BootstrapのSCSSファイルをインポート*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+ 
+/* ヘッダーの背景色をカスタマイズ */
+.navbar {
+  background-color: hwb(61 41% 2%) !important; /* ヘッダーの背景色を変更 */
+  font-size: 3rem;
+  height: 85px; /* ヘッダーの高さを調整 */
+}
+
+.navbar .navbar-brand {
+  align-items: center; /* 垂直方向で中央揃え */
+}
