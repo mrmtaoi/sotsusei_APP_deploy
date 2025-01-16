@@ -1,6 +1,7 @@
 // app/assets/stylesheets/application.scss
-//= require_tree .
-//= require_self
+
+// 必要なSCSSファイルをインポート
 @import "bootstrap";
 @import "style";
-
+@import "top";
+@import "_header";
