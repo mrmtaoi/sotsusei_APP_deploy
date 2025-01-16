@@ -1,16 +1,3 @@
 // application.scss
 @import "bootstrap";
 
-/* ヘッダーの背景色をカスタマイズ */
-.navbar {
-  display: flex;                    /* flexboxを使用 */
-  justify-content: space-between;   /* 左右のスペースを均等に */
-  background-color: rgb(85, 85, 85) !important;  /* 背景色を変更 */
-  font-size: 3rem;                  /* フォントサイズ */
-  height: 85px;                     /* 高さ */
-}
-
-.navbar .navbar-brand {
-  display: flex;                    /* flexboxを使用 */
-  align-items: center;              /* アイテムを縦方向に中央揃え */
-}
