@@ -1,0 +1,33 @@
+.navbar-brand {
+  position: relative;
+  top: -13px; /* 10px上に移動 */
+}
+
+.navbar-nav li {
+  display: inline-block; /* 横並びにする */
+  margin-right: 50px; /* 右の間隔を調整 */
+  font-size: 3rem; /* フォントサイズを調整 */
+  top: 10px; /* 10px上に移動 */
+}
+
+.navbar-nav li a {
+  color: hwb(194 38% 3%) ; /* デフォルトの色を変更 */
+  text-decoration: none; /* 下線を削除 */
+  font-weight: 600;
+}
+
+.navbar-nav li a:hover {
+  color: rgb(242, 159, 91); /* ホバー時の色を変更（例: トマト色） */
+}
+
+/* ナビゲーションメニュー */
+.navbar-nav {
+  list-style: none; /* リストの点を削除 */
+  padding: 0; /* 内側の余白を削除 */
+  margin: 0; /* 外側の余白を削除 */
+  display: flex; /* 横並びにする */
+}
+
+.navbar-nav li {
+  margin: 10px 20px; /* 各リストアイテムの左右の間隔を調整 */
+}
