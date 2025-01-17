@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      # ユーザーを保存後に認証メールを送信
       @user.send_confirmation_instructions
       redirect_to confirmation_sent_path
     else
