@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
     if @user.save
       # ユーザーを保存後に認証メールを送信
       @user.send_confirmation_instructions
@@ -16,16 +15,10 @@ class UsersController < ApplicationController
   end
   
   private
-      def set_user
-        @user = User.find(params[:id])
-      end
   
-      def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-      end
+  def set_user
+    @user = User.find(params[:id])
   end
-
-  private
 
   def user_params
     params.require(:user).permit(:user_name, :email, :password)
