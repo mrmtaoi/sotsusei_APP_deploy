@@ -1,3 +1,5 @@
+class SessionsController < ApplicationController
+
 # app/helpers/sessions_helper.rb
 module SessionsHelper
   # ユーザーをログインさせる
