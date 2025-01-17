@@ -1,11 +1,11 @@
 class AddDeviseToUsers < ActiveRecord::Migration[7.0]
   def self.up
     change_table :users do |t|
-      ## Recoverable
+      # Recoverable
       t.string   :reset_password_token unless column_exists?(:users, :reset_password_token)
       t.datetime :reset_password_sent_at unless column_exists?(:users, :reset_password_sent_at)
 
-      ## Rememberable
+      # Rememberable
       t.datetime :remember_created_at unless column_exists?(:users, :remember_created_at)
     end
 
@@ -13,6 +13,10 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.0]
   end
 
   def self.down
-    raise ActiveRecord::IrreversibleMigration
+    # 逆操作を手動で定義
+    remove_index :users, :reset_password_token if index_exists?(:users, :reset_password_token)
+    remove_column :users, :reset_password_token if column_exists?(:users, :reset_password_token)
+    remove_column :users, :reset_password_sent_at if column_exists?(:users, :reset_password_sent_at)
+    remove_column :users, :remember_created_at if column_exists?(:users, :remember_created_at)
   end
 end
