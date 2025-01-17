@@ -1,0 +1,34 @@
+.all-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .stocks-list, .emergency-kits-list {
+    width: 45%;  /* 両方のコンテンツを左右に配置 */
+    padding: 10px;
+  }
+  
+  .stocks-list h2, .emergency-kits-list h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(0, 0, 0);
+  }
+  
+  .stock-item, .emergency-kit-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .all-content {
+      flex-direction: column;
+    }
+  
+    .stocks-list, .emergency-kits-list {
+      width: 100%;  /* 小さい画面では縦に並べる */
+    }
+  }
+  

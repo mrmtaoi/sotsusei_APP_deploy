@@ -13,7 +13,7 @@
     transform: translate(-50%, -50%);
     width: 100%;
     text-align: center;
-    color: rgb(242, 159, 91);
+    color: rgb(0, 0, 0);
     font-size: 6rem; /* 好きなサイズに変更 */
 
     /* モバイル対応 */
@@ -23,7 +23,7 @@
   }
 }
 
-.inner_container {
+.inner_container-top {
   position: absolute; /* 位置を絶対指定 */
   top: 20%; /* top-wrapperの中での位置調整 */
   left: 50%;
@@ -44,7 +44,7 @@
 }
 
 .navbar-nav li a:hover {
-  color: rgb(242, 159, 91); /* ホバー時の色を変更（例: トマト色） */
+  color: rgb(0, 0, 0); /* ホバー時の色を変更（例: トマト色） */
 }
 
 /* ボタンのカスタマイズ */
@@ -61,24 +61,24 @@
 }
 
 /* 新規登録ボタン */
-.btn-primary {
+.btn-primary-top {
   background-color: hwb(61 41% 2%) !important; /* ボタンの色 */
   color: rgb(1, 1, 1) !important;
 }
 
-.btn-primary:hover {
+.btn-primary-top:hover {
   background-color: hwb(62 82% 3%) !important; /* ホバー時の色 */
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important; /* ホバー時に影を強くして浮き上がらせる */
   transform: translateY(-2px) !important; /* ボタンが少し浮き上がるようにする */
 }
 
 /* ログインボタン */
-.btn-secondary {
+.btn-secondary-top {
   background-color: hwb(194 43% 3%) !important; /* ボタンの色 */
   color: rgb(1, 1, 1) !important;
 }
 
-.btn-secondary:hover {
+.btn-secondary-top:hover {
   background-color: hwb(194 71% 4%) !important; /* ホバー時の色 */
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important; /* ホバー時に影を強くして浮き上がらせる */
   transform: translateY(-2px) !important; /* ボタンが少し浮き上がるようにする */
