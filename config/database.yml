@@ -85,9 +85,9 @@ test:
 
 production: #ここに直接書き込むときは内部情報で記載
   adapter: postgresql
-  host: dpg-cu38m2hu0jms73dma6q0-a  #内部host名
-  database: realworld_development_k6w8  # Render のデータベース名
-  username: aoi  # Render で指定されたユーザー名
-  password: gCuDLq2beM1AnCGv8wG6AjdngRm1zgOB  # Render で指定されたパスワード
-  port: 5432  # 標準の PostgreSQL ポート
+  host: dpg-cu5726a3esus73ao01t0-a
+  database: realworld_development_errf
+  username: aoi 
+  password: ytHp1mochkwNG7FT4gJxuWdZKisH5t1MytHp1mochkwNG7FT4gJxuWdZKisH5t1M
+  port: 5432
 
