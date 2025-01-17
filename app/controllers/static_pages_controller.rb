@@ -1,11 +1,12 @@
 class StaticPagesController < ApplicationController
   def top
-    if user_signed_in?
-      # ログイン後は、適切なトップページにリダイレクト
-      render 'static_pages/top'
-    else
-      # ログインしていない場合は、ログイン前のトップページを表示
-      render 'static_pages/welcome'
-    end
+    @logged_in = user_logged_in?  # ログイン状態をインスタンス変数に格納
+  end
+
+  private
+
+  # セッションに保存されたユーザーIDでログイン状態を確認
+  def user_logged_in?
+    session[:user_id].present?
   end
 end

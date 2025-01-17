@@ -24,7 +24,7 @@ gem 'sassc-rails'
 # Bootstrap 4以降を使用
 gem 'bootstrap', '~> 5.0'
 
-gem 'devise'
+gem "bcrypt"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

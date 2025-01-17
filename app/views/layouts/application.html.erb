@@ -10,11 +10,10 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
-    <% else %>
-      <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
-    <% end %>
-    <%= yield %>
+  <% if user_logged_in? %> <!-- カスタムメソッドを使ってログイン状態を確認 -->
+    <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
+  <% else %>
+    <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
+  <% end %>
   </body>
 </html>
