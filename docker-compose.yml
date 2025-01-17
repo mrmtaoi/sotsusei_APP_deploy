@@ -5,7 +5,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-        - RAILS_ENV=production
 
     # 無くても動くけど指定しておくとdocker-composeを停止してもdbの内容が永続化されるため、指定することが多いと思われる
     # https://matsuand.github.io/docs.docker.jp.onthefly/storage/volumes/
@@ -34,7 +33,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env # この行を追加
+      - .env
 volumes:
   postgres_volume:
   
