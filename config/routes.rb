@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  root 'static_pages#top'
-  get 'sessions/new'
+  # ログイン状態に応じてトップページを動的に変更
+  root to: redirect { |path, req| req.session[:user_id].present? ? '/static_pages/top' : '/welcome' }
+
+  # ユーザー登録用ページ
+  get 'welcome', to: 'static_pages#welcome'
   get 'static_pages/top', to: 'static_pages#top', as: 'static_pages_top'
-  get 'static_pages/welcome', to: 'static_pages#welcome'
+
+  # 他のルーティング設定
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
 
-  # Session用のルートティングを設定
+  # ログイン関連のルーティング
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"

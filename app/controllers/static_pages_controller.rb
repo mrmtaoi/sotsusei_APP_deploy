@@ -1,12 +1,17 @@
 class StaticPagesController < ApplicationController
-  def top
-    @logged_in = user_logged_in?  # ログイン状態をインスタンス変数に格納
+  def root_action
+    if user_logged_in?
+      redirect_to static_pages_top_path
+    else
+      redirect_to welcome_path
+    end
   end
 
-  private
+  def welcome
+    # `app/views/static_pages/welcome.html.erb` が必要です。
+  end
 
-  # セッションに保存されたユーザーIDでログイン状態を確認
-  def user_logged_in?
-    session[:user_id].present?
+  def top
+    # `app/views/static_pages/top.html.erb` が必要です。
   end
 end

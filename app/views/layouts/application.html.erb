@@ -15,5 +15,9 @@
   <% else %>
     <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
   <% end %>
+
+  <!-- ビューのコンテンツを埋め込む場所 -->
+  <%= yield %>
+
   </body>
 </html>

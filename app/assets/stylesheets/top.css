@@ -85,6 +85,15 @@
   transform: translateY(-2px) !important; /* ボタンが少し浮き上がるようにする */
 }
 
+.bousaiset-image {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 767px) {
   .custom-btn {

@@ -1,26 +1,21 @@
 class SessionsController < ApplicationController
+  def new
+  end
 
-  # app/helpers/sessions_helper.rb
-  module SessionsHelper
-    # ユーザーをログインさせる
-    def log_in(user)
-      session[:user_id] = user.id
+  def create
+    user = User.find_by(email: params[:session][:email].downcase)
+    # bcrypt の authenticateメソッドでパスワードの照合を行なう
+    if user && user.authenticate(params[:session][:password])
+      log_in(user)
+      redirect_to user
+    else
+      flash.now[:error] = "ログインに失敗しました"
+      render "new", status: :unprocessable_entity
     end
+  end
 
-    # 現在ログインしているユーザーを取得
-    def current_user
-      @current_user ||= User.find_by(id: session[:user_id])
-    end
-
-    # ユーザーがログインしているかどうか
-    def logged_in?
-      !current_user.nil?
-    end
-
-    # ユーザーをログアウトさせる
-    def log_out
-      session.delete(:user_id)
-      @current_user = nil
-    end
+  def destroy
+    log_out
+    redirect_to root_path, status: :see_other
   end
 end
