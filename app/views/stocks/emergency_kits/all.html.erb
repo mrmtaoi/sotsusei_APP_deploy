@@ -1,0 +1,25 @@
+<!-- app/views/stocks/emergency_kits/all.html.erb -->
+<h1>すべての備え</h1>
+
+<h2>防災バッグ一覧</h2>
+<% if @emergency_kits.present? %>
+  <ul>
+    <% @emergency_kits.each do |kit| %>
+      <li><%= kit.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>防災バッグはありません...</p>
+<% end %>
+
+<h2>備蓄一覧</h2>
+<% if @stocks.present? %>
+  <ul>
+    <% @stocks.each do |stock| %>
+      <li><%= stock.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>備蓄はありません...</p>
+<% end %>
+

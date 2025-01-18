@@ -1,0 +1,43 @@
+<h1 class="page-title1">備蓄アイテム一覧</h1>
+
+<% if @stocks.present? %>
+  <div class="inner_container">
+    <nav>
+      <ul class="nav navbar-nav navbar-left">
+        <% @stocks.each do |stock| %>
+          <li>
+            <div style="text-align: left;">
+              <% stock.stock_items.each do |item| %>
+                <strong><%= item.name %></strong>
+                <br>ストック数: <%= item.quantity %>
+                <br>保管場所: <%= item.storage %>
+              <% end %>
+            </div>
+            <div class="button-container3">
+              <%= link_to "編集", edit_stocks_stock_path(stock), class: 'btn btn-secondary' %>
+              <%= link_to '削除', stocks_stock_path(stock), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+  <%= image_tag 'top.jpg', style: 'width: 300px; height: 350px; position: absolute; top: 400px; left: 1100px; pointer-events: none;' %>
+  <div class="inner_container">
+    <nav>
+      <div class="button-container-stock">
+        <li><%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-primary custom-btn' %></li>
+      </div>
+    </nav>
+  </div>
+<% else %>
+  <p class="noitem">備蓄アイテムは一つもありません...</p>
+  <%= image_tag 'nostock.png', style: 'width: 450px; height: 500px; position: absolute; top: 300px; left: 500px;' %>
+  <div class="inner_container-noitem">
+    <nav>
+      <ul class="nav navbar-nav navbar-left2">
+        <li><%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-noitem custom-btn' %></li>
+      </ul>
+    </nav>
+  </div>
+<% end %>

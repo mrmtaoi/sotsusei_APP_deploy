@@ -85,7 +85,7 @@ test:
 
 production: #ここに直接書き込むときは内部情報で記載
   adapter: postgresql
-  host: dpg-cu5ah8d6l47c73dlghtg-a
+  host: dpg-cu5ah8d6l47c73dlghtg-a.singapore-postgres.render.com
   database: realworld_development_gwej
   username: aoi 
   password: 4KIOzHbR7kQcSEvVxJinYetIaCTV9Hqo
