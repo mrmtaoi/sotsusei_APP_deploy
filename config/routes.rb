@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
 
   # ログイン関連のルーティング
-  get "login", to: "sessions#new"
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy', as: :destroy_user_session
+
+  # セッションのルーティングを追加
+  resource :session, only: [:new, :create, :destroy]
 end

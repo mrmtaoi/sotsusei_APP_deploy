@@ -1,21 +1,21 @@
 class SessionsController < ApplicationController
   def new
+    # ログインフォームの表示
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    # bcrypt の authenticateメソッドでパスワードの照合を行なう
-    if user && user.authenticate(params[:session][:password])
-      log_in(user)
-      redirect_to user
+    user = User.find_by(email: params[:email]) # 入力されたメールアドレスでユーザーを検索
+    if user && user.authenticate(params[:password]) # ユーザーが見つかり、パスワードが正しい場合
+      session[:user_id] = user.id # セッションにユーザーIDを保存
+      redirect_to root_path, notice: 'ログインしました。'
     else
-      flash.now[:error] = "ログインに失敗しました"
-      render "new", status: :unprocessable_entity
+      flash.now[:alert] = '無効なメールアドレスまたはパスワードです。'
+      render :new
     end
   end
 
   def destroy
-    log_out
-    redirect_to root_path, status: :see_other
+    session.delete(:user_id) # セッションからユーザーIDを削除
+    redirect_to root_path, notice: 'ログアウトしました。'
   end
 end
