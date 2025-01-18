@@ -12,7 +12,8 @@
           <li><%= link_to "防災バッグ", '#' %></li>
           <li><%= link_to "掲示板",   '#' %></li>
           <li><%= link_to "マイページ", '#' %></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, 
+          method: :delete, data: { confirm: '本当にログアウトしますか？', turbo_method: :delete } %></li>
         </ul>
       </nav>
     </div>

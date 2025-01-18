@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     # bcrypt の authenticateメソッドでパスワードの照合を行なう
     if user && user.authenticate(params[:session][:password])
       log_in(user)
-      redirect_to user
+      redirect_to root_path, status: :see_other
     else
       flash.now[:error] = "ログインに失敗しました"
       render "new", status: :unprocessable_entity

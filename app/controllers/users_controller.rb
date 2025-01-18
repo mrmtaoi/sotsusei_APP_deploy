@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
       # ユーザーを保存後にトップページにリダイレクト
       redirect_to static_pages_top_path, notice: 'ユーザーが作成されました。'
     else
