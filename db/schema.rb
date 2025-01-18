@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_18_165353) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_18_190636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,23 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_18_165353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["emergency_kit_id"], name: "index_kit_items_on_emergency_kit_id"
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "kit_item_id"
+    t.bigint "stock_item_id"
+    t.bigint "emergency_kit_id"
+    t.text "reminders"
+    t.integer "interval_months", null: false
+    t.date "expiration_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emergency_kit_id"], name: "index_reminders_on_emergency_kit_id"
+    t.index ["kit_item_id"], name: "index_reminders_on_kit_item_id"
+    t.index ["stock_item_id"], name: "index_reminders_on_stock_item_id"
+    t.index ["user_id", "kit_item_id", "stock_item_id"], name: "index_reminders_on_user_kit_stock", unique: true
+    t.index ["user_id"], name: "index_reminders_on_user_id"
   end
 
   create_table "stock_items", force: :cascade do |t|
@@ -78,6 +95,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_18_165353) do
   add_foreign_key "emergency_kits", "emergency_kit_owners", column: "owner_id"
   add_foreign_key "emergency_kits", "users"
   add_foreign_key "kit_items", "emergency_kits"
+  add_foreign_key "reminders", "emergency_kits"
+  add_foreign_key "reminders", "kit_items"
+  add_foreign_key "reminders", "stock_items"
+  add_foreign_key "reminders", "users"
   add_foreign_key "stock_items", "stocks"
   add_foreign_key "stocks", "users"
 end
