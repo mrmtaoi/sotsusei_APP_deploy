@@ -11,24 +11,23 @@ class Stocks::StocksController < ApplicationController
 
   def new
     @stock = Stock.new
-    @stock.stock_items.build # 子モデルの初期化
-    @stock.stock_items.each do |stock_item|
-      stock_item.reminders.build # 各StockItemに対してremindersを初期化
-    end
+    # stock_items と reminders をビルド
+    @stock.stock_items.build.reminders.build
   end
 
   def create
     @stock = Stock.new(stock_params)
     @stock.user = current_user
   
-    # StockItem に関連する reminders が必要な場合のみ初期化
+    # 各StockItemに関連するremindersを初期化
     @stock.stock_items.each do |stock_item|
-      stock_item.reminders.build if stock_item.reminders.blank?
+      stock_item.reminders.build if stock_item.reminders.empty?
     end
   
     if @stock.save
       redirect_to stocks_stocks_path, notice: '備蓄アイテムが登録されました。'
     else
+      Rails.logger.debug @stock.errors.full_messages # エラーメッセージをログに出力
       render :new, status: :unprocessable_entity
     end
   end
