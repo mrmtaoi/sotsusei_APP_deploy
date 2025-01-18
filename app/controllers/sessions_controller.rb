@@ -4,10 +4,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email]) # 入力されたメールアドレスでユーザーを検索
-    if user && user.authenticate(params[:password]) # ユーザーが見つかり、パスワードが正しい場合
-      session[:user_id] = user.id # セッションにユーザーIDを保存
-      redirect_to root_path, notice: 'ログインしました。'
+    user = User.find_by(email: params[:session][:email].downcase)
+    # bcrypt の authenticateメソッドでパスワードの照合を行なう
+    if user && user.authenticate(params[:session][:password])
+      log_in(user)
+      redirect_to root_path, status: :see_other
     else
       flash.now[:alert] = '無効なメールアドレスまたはパスワードです。'
       render :new
