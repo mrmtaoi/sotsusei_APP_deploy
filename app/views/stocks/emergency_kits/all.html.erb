@@ -1,25 +1,37 @@
-<!-- app/views/stocks/emergency_kits/all.html.erb -->
-<h1>すべての備え</h1>
-
+<h1 class="page-title">現在の備え一覧</h1>
+<div class="emergency_kits_container">
 <h2>防災バッグ一覧</h2>
 <% if @emergency_kits.present? %>
-  <ul>
-    <% @emergency_kits.each do |kit| %>
-      <li><%= kit.name %></li>
-    <% end %>
-  </ul>
+  <% @emergency_kits.each do |kit| %>
+    <li>
+      <div style="text-align: left;">
+        <strong><%= kit.owner.name %>の防災バッグ</strong>
+        <br>保管場所: <%= kit.storage %>
+      </div>
+    </li>
+  <% end %>
 <% else %>
-  <p>防災バッグはありません...</p>
+  <p>防災バッグはありません。</p>
 <% end %>
-
+</div>
+<div class="stocks_container">
 <h2>備蓄一覧</h2>
 <% if @stocks.present? %>
-  <ul>
+  <ul class="nav navbar-nav navbar-left">
     <% @stocks.each do |stock| %>
-      <li><%= stock.stock_items.first.name %></li>
+      <li>
+        <div style="text-align: left;">
+          <% stock.stock_items.each do |item| %>
+            <strong><%= item.name %></strong>
+            <br>ストック数: <%= item.quantity %>
+            <br>保管場所: <%= item.storage %>
+            <br>期限: <%= item.reminders.first&.expiration_date || '未設定' %>
+          <% end %>
+        </div>
+      </li>
     <% end %>
   </ul>
 <% else %>
   <p>備蓄はありません...</p>
 <% end %>
-
+</div>

@@ -17,12 +17,13 @@ Rails.application.routes.draw do
 
   # ストック関連
   namespace :stocks do
-    resources :stocks
-    resources :emergency_kits do
-      resources :kit_items, only: [:create, :new, :index]  # kit_itemsのリソースを追加
+    resources :stocks, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :emergency_kits, only: [:index, :show, :create, :edit, :update, :destroy, :new] do
       collection do
-        get 'all'  # 'stocks/emergency_kits/all' のパスを設定
+        get 'all'
+      end
+      resources :kit_items, only: [:index, :create, :edit, :update, :destroy] do
       end
     end
-  end
+  end  
 end
