@@ -1,0 +1,35 @@
+<h1>アイテムの編集</h1>
+
+<%= form_with(model: @kit_item, url: stocks_emergency_kit_kit_item_path(@kit_item.emergency_kit, @kit_item), method: :put, local: true) do |form| %>
+  <% if @kit_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kit_item.errors.count, "error") %> prohibited this kit_item from being saved:</h2>
+      <ul>
+        <% @kit_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration_date %>
+    <%= form.date_field :expiration_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "更新する", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to 'キャンセル', stocks_emergency_kit_path(@kit_item.emergency_kit), class: 'btn btn-secondary' %>

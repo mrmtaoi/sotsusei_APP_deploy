@@ -45,8 +45,6 @@ class Stocks::EmergencyKitsController < ApplicationController
         storage: emergency_kit_params[:storage]
       )
 
-      
-  
       if @emergency_kit.save
         # 保存に成功した場合
         redirect_to stocks_emergency_kits_path, notice: 'Emergency kit was successfully created.'

@@ -1,0 +1,18 @@
+<ul>
+  <% if @kit_items.present? %>
+    <% @kit_items.each do |kit_item| %>
+      <li>
+        <strong>アイテム:</strong> <%= kit_item.name %> |
+        <strong>数量:</strong> <%= kit_item.quantity %>|
+        <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>
+
+        <div class="button-container3">
+          <%= link_to "編集", edit_stocks_emergency_kit_kit_item_path(kit_item.emergency_kit, kit_item), class: 'btn btn-secondary' %>
+          <%= link_to '削除', stocks_emergency_kit_kit_item_path(kit_item.emergency_kit, kit_item), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>
+        </div>
+      </li>
+    <% end %>
+  <% else %>
+    <p>バッグの中は空っぽです...</p>
+  <% end %>
+</ul>

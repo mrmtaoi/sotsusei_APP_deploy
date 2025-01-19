@@ -1,0 +1,7 @@
+<h1 class="page-title">Kit Items</h1>
+
+<% if @kit_items.any? %>
+  <%= render partial: 'stocks/kit_items/list', locals: { kit_items: @kit_items } %>
+<% else %>
+  <p>No kit items found.</p>
+<% end %>
