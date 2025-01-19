@@ -13,7 +13,7 @@ class Stocks::EmergencyKitsController < ApplicationController
   
     def show
       # set_emergency_kit メソッドで既に @emergency_kit が設定されているため、再度 find は不要です
-      @emergency_kits_owner = @emergency_kit.owner
+      @emergency_kit_owner = @emergency_kit.owner
       @kit_items = @emergency_kit.kit_items.includes(:reminders) # 関連するアイテムを取得
     end  
   
