@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.stocks_container {
+  text-align: center;
+  position: absolute; /* 位置を絶対指定 */
+  top: 22%;
+  left: 50%;
+}
+
+.stocks_container li {
+  margin-bottom: 20px; /* アイテム間の間隔を20pxに設定 */
+}
+
+.emergency_kits_container {
+  text-align: center;
+  position: absolute; /* 位置を絶対指定 */
+  top: 22%;
+  left: 2%;
+  width: 45%;
+}
+
+.emergency_kits_container li {
+  list-style-type: none;
+  margin-bottom: 15px; /* アイテム間の間隔を20pxに設定 */
+}/*# sourceMappingURL=all.css.map */

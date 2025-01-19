@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.kit_item_list {
+  top: 22%;
+  left: 35%;
+  margin-bottom: 30px; /* アイテム間の間隔を20pxに設定 */
+  list-style-type: none;
+}
+
+.kit_item_remind .form-control {
+  width: 150px;
+  max-width: 100%;
+}/*# sourceMappingURL=kit_item_list.css.map */

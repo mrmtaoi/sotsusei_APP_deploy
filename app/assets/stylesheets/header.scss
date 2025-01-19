@@ -1,0 +1,22 @@
+.navbar-brand {
+  position: relative;
+  top: -13px; /* 10px上に移動 */
+}
+
+.header li {
+  display: inline-block; /* 横並びにする */
+  margin: 30px 40px; /* 各リストアイテムの左右の間隔を調整 */
+}
+
+.header li a {
+  font-size: 3.5rem; /* フォントサイズを調整 */
+  color: hwb(194 38% 3%); /* デフォルトの色を変更 */
+  text-decoration: none; /* 下線を削除 */
+  font-weight: 550;
+}
+
+.header li a:hover {
+  color: hwb(194 71% 4%) ; /* ホバー時の色を変更 */
+}
+
+
