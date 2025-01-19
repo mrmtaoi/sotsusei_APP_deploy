@@ -27,7 +27,7 @@ class Stocks::EmergencyKitsController < ApplicationController
   
     def create
       user = current_user
-      gender = EmergencyKitsOwner.genders.key(emergency_kit_params[:gender])
+      gender = EmergencyKitOwner.genders.key(emergency_kit_params[:gender])
   
       # パラメータを使用してオーナー情報を取得または作成
       owner = EmergencyKitOwner.find_or_create_by(
