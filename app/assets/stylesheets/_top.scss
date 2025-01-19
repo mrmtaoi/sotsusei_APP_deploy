@@ -1,26 +1,25 @@
-@charset "UTF-8";
-.top-container {
-  background-image: image-url("top.jpg");
+.top-wrapper {
+  background-image: url('top.jpg');
   height: calc(100vh - 134px); /* 高さを調整 */
   position: relative;
   background-position: center 95%; /* 横方向は中央、縦方向は画像の高さの90% */
   background-size: 380px;
   background-repeat: no-repeat; /* 繰り返しを防ぐ */
-}
-.top-container .top-inner-text h1 {
-  position: absolute;
-  top: 50%; /* 垂直方向の中央に配置 */
-  left: 25%; /* 水平方向の中央に配置 */
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  font-size: 6rem; /* 好きなサイズに変更 */
-  /* モバイル対応 */
-}
-@media screen and (max-width: 767px) {
-  .top-container .top-inner-text h1 {
-    font-size: 2rem;
+
+  .top-inner-text h1{
+    position: absolute;
+    top: 50%; /* 垂直方向の中央に配置 */
+    left: 25%; /* 水平方向の中央に配置 */
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 6rem; /* 好きなサイズに変更 */
+
+    /* モバイル対応 */
+    @media screen and (max-width: 767px) {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -40,7 +39,7 @@
 }
 
 .navbar-nav li a {
-  color: hwb(194 43% 3%); /* デフォルトの色を変更 */
+  color: hwb(194 43% 3%) ; /* デフォルトの色を変更 */
   text-decoration: none; /* 下線を削除 */
 }
 
@@ -85,19 +84,10 @@
   transform: translateY(-2px) !important; /* ボタンが少し浮き上がるようにする */
 }
 
-.bousaiset-image {
-  max-width: 100%;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 /* レスポンシブデザイン */
 @media (max-width: 767px) {
   .custom-btn {
     font-size: 1.2rem !important; /* モバイルで文字サイズを少し小さくする */
     padding: 10px 20px !important; /* 内側の余白を少し調整 */
   }
-}/*# sourceMappingURL=top.css.map */
+}

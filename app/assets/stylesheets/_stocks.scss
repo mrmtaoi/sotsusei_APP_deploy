@@ -1,0 +1,51 @@
+.page-title1 {
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: rgb(242, 159, 91);
+}
+
+.inner_container .nav.navbar-nav {
+  display: flex; /* 横並びにする */
+  flex-wrap: wrap; /* 要素が画面幅を超えた場合に次の行に回り込む */
+  justify-content: flex-start; /* 左寄せにする */
+  padding: 0; /* 余白のリセット */
+  margin: 0; /* マージンのリセット */
+}
+
+.inner_container .nav.navbar-nav li {
+  display: flex; /* 横並びにする */
+  justify-content: space-between; /* 情報部分とボタンを左右に分ける */
+  align-items: center; /* 垂直方向で中央揃え */
+  flex: 1 1 48%; /* 各リストアイテムの幅を48%に設定して2個並べる */
+  margin-bottom: 20px; /* アイテム間の縦の間隔 */
+  font-size: 2rem; /* フォントサイズを調整 */
+  position: relative;  /* 親要素にも position: relative を追加 */
+  z-index: 99999;  /* これを追加して、ボタンの親要素が上に来るようにする */
+}
+
+.btn-primary {
+  background-color: hwb(194 43% 3%) !important; /* ボタンの色 */
+  color: rgb(1, 1, 1) !important;
+}
+
+.btn-primary:hover {
+  background-color: hwb(194 71% 4%) !important; /* ホバー時の色 */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important; /* ホバー時に影を強くして浮き上がらせる */
+  transform: translateY(-2px) !important; /* ボタンが少し浮き上がるようにする */
+}
+
+.button-container-stock {
+  display: flex; /* 子要素を横並びにする */
+  justify-content: flex-end; /* 子要素（ボタン）を右寄せにする */
+  width: 240%; /* 親要素の幅を100%にする */
+  padding-right: 20px; /* 右側に余白を追加してボタンが端にくっつかないようにする */
+  list-style-type: none; /* リストのマーカー（・）を非表示に */
+}
+
+.button-container3 {
+  display: flex;
+  gap: 10px; /* ボタン間の間隔 */
+  position: relative;
+  z-index: 10000000000;  /* ボタンが他の要素の上に表示されるように */
+}

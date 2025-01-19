@@ -1,24 +1,21 @@
 class SessionsController < ApplicationController
   def create
-    # メールアドレスでユーザーを検索
-    user = User.find_by(email: params[:session][:email])
-
-    # ユーザーが存在するか、または認証に失敗した場合の処理
-    if user.nil?
-      flash.now[:alert] = "メールアドレスが間違っています"
+    if params[:session].blank?
+      flash.now[:alert] = "不正なリクエストです"
       render :new and return
     end
 
-    logger.debug "User found: #{user.inspect}"
-    logger.debug "Authenticating with password: #{params[:session][:password]}"
-
-    # bcrypt の authenticateメソッドでパスワードの照合
-    if user.authenticate(params[:session][:password])
+    # メールアドレスでユーザーを検索し、認証を試行
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user&.authenticate(params[:session][:password])
+      logger.debug "User authenticated successfully"
       session[:user_id] = user.id
       flash[:notice] = "ログイン成功"
-      redirect_to root_path
+      redirect_to session[:forwarding_url] || root_path
+      session.delete(:forwarding_url)
     else
-      flash.now[:alert] = "パスワードが間違っています"
+      logger.debug "Authentication failed for email: #{params[:session][:email]}"
+      flash.now[:alert] = "メールアドレスまたはパスワードが間違っています"
       render :new
     end
   end

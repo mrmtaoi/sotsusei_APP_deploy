@@ -1,6 +1,14 @@
+.logo {
+  width: 20px;  /* 画像の幅 */
+  height: 80px;  /* 画像の高さ */
+  /* 必要に応じて位置調整 */
+  margin-left: 20px;  /* 左側の余白を追加 */
+}
+
 .navbar-brand {
-  position: relative;
-  top: -13px; /* 10px上に移動 */
+  width: 20px;  /* 画像の幅 */
+  height: 80px;  /* 画像の高さ */
+  margin-left: auto;  /* ロゴを右寄せに */
 }
 
 .navbar-nav li {
