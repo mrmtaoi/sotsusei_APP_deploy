@@ -17,4 +17,8 @@ class User < ApplicationRecord
   validates :password, presence: true,
     length: { minimum: 6 },
     allow_nil: true
+
+    has_many :stocks
+    has_many :emergency_kits
+    has_many :emergency_kits_owners
 end

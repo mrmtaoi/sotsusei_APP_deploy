@@ -6,8 +6,8 @@ class CreateReminders < ActiveRecord::Migration[7.0]
       t.references :stock_item, foreign_key: { to_table: :stock_items }  # stock_itemsテーブルと関連付け
       t.references :emergency_kit, foreign_key: true  # emergency_kitsテーブルと関連付け
       t.text :reminders
-      t.integer :interval_months, null: false  # 必須の月単位サイクル
-      t.date :expiration_date
+      t.integer :interval_months, null: true 
+      t.date :expiration_date, null: true 
       t.timestamps  # created_at, updated_at
       t.index [:user_id, :kit_item_id, :stock_item_id], unique: true, name: 'index_reminders_on_user_kit_stock'
     end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  helper_method :user_logged_in?
+  helper_method :user_logged_in?, :current_user  # current_user をヘルパーメソッドとしても使えるようにする
 
   private
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless user_logged_in?
       flash[:alert] = "ログインしてください。"
-      redirect_to login_path # login_path が存在することを確認してください
+      redirect_to login_path
     end
   end
 end

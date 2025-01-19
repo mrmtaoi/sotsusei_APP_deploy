@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_18_190636) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_19_065341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_18_190636) do
     t.bigint "stock_item_id"
     t.bigint "emergency_kit_id"
     t.text "reminders"
-    t.integer "interval_months", null: false
+    t.integer "interval_months"
     t.date "expiration_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

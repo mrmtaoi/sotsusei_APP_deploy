@@ -16,7 +16,7 @@
 <% if @stocks.present? %>
   <ul>
     <% @stocks.each do |stock| %>
-      <li><%= stock.name %></li>
+      <li><%= stock.stock_items.first.name %></li>
     <% end %>
   </ul>
 <% else %>
