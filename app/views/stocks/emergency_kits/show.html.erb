@@ -1,0 +1,32 @@
+<h1 class="page-title">バッグのなかみ</h1>
+<div class="kit_item_list">
+<p><strong>持ち主:</strong> <%= @emergency_kit.owner.name %></p>
+<p><strong>保管場所:</strong> <%= @emergency_kit.storage %></p>
+<%= @emergency_kit.body %></p>
+
+<%= render partial: 'stocks/kit_items/list', locals: { kit_items: @emergency_kit.kit_items } %>
+
+<h3>バックにアイテムを追加</h3>
+<%= form_with url: stocks_emergency_kit_kit_items_path(@emergency_kit), local: true do |form| %>
+    <div>
+      <%= form.label :アイテム名 %>
+      <%= form.text_field :name, name: 'kit_item[name]' %>
+    </div>
+
+    <div>
+      <%= form.label :数量 %>
+      <%= form.number_field :quantity, name: 'kit_item[quantity]' %>
+    </div>
+
+    <div class="kit_item_remind">
+    <%= form.fields_for :reminders do |reminder_fields| %>
+      <%= reminder_fields.label :expiration_date, "期限", class: "form-label" %>
+      <%= reminder_fields.date_field :expiration_date, class: "form-control", autocomplete: "off" %>
+    <% end %>
+  </div>
+  
+
+      <%= form.submit '追加する' %>
+    </div>
+  <% end %>
+</div>

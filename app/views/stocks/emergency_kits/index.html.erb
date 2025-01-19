@@ -1,13 +1,49 @@
-<!-- app/views/stocks/emergency_kits/index.html.erb -->
-<h1>防災バッグ一覧</h1>
+<h1 class="page-title">防災バッグ一覧</h1>
 
 <% if @emergency_kits.present? %>
-  <ul>
-    <% @emergency_kits.each do |emergency_kit| %>
-      <li><%= emergency_kit.name %></li>
-    <% end %>
-  </ul>
+  <div class="inner_container">
+    <nav>
+      <ul class="nav navbar-nav navbar-left">
+        <% @emergency_kits.each do |emergency_kit| %>
+          <li>
+            <div style="text-align: left;">
+              <strong><%= emergency_kit.owner.name %>の防災バッグ</strong>
+              <br>保管場所: <%= emergency_kit.storage %>
+              <br>確認サイクル: 
+              <%= 
+                if emergency_kit.reminder&.interval_months.present?
+                  "#{emergency_kit.reminder.interval_months}か月"
+                else
+                  '未設定'
+                end
+              %>
+            </div>
+            <!-- ボタンの配置を変更 -->
+            <div class="button-container2">
+              <%= link_to "開く", stocks_emergency_kit_path(emergency_kit), class: 'btn btn-secondary' %>
+              <%= link_to '削除', stocks_emergency_kit_path(emergency_kit), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+  <%= image_tag 'top.jpg', style: 'width: 300px; height: 350px; position: absolute; top: 400px; left: 1100px; pointer-events: none;' %>
+  <div class="inner_container">
+    <nav>
+      <div class="button-container">
+        <%= link_to "新しい防災バッグを追加", new_stocks_emergency_kit_path, class: 'btn btn-primary custom-btn' %>
+      </div>
+    </nav>
+  </div>
 <% else %>
-  <p>防災バッグは一つもありません...</p>
-  <%= image_tag 'nostock.png', style: 'width: 500px; height: 500px; position: absolute; top: 300px; left: 500px;' %>
+  <p class="noitem">防災バッグは一つもありません...</p>
+  <%= image_tag 'nostock.png', style: 'width: 450px; height: 500px; position: absolute; top: 300px; left: 500px;' %>
+  <div class="inner_container-noitem">
+    <nav>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "新しい防災バッグを追加", new_stocks_emergency_kit_path, class: 'btn btn-noitem custom-btn' %></li>
+      </ul>
+    </nav>
+  </div>
 <% end %>
