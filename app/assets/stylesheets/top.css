@@ -1,13 +1,13 @@
 @charset "UTF-8";
-.top-wrapper {
-  background-image: url("top.jpg");
+.top-container {
+  background-image: image-url("top.jpg");
   height: calc(100vh - 134px); /* 高さを調整 */
   position: relative;
   background-position: center 95%; /* 横方向は中央、縦方向は画像の高さの90% */
   background-size: 380px;
   background-repeat: no-repeat; /* 繰り返しを防ぐ */
 }
-.top-wrapper .top-inner-text h1 {
+.top-container .top-inner-text h1 {
   position: absolute;
   top: 50%; /* 垂直方向の中央に配置 */
   left: 25%; /* 水平方向の中央に配置 */
@@ -19,7 +19,7 @@
   /* モバイル対応 */
 }
 @media screen and (max-width: 767px) {
-  .top-wrapper .top-inner-text h1 {
+  .top-container .top-inner-text h1 {
     font-size: 2rem;
   }
 }
@@ -83,6 +83,15 @@
   background-color: hwb(194 71% 4%) !important; /* ホバー時の色 */
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important; /* ホバー時に影を強くして浮き上がらせる */
   transform: translateY(-2px) !important; /* ボタンが少し浮き上がるようにする */
+}
+
+.bousaiset-image {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* レスポンシブデザイン */
