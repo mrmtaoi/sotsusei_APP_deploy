@@ -13,7 +13,7 @@ class Stocks::EmergencyKitsController < ApplicationController
   
     def show
       # set_emergency_kit メソッドで既に @emergency_kit が設定されているため、再度 find は不要です
-      @emergency_kit_owner = @emergency_kit.owner
+      @emergency_kits_owner = @emergency_kit.owner
       @kit_items = @emergency_kit.kit_items.includes(:reminders) # 関連するアイテムを取得
     end  
   
@@ -27,7 +27,7 @@ class Stocks::EmergencyKitsController < ApplicationController
   
     def create
       user = current_user
-      gender = EmergencyKitOwner.genders.key(emergency_kit_params[:gender])
+      gender = EmergencyKitsOwner.genders.key(emergency_kit_params[:gender])
   
       # パラメータを使用してオーナー情報を取得または作成
       owner = EmergencyKitOwner.find_or_create_by(
@@ -45,10 +45,8 @@ class Stocks::EmergencyKitsController < ApplicationController
         storage: emergency_kit_params[:storage]
       )
 
-      if params[:reminder].present?
-        @kit_item.build_reminder(expiration_date: params[:reminder][:expiration_date])
-      end
-
+      
+  
       if @emergency_kit.save
         # 保存に成功した場合
         redirect_to stocks_emergency_kits_path, notice: 'Emergency kit was successfully created.'

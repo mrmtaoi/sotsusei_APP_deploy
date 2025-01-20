@@ -2,17 +2,6 @@ class Stocks::StocksController < ApplicationController
   before_action :require_login
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
-
-  def require_login
-    unless user_logged_in?
-      flash[:alert] = "ログインしてください。"
-      redirect_to login_path
-      logger.debug "User not logged in! Redirecting to login page."
-    else
-      logger.debug "User logged in with ID: #{session[:user_id]}"
-    end
-  end
-
   def index
     @stocks = current_user.stocks
   end
@@ -50,13 +39,21 @@ class Stocks::StocksController < ApplicationController
   end
 
   def update
-    if @stock.update(stock_params)
-      redirect_to stocks_stocks_path, notice: 'アイテムが更新されました。'
+    @stock.assign_attributes(stock_params)
+  
+    # stock_items の reminder に user を設定
+    @stock.stock_items.each do |stock_item|
+      stock_item.reminders.each do |reminder|
+        reminder.user = current_user if reminder.user.nil? # user を設定
+      end
+    end
+  
+    if @stock.save
+      redirect_to stocks_stocks_path, notice: '備蓄アイテムが更新されました。'
     else
-      Rails.logger.debug @stock.errors.full_messages # デバッグ用: エラー内容をログに出力
       render :edit, status: :unprocessable_entity
     end
-  end  
+  end
 
   private
 
