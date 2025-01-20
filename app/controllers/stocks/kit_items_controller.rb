@@ -6,12 +6,19 @@ class Stocks::KitItemsController < ApplicationController
     @kit_items = @emergency_kit.kit_items
   end
 
+  def new
+    @kit_item = @emergency_kit.kit_items.build
+    @kit_item.reminders.build  # KitItemに紐づくReminderを作成
+  end
+
   def create
     @kit_item = @emergency_kit.kit_items.build(kit_item_params)
+
     if @kit_item.save
+      @kit_item.reminders.create(reminder_params)  # reminder_params を適切に渡す
       redirect_to stocks_emergency_kit_path(@emergency_kit), notice: 'Kit item was successfully added.'
     else
-      redirect_to stocks_emergency_kit_path(@emergency_kit), alert: 'Failed to add kit item.'
+      render :new, alert: 'Failed to add kit item.'
     end
   end
   
@@ -48,4 +55,8 @@ class Stocks::KitItemsController < ApplicationController
   def kit_item_params
     params.require(:kit_item).permit(:name, :quantity, reminders_attributes: [:expiration_date])
   end
+end
+
+def reminder_params
+  params.require(:reminders).permit(:expiration_date)  # 必要なパラメータを追加
 end
