@@ -11,8 +11,8 @@
               <br>保管場所: <%= emergency_kit.storage %>
               <br>確認サイクル: 
               <%= 
-                if emergency_kit.reminder&.interval_months.present?
-                  "#{emergency_kit.reminder.interval_months}か月"
+                if emergency_kit.reminders.any? && emergency_kit.reminders.first.interval_months.present?
+                  "#{emergency_kit.reminders.first.interval_months}か月"
                 else
                   '未設定'
                 end

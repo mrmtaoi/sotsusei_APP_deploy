@@ -1,12 +1,12 @@
-<h1 class="page-title1">現在の備え一覧</h1>
+<h1 class="page-title1">備蓄アイテム一覧</h1>
 
 <% if @stocks.present? %>
   <div class="inner_container">
     <nav>
       <ul class="nav navbar-nav navbar-left">
-      <% @stocks.each do |stock| %>
-        <li>
-          <div class="text-align: left;">
+        <% @stocks.each do |stock| %>
+          <li>
+            <div style="text-align: left;">
             <% stock.stock_items.each do |item| %>
               <strong><%= item.name.presence || '未設定' %></strong>
               <br>ストック数: <%= item.quantity.presence || '未設定' %>
@@ -21,14 +21,13 @@
                 end
               %>
             <% end %>
-          </div>
-          <!-- ボタンの配置を変更 -->
-          <div class="button-container3">
-            <%= link_to "編集", edit_stocks_stock_path(stock), class: 'btn btn-secondary' %>
-            <%= link_to "削除", stocks_stock_path(stock), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
-          </div>
-        </li>
-      <% end %>
+            </div>
+            <div class="button-container3">
+              <%= link_to "編集", edit_stocks_stock_path(stock), class: 'btn btn-secondary' %>
+              <%= link_to '削除', stocks_stock_path(stock), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>
+            </div>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>

@@ -18,7 +18,5 @@ class EmergencyKitOwner < ApplicationRecord
     I18n.t("enums.#{enum_name}.#{key}")
   end
   
-  validates :name, presence: true
-  validates :age, presence: true
-  validates :gender, presence: true
+  validates :name, presence: { message: "なまえは必須項目です" }
 end

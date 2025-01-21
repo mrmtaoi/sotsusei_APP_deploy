@@ -12,23 +12,37 @@ class Stocks::EmergencyKitsController < ApplicationController
     end
   
     def show
-      # set_emergency_kit メソッドで既に @emergency_kit が設定されているため、再度 find は不要です
-      @emergency_kits_owner = @emergency_kit.owner
+      @emergency_kit_owner = @emergency_kit.owner
       @kit_items = @emergency_kit.kit_items.includes(:reminders) # 関連するアイテムを取得
     end  
   
     def new
       @emergency_kit = EmergencyKit.new
-      @gender_options = EmergencyKitOwner.genders.keys.map do |key|
-        [I18n.t("enums.gender.#{key}"), key]
-      end
-      @emergency_kit.build_reminder # Reminder を初期化
+      @gender_options = EmergencyKitOwner.genders_i18n.invert.map { |key, value| [key, value] }  
+      @emergency_kit.reminders.build # Reminderオブジェクトを初期化して関連付け    
     end
   
     def create
+      Rails.logger.debug "Received params: #{params.inspect}" # リクエスト全体をログ出力
+      Rails.logger.debug "Permitted params: #{emergency_kit_params.inspect}" # 許可済みパラメータをログ出力
+
       user = current_user
-      gender = EmergencyKitsOwner.genders.key(emergency_kit_params[:gender])
+      gender = EmergencyKitOwner.genders.key(emergency_kit_params[:gender])
   
+      if emergency_kit_params[:owner_name].blank?
+        flash[:alert] = "名前の入力は必須です" 
+        redirect_to new_stocks_emergency_kit_path  # リダイレクト後にメッセージを表示
+        return
+      end
+
+      Rails.logger.debug "Reminders attributes: #{params[:emergency_kit][:reminders_attributes].inspect}"
+
+      if params[:emergency_kit][:reminders_attributes]
+        params[:emergency_kit][:reminders_attributes].each do |_, reminder_params|
+          reminder_params[:user_id] = current_user.id
+        end
+      end
+      
       # パラメータを使用してオーナー情報を取得または作成
       owner = EmergencyKitOwner.find_or_create_by(
         user_id: current_user.id,
@@ -37,27 +51,24 @@ class Stocks::EmergencyKitsController < ApplicationController
         gender: emergency_kit_params[:gender]
       )
   
-      # EmergencyKit の作成
       @emergency_kit = EmergencyKit.new(
         user: user,
         owner: owner,
-        body: emergency_kit_params[:body],
-        storage: emergency_kit_params[:storage]
+        storage: emergency_kit_params[:storage],
+        reminders_attributes: emergency_kit_params[:reminders_attributes] # 修正ポイント
       )
-
-      
   
       if @emergency_kit.save
-        # 保存に成功した場合
-        redirect_to stocks_emergency_kits_path, notice: 'Emergency kit was successfully created.'
+        Rails.logger.debug "Saved emergency kit: #{@emergency_kit.inspect}"
+        Rails.logger.debug "Associated reminders: #{@emergency_kit.reminders.inspect}"
+        redirect_to stocks_emergency_kits_path, notice: '防災バッグが登録できました！'
       else
-        # 保存に失敗した場合
+        Rails.logger.debug "Failed to save emergency kit: #{@emergency_kit.errors.full_messages}"
         render :new
       end
     end
   
     def edit
-      # set_emergency_kit メソッドで既に @emergency_kit が設定されているため、再度 find は不要です
     end
   
     def destroy
@@ -67,7 +78,7 @@ class Stocks::EmergencyKitsController < ApplicationController
       # EmergencyKit を削除
       @emergency_kit.destroy
       
-      redirect_to stocks_emergency_kits_path, notice: '防災バッグが削除されました。'
+      redirect_to stocks_emergency_kits_path, notice: '防災バッグが削除できました'
     end
     
     
@@ -83,8 +94,8 @@ class Stocks::EmergencyKitsController < ApplicationController
         :owner_name, 
         :age, 
         :gender, 
-        reminder_attributes: [:interval_months]
-      )
+        reminders_attributes: [:interval_months, :user_id]
+        )
     end
   end
   
