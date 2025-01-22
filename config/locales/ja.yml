@@ -6,3 +6,10 @@ ja:
         female: "女性"
         other: "その他"
 
+  activerecord:
+    errors:
+      messages:
+        blank: "を入力してください"
+        invalid: "は無効です"
+        taken: "はすでに使用されています"
+        too_short: "は短すぎます（最低 %{count} 文字が必要です）"

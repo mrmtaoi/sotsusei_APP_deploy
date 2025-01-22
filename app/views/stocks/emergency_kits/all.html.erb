@@ -1,18 +1,19 @@
 <h1 class="page-title1">現在の備え一覧</h1>
-<div class="emergency_kits_container">
+<div class="stocks_container">
 <h2>防災バッグ一覧</h2>
 <% if @emergency_kits.present? %>
-  <% @emergency_kits.each do |kit| %>
-    <li>
-      <div style="text-align: left;">
-        <strong><%= kit.owner.name %>の防災バッグ</strong>
-        <br>保管場所: <%= kit.storage %>
-      </div>
-    </li>
+  <ul class="nav navbar-nav navbar-left">
+    <% @emergency_kits.each do |kit| %>
+      <li>
+        <div style="text-align: left;">
+          <strong><%= kit.owner.name %>の防災バッグ</strong>
+          <br>保管場所: <%= kit.storage %>
+        </div>
+      </li>
+    <% end %>
+  <% else %>
+    <p>防災バッグはありません。</p>
   <% end %>
-<% else %>
-  <p>防災バッグはありません。</p>
-<% end %>
 </div>
 <div class="stocks_container">
 <h2>備蓄一覧</h2>

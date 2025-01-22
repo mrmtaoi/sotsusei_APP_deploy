@@ -8,7 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Myapp
   class Application < Rails::Application
+    # デフォルトのロケールを日本語に設定
     config.i18n.default_locale = :ja
+    config.i18n.available_locales = [:ja, :en]  # 必要に応じて、利用するロケールを指定
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0

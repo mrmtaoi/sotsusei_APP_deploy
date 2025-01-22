@@ -1,0 +1,7 @@
+<h1 class="page-title1">マイページ</h1>
+<div class="mypage_contents">
+  <p>ユーザー名: <%= @user.name %></p>
+  <p>メールアドレス: <%= @user.email %></p>
+  <%= link_to 'ログアウト', destroy_user_session_path, 
+    method: :delete, data: { confirm: '本当にログアウトしますか？', turbo_method: :delete } %>
+</div>
