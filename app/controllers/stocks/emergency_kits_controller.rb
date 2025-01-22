@@ -18,11 +18,14 @@ class Stocks::EmergencyKitsController < ApplicationController
   
     def new
       @emergency_kit = EmergencyKit.new
-      @gender_options = EmergencyKitOwner.genders_i18n.invert.map { |key, value| [key, value] }  
-      @emergency_kit.reminders.build # Reminderオブジェクトを初期化して関連付け    
+      @gender_options = EmergencyKitOwner.genders_i18n.map { |key, value| [key, value] }
+      @emergency_kit.reminders.build # Reminderオブジェクトを初期化して関連付け   
+      Rails.logger.debug("Gender Options: #{@gender_options}") 
     end
   
     def create
+      Rails.logger.debug("Processed Gender: #{emergency_kit_params[:gender]}")
+
       Rails.logger.debug "Received params: #{params.inspect}" # リクエスト全体をログ出力
       Rails.logger.debug "Permitted params: #{emergency_kit_params.inspect}" # 許可済みパラメータをログ出力
 

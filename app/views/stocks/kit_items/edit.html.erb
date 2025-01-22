@@ -13,18 +13,20 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :アイテム名 %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :quantity %>
+    <%= form.label :ストック数 %>
     <%= form.number_field :quantity %>
   </div>
 
-  <div class="field">
-    <%= form.label :expiration_date %>
-    <%= form.date_field :expiration_date %>
+  <div>
+    <%= form.fields_for :reminders do |reminder_fields| %>
+      <%= reminder_fields.label :期限 %>
+      <%= reminder_fields.date_field :expiration_date, value: @kit_item.reminders.first&.expiration_date %>
+    <% end %>
   </div>
 
   <div class="actions">
