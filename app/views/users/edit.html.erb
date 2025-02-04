@@ -1,0 +1,33 @@
+<h1 class="page-title1">ユーザー情報編集</h1>
+
+<%= form_with model: @user, local: true do |f| %>
+  <div>
+    <%= f.label :name, "ユーザー名" %>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :password, "新しいパスワード（空欄の場合は変更なし）" %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation, "パスワード確認" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<hr>
+
+<h3>アカウント削除</h3>
+<p>アカウントは一度削除すると復元できません</p>
+<%= button_to "アカウントを削除", user_path(@user), method: :delete, data: { confirm: '本当にアカウントを削除しますか？', turbo_method: :delete } , class: "btn btn-danger" %>

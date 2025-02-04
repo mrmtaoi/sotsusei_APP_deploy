@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
       <%= form.label :quantity, "数量", class: "form-label" %>
-      <%= form.number_field :quantity, name: 'kit_item[quantity]', class: "input-field" %>
+      <%= form.number_field :quantity, name: 'kit_item[quantity]', class: "input-field", min: 1, step: 1 %>
     </div>
     <div class="kit_item_remind form-group">
       <%= form.fields_for :reminders do |reminder_fields| %>

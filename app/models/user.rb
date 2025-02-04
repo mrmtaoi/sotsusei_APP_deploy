@@ -20,5 +20,5 @@ class User < ApplicationRecord
 
   has_many :stocks
   has_many :emergency_kits
-  has_many :emergency_kits_owners
+  has_many :emergency_kit_owners, dependent: :destroy
 end

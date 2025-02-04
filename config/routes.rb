@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
   # 他ルーティング
   get 'signup', to: 'users#new'
-  resources :users, except: [:new]
+  resources :users, only: [:show, :edit, :update, :destroy, :new, :create]
 
   # ログイン関連
   get "login", to: "sessions#new"

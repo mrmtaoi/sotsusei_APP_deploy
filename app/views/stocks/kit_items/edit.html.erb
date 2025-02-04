@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= form.label :ストック数 %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, min: 1, step: 1 %>
   </div>
 
   <div>

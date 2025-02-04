@@ -24,7 +24,7 @@
   </div>
 <% end %>
 
-  <% if user_logged_in? %> <!-- カスタムメソッドを使ってログイン状態を確認 -->
+  <% if current_user.present? %> <!-- current_userが存在するかどうかを確認 -->
     <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
   <% else %>
     <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->

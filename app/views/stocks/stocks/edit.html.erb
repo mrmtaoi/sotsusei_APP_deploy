@@ -22,7 +22,7 @@
           </div>
           <div class="mb-3">
             <%= stock_item_fields.label :quantity, "ストック数", class: "form-label" %>
-            <%= stock_item_fields.number_field :quantity, class: "form-control", autocomplete: "off" %>
+            <%= stock_item_fields.number_field :quantity, class: "form-control", autocomplete: "off", min: 1, step: 1 %>
           </div>
           <div class="mb-3">
             <%= stock_item_fields.label :storage, "保管場所", class: "form-label" %>
@@ -36,7 +36,7 @@
             </div>
             <div class="mb-3">
               <%= reminder_fields.label :interval_months, "かくにんサイクル（月単位）", class: "form-label" %>
-              <%= reminder_fields.number_field :interval_months, class: "form-control", autocomplete: "off" %>
+              <%= reminder_fields.number_field :interval_months, class: "form-control", autocomplete: "off", min: 1, step: 1 %>
             </div>
           <% end %>
         <% end %>
