@@ -9,7 +9,15 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
       logger.debug "User authenticated successfully"
-      session[:user_id] = user.id
+      log_in(user)  # ユーザーをセッションに保存
+
+      # チェックボックスがオンなら記憶する
+      if params[:session][:remember_me] == "1"
+        remember(user)
+      else
+        forget(user)
+      end
+
       flash[:notice] = "ログイン成功"
       redirect_to session[:forwarding_url] || root_path
       session.delete(:forwarding_url)
@@ -21,7 +29,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    log_out if logged_in?  # ログアウト処理（クッキー削除も含む）
     flash[:notice] = "ログアウトしました"
     redirect_to login_path
   end

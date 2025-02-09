@@ -11,6 +11,9 @@
     <%= f.password_field :password, name: 'session[password]', required: true %>
   </div>
 
+  <%= f.check_box :remember_me, value: "1" %>
+  <%= f.label :remember_me, "ログイン情報を記憶する" %>
+
   <div class="actions">
     <%= f.submit "ログイン" %>
   </div>

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  # email　オブジェクトが保存される時点で小文字に変換する
+  attr_accessor :remember_token  # 一時的なトークンを保持するための仮想属性
+
   before_save { email.downcase! }
 
   # name のバリデーション
@@ -21,4 +22,26 @@ class User < ApplicationRecord
   has_many :stocks
   has_many :emergency_kits
   has_many :emergency_kit_owners, dependent: :destroy
+
+  # ランダムなトークンを生成する
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # トークンをハッシュ化して保存する
+  def remember
+    self.remember_token = User.new_token
+    update(remember_digest: BCrypt::Password.create(remember_token))
+  end
+
+  # 記憶トークンがダイジェストと一致するか確認
+  def authenticated?(token)
+    return false if remember_digest.nil?
+    BCrypt::Password.new(remember_digest).is_password?(token)
+  end
+
+  # 記憶情報を削除
+  def forget
+    update(remember_digest: nil)
+  end
 end
