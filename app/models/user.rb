@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :stocks
   has_many :emergency_kits
   has_many :emergency_kit_owners, dependent: :destroy
+  has_many :boards
 
   # ランダムなトークンを生成する
   def self.new_token

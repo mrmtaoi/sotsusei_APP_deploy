@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_19_065341) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_17_153446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "board_emergency_kits", force: :cascade do |t|
+    t.bigint "board_id", null: false
+    t.bigint "emergency_kit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_board_emergency_kits_on_board_id"
+    t.index ["emergency_kit_id"], name: "index_board_emergency_kits_on_emergency_kit_id"
+  end
+
+  create_table "boards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "description"
+    t.boolean "is_public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_boards_on_user_id"
+  end
 
   create_table "emergency_kit_owners", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -88,9 +107,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_19_065341) do
     t.string "remember_digest"
     t.string "activation_digest"
     t.boolean "activated"
+    t.string "share_token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["share_token"], name: "index_users_on_share_token", unique: true
   end
 
+  add_foreign_key "board_emergency_kits", "boards"
+  add_foreign_key "board_emergency_kits", "emergency_kits"
+  add_foreign_key "boards", "users"
   add_foreign_key "emergency_kit_owners", "users"
   add_foreign_key "emergency_kits", "emergency_kit_owners", column: "owner_id"
   add_foreign_key "emergency_kits", "users"

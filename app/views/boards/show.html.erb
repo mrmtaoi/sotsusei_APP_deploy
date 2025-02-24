@@ -1,0 +1,58 @@
+<h1>防災バッグ掲示板</h1>
+
+<h2><%= @board.title %></h2>
+
+<p><%= @board.description %></p>
+
+<% if @board.emergency_kits.present? %>
+  <ul>
+    <% @board.emergency_kits.each do |kit| %>
+      <li>
+        <strong>年齢：</strong><%= kit.owner&.age %><br>
+        <strong>性別：</strong><%= t("enums.emergency_kit_owner.gender.#{kit.owner&.gender}", default: "未設定") %><br>
+        <strong>保管場所：</strong><%= kit.storage %><br>
+        
+        <% if kit.kit_items.present? %>
+          <h3>バッグ内のアイテム</h3>
+          <ul>
+            <% kit.kit_items.each do |kit_item| %>
+              <li>
+                <strong>アイテム:</strong> <%= kit_item.name %> |
+                <strong>数量:</strong> <%= kit_item.quantity %> |
+                <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>
+
+                <% if current_user == @board.user %>
+                  <div class="button-container3">
+                    <%= link_to "編集", edit_stocks_emergency_kit_kit_item_path(kit_item.emergency_kit, kit_item), class: 'btn btn-secondary' %>
+                    <%= link_to '削除', stocks_emergency_kit_kit_item_path(kit_item.emergency_kit, kit_item), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete }, class: 'btn btn-danger' %>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>バッグの中は空っぽです...</p>
+        <% end %>
+
+        <% if kit.reminders.present? %>
+          <h3>確認サイクル</h3>
+          <ul>
+            <% kit.reminders.each do |reminder| %>
+              <li>確認サイクル: <%= reminder.interval_months %>ヶ月</li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>確認サイクルが設定されていません。</p>
+        <% end %>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+<% else %>
+  <p>この掲示板には防災バッグが登録されていません。</p>
+<% end %>
+
+<% if current_user == @board.user %>
+  <%= link_to "編集", edit_board_path(@board), class: "btn btn-warning" %>
+  <%= link_to '削除', board_path(@board), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete }, class: 'btn btn-danger' %>
+<% end %>

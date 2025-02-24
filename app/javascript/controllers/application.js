@@ -1,12 +1,16 @@
 import { Application } from "@hotwired/stimulus"
-
-const application = Application.start()
-
+import { definitionsFromContext } from "@hotwired/stimulus-loading"
 import Rails from "@rails/ujs"
+
 Rails.start()
 
-// Configure Stimulus development experience
+// Stimulus アプリケーションを開始
+const application = Application.start()
 application.debug = false
-window.Stimulus   = application
+window.Stimulus = application
+
+// controllers ディレクトリ内の全ての Stimulus コントローラーを自動登録 (importmap 用)
+const context = import.meta.glob("./controllers/**/*.js")
+application.load(definitionsFromContext(context))
 
 export { application }
