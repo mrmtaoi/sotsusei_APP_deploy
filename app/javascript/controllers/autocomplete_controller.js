@@ -1,39 +1,33 @@
-// app/javascript/controllers/autocomplete_controller.js
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="autocomplete"
 export default class extends Controller {
-  static values = { url: String }
-  static targets = ["results"]
+  static targets = ["input", "results"];
 
-  search(event) {
-    const query = encodeURIComponent(event.target.value);  
-    const url = `${this.urlValue}?q=${query}`;
+  search() {
+    const query = this.inputTarget.value.trim();
+    if (query.length < 2) {
+      this.resultsTarget.innerHTML = "";
+      return;
+    }
 
-    fetch(url)
+    fetch(`/boards/autocomplete?query=${encodeURIComponent(query)}`)
       .then(response => response.json())
       .then(data => {
-        this.updateResults(data);
-      })
-      .catch(error => console.error('Error fetching autocomplete data:', error));
-  }
-
-  updateResults(data) {
-    this.resultsTarget.innerHTML = '';
-
-    data.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item.title;  // Adjust based on response data structure
-      li.addEventListener('click', () => {
-        this.selectResult(item);
+        this.resultsTarget.innerHTML = data.map(item => 
+          `<li class="autocomplete-item" data-id="${item.id}">
+            <strong>${item.title}</strong><br>
+            <small>${item.description}</small><br>
+            <span class="text-muted">${item.items.join(", ")}</span>
+          </li>`
+        ).join("");
       });
-      this.resultsTarget.appendChild(li);
-    });
   }
 
-  selectResult(item) {
-    this.element.querySelector('input').value = item.title;  // Set the input field with selected item
-
-    this.resultsTarget.innerHTML = ''; // Clear results
+  select(event) {
+    if (event.target.closest(".autocomplete-item")) {
+      const selectedText = event.target.closest(".autocomplete-item").querySelector("strong").textContent;
+      this.inputTarget.value = selectedText;
+      this.resultsTarget.innerHTML = "";
+    }
   }
 }

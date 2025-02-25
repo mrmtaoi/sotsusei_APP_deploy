@@ -1,11 +1,12 @@
-<h1>防災バッグ掲示板</h1>
+<h1 class="page-title">防災バッグ掲示板</h1>
 
-<%= form_with url: boards_path, method: :get, class: "search-form", data: { controller: "autocomplete", autocomplete_url: search_boards_path, action: "input->autocomplete#search" } do %>
+<%= form_with url: boards_path, method: :get, class: "search-form", data: { controller: "autocomplete" } do %>
   <div class="form-group">
     <%= label_tag :search, "検索" %>
-    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "フリーワードで検索", data: { autocomplete_target: "input" } %>
-    <!-- 検索候補を表示するためのリスト -->
-    <ul data-target="autocomplete.results"></ul>
+    <%= text_field_tag :search, params[:search], class: "form-control search-field", placeholder: "フリーワードで検索", data: { autocomplete_target: "input", action: "input->autocomplete#search" } %>
+
+    <!-- オートコンプリートの結果を表示 -->
+    <ul class="autocomplete-results" data-autocomplete-target="results" data-action="click->autocomplete#select"></ul>
   </div>
 
   <div class="form-group">
