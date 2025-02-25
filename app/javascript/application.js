@@ -1,6 +1,5 @@
-// app/javascript/application.js
-import { Application } from "stimulus";
-import { defineModulesFromContext } from "stimulus";
+import { Application } from "@hotwired/stimulus";
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"; // 修正
 
 // Turbo
 import "@hotwired/turbo-rails";
@@ -8,9 +7,9 @@ import "@hotwired/turbo-rails";
 // Stimulus controllers
 import "controllers";
 
-// Stimulus applicationのセットアップ
+// Stimulus application のセットアップ
 const application = Application.start();
 
 // コントローラの自動読み込み
 const context = require.context("controllers", true, /\.js$/);
-application.load(defineModulesFromContext(context));
+application.load(definitionsFromContext(context));
