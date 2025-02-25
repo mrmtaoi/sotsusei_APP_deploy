@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mrmtaoi/sotsusei_APP_deploy/issues"
   },
-  "homepage": "https://github.com/mrmtaoi/sotsusei_APP_deploy#readme"
+  "homepage": "https://github.com/mrmtaoi/sotsusei_APP_deploy#readme",
+  "dependencies": {
+    "stimulus": "^3.2.2"
+  }
 }
