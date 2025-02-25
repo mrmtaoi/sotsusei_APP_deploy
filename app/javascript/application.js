@@ -1,6 +1,6 @@
 // app/javascript/application.js
 import { Application } from "stimulus";
-import { autoloadControllers } from "stimulus/webpack-helpers"; // 3.0以降のインポート方法
+import { definitionsFromContext } from "stimulus"; // 3.0 以降のインポート方法
 
 // Turbo
 import "@hotwired/turbo-rails";
@@ -12,5 +12,5 @@ import "controllers";
 const application = Application.start();
 
 // コントローラの自動読み込み
-autoloadControllers(application, "controllers");
-
+const context = require.context("controllers", true, /\.js$/); // コントローラを自動で検索
+application.load(definitionsFromContext(context)); // 自動でコントローラを読み込む
