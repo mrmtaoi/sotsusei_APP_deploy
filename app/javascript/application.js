@@ -1,6 +1,6 @@
 // app/javascript/application.js
 import { Application } from "stimulus";
-import { definitionsFromContext } from "stimulus"; // 3.0 以降のインポート方法
+import { defineModulesFromContext } from "stimulus";
 
 // Turbo
 import "@hotwired/turbo-rails";
@@ -12,5 +12,5 @@ import "controllers";
 const application = Application.start();
 
 // コントローラの自動読み込み
-const context = require.context("controllers", true, /\.js$/); // コントローラを自動で検索
-application.load(definitionsFromContext(context)); // 自動でコントローラを読み込む
+const context = require.context("controllers", true, /\.js$/);
+application.load(defineModulesFromContext(context));
