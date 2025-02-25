@@ -10,24 +10,17 @@ export default class extends Controller {
       return;
     }
 
-    fetch(`/boards/autocomplete?query=${encodeURIComponent(query)}`)
+    fetch(`/boards/autocomplete?query=${query}`)
       .then(response => response.json())
       .then(data => {
-        this.resultsTarget.innerHTML = data.map(item => 
-          `<li class="autocomplete-item" data-id="${item.id}">
-            <strong>${item.title}</strong><br>
-            <small>${item.description}</small><br>
-            <span class="text-muted">${item.items.join(", ")}</span>
-          </li>`
-        ).join("");
+        this.resultsTarget.innerHTML = data
+          .map(keyword => `<li class="autocomplete-item" data-action="click->autocomplete#select">${keyword}</li>`)
+          .join("");
       });
   }
 
   select(event) {
-    if (event.target.closest(".autocomplete-item")) {
-      const selectedText = event.target.closest(".autocomplete-item").querySelector("strong").textContent;
-      this.inputTarget.value = selectedText;
-      this.resultsTarget.innerHTML = "";
-    }
+    this.inputTarget.value = event.target.innerText;
+    this.resultsTarget.innerHTML = "";
   }
 }

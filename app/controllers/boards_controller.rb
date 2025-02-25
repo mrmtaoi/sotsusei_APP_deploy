@@ -5,24 +5,30 @@ class BoardsController < ApplicationController
   # オートコンプリート機能
   def autocomplete
     query = params[:query]
-    @boards = Board.joins(emergency_kits: :kit_items)
-                   .where('boards.title LIKE :query OR boards.description LIKE :query OR kit_items.name LIKE :query', query: "%#{query}%")
-                   .distinct
+    Rails.logger.debug "検索ワード: #{query}"
   
-    render json: @boards.map { |board| 
-      {
-        id: board.id, 
-        title: board.title, 
-        description: board.description.truncate(50),
-        items: board.emergency_kits.flat_map(&:kit_items).map(&:name).uniq
-      } 
-    }
-  end  # ← ここで明示的に `end` を閉じる
+    # キーワード候補を取得（アイテム名と投稿タイトル・説明を対象）
+    keyword_results = KitItem.where("name ILIKE ?", "%#{query}%").pluck(:name).uniq
+    board_results = Board.where("title ILIKE ? OR description ILIKE ?", "%#{query}%", "%#{query}%").pluck(:title, :description).map(&:first)
+  
+    # キーワードをユニークにしてJSONで返す
+    suggestions = (keyword_results + board_results).uniq
+  
+    Rails.logger.debug "検索候補: #{suggestions}"
+  
+    render json: suggestions
+  end
+  
 
-  # 年齢・性別での絞り込み処理（新しく `index` に適用）
   def index
-    @boards = Board.all
-
+    @boards = Board.left_joins(emergency_kits: :kit_items).distinct
+  
+    # フリーワード検索
+    if params[:search].present?
+      query = "%#{params[:search]}%"
+      @boards = @boards.where('boards.title ILIKE :query OR boards.description ILIKE :query OR kit_items.name ILIKE :query', query: query)
+    end
+  
     # 年代での絞り込み
     if params[:age_group].present?
       case params[:age_group].to_i
@@ -39,14 +45,13 @@ class BoardsController < ApplicationController
       when 100 then @boards = @boards.joins(emergency_kits: :owner).where('emergency_kit_owners.age >= ?', 100)
       end
     end
-
+  
     # 性別での絞り込み
     if params[:gender].present?
       @boards = @boards.joins(emergency_kits: :owner).where(emergency_kit_owners: { gender: params[:gender] })
     end
-
-    @boards = @boards.distinct
   end
+  
 
   def new
     @board = Board.new
