@@ -16,6 +16,10 @@ export default class extends Controller {
         this.resultsTarget.innerHTML = data
           .map(keyword => `<li class="autocomplete-item" data-action="click->autocomplete#select">${keyword}</li>`)
           .join("");
+      })
+      .catch(error => {
+        console.error("Autocomplete error:", error);
+        this.resultsTarget.innerHTML = "<li>エラーが発生しました</li>";  // エラーメッセージを表示
       });
   }
 
