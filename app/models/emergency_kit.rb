@@ -5,4 +5,6 @@ class EmergencyKit < ApplicationRecord
   has_many :reminders, dependent: :destroy
   accepts_nested_attributes_for :reminders, allow_destroy: true
 
+  has_many :board_emergency_kits
+  has_many :boards, through: :board_emergency_kits
 end

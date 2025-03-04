@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'boards/index'
+  get 'boards/show'
+  get 'boards/new'
+  get 'boards/create'
+  get 'boards/edit'
+  get 'boards/update'
+  get 'boards/destroy'
   # ログイン状態に応じてトップページを動的に変更
   root to: redirect { |path, req| req.session[:user_id].present? ? '/static_pages/top' : '/welcome' }
 
@@ -9,6 +16,11 @@ Rails.application.routes.draw do
   # 他ルーティング
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :edit, :update, :destroy, :new, :create]
+  resources :boards, only: [:index, :show, :new, :create, :edit, :destroy] do
+    collection do
+      get :search  
+    end
+  end
 
   # ログイン関連
   get "login", to: "sessions#new"

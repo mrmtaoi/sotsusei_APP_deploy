@@ -77,6 +77,9 @@ class Stocks::EmergencyKitsController < ApplicationController
     def destroy
       # 関連する kit_items を削除
       @emergency_kit.kit_items.destroy_all
+
+      # 関連する 掲示板投稿 を削除
+      @emergency_kit.board_emergency_kits.destroy_all
       
       # EmergencyKit を削除
       @emergency_kit.destroy
