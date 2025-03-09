@@ -3,6 +3,5 @@ class KitItem < ApplicationRecord
   has_many :reminders, dependent: :destroy
   accepts_nested_attributes_for :reminders, allow_destroy: true
   belongs_to :category
-  has_many :kit_items
 end
   
