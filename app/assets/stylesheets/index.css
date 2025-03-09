@@ -31,3 +31,7 @@
     width: 100%; /* 小さい画面では縦に並べる */
   }
 }/*# sourceMappingURL=index.css.map */
+
+.hidden {
+  display: none;
+}

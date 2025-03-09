@@ -1,27 +1,54 @@
-<%= form_with(model: kit_item, local: true) do |form| %>
-    <% if kit_item.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(kit_item.errors.count, "error") %> prohibited this item from being saved:</h2>
-        <ul>
-          <% item.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
+<%= form_with url: stocks_emergency_kit_kit_items_path(@emergency_kit), local: true, id: "category", data: { controller: "category", action: "change->category#toggleExtraInput" } do |form| %>
+  <div class="form-group">
+    <%= form.label :name, "アイテム名", class: "form-label" %>
+    <%= form.text_field :name, name: 'kit_item[name]', class: "input-field" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :quantity, "数量", class: "form-label" %>
+    <%= form.number_field :quantity, name: 'kit_item[quantity]', class: "input-field", min: 1, step: 1 %>
+  </div>
+
+  <!-- カテゴリー選択 -->
+  <div class="form-group">
+    <%= form.label :category_id, "カテゴリー", class: "form-label" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" }, { class: "input-field", data: { category_target: "categorySelect" } } %>
+  </div>
+
+  <!-- 追加情報の入力欄 -->
+  <div id="extra-info-fields">
+    <div id="food-field" class="extra-field hidden">
+      <%= form.label :extra_info, "何食分", class: "form-label" %>
+      <%= form.number_field :extra_info, name: 'kit_item[extra_info]', class: "input-field", min: 1 %>
     </div>
-  
-    <div class="field">
-      <%= form.label :category_id, "Category" %>
-      <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a category" %>
+
+    <div id="drink-field" class="extra-field hidden">
+      <%= form.label :extra_info, "何リットル", class: "form-label" %>
+      <%= form.number_field :extra_info, name: 'kit_item[extra_info]', class: "input-field", min: 0.1, step: 0.1 %>
     </div>
-  
-    <div class="field">
-      <%= form.submit %>
+
+    <div id="electronics-field" class="extra-field hidden">
+      <%= form.label :extra_info, "用途", class: "form-label" %>
+      <%= form.select :extra_info, ["スマホ充電", "ライト", "ラジオ", "その他"], { prompt: "選択してください" }, class: "input-field" %>
     </div>
-  <% end %>
-  
+
+    <div id="clothing-field" class="extra-field hidden">
+      <%= form.label :extra_info, "種類", class: "form-label" %>
+      <%= form.select :extra_info, ["上着", "下着", "トップス", "ボトムス", "その他"], { prompt: "選択してください" }, class: "input-field" %>
+    </div>
+
+    <div id="battery-field" class="extra-field hidden">
+      <%= form.label :extra_info, "種類", class: "form-label" %>
+      <%= form.select :extra_info, ["単一", "単二", "単三", "単四", "その他"], { prompt: "選択してください" }, class: "input-field" %>
+    </div>
+
+    <div id="medical-field" class="extra-field hidden">
+      <%= form.label :extra_info, "種類", class: "form-label" %>
+      <%= form.select :extra_info, ["常備薬", "包帯", "絆創膏", "マスク", "眼鏡・老眼鏡", "生理用品", "お薬手帳", "その他"], { prompt: "選択してください" }, class: "input-field" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit '追加する', class: "btn btn-primary" %>
+  </div>
+<% end %>
