@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_17_153446) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_08_191843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,12 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_17_153446) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "emergency_kit_owners", force: :cascade do |t|
@@ -60,6 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_17_153446) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_kit_items_on_category_id"
     t.index ["emergency_kit_id"], name: "index_kit_items_on_emergency_kit_id"
   end
 
@@ -87,6 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_17_153446) do
     t.string "storage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_stock_items_on_category_id"
     t.index ["stock_id"], name: "index_stock_items_on_stock_id"
   end
 
@@ -118,11 +128,13 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_17_153446) do
   add_foreign_key "emergency_kit_owners", "users"
   add_foreign_key "emergency_kits", "emergency_kit_owners", column: "owner_id"
   add_foreign_key "emergency_kits", "users"
+  add_foreign_key "kit_items", "categories"
   add_foreign_key "kit_items", "emergency_kits"
   add_foreign_key "reminders", "emergency_kits"
   add_foreign_key "reminders", "kit_items"
   add_foreign_key "reminders", "stock_items"
   add_foreign_key "reminders", "users"
+  add_foreign_key "stock_items", "categories"
   add_foreign_key "stock_items", "stocks"
   add_foreign_key "stocks", "users"
 end

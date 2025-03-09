@@ -18,6 +18,12 @@
   </div>
 
   <div class="field">
+    <label for="kit_item_category_id">カテゴリ</label>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリを選択" } %>
+  </div>
+
+
+  <div class="field">
     <%= form.label :ストック数 %>
     <%= form.number_field :quantity, min: 1, step: 1 %>
   </div>
