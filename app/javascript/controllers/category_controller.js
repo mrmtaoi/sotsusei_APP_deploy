@@ -1,28 +1,36 @@
-import { Controller } from "stimulus"
+import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["categorySelect"]
+  static targets = ["categorySelect", "extraFields"];
 
   toggleExtraInput(event) {
-    const selectedCategory = event.target.value
-    const extraFields = document.querySelectorAll(".extra-field")
+    console.log("カテゴリが変更されました:", event.target.value);
+
+    const selectedCategory = event.target.value;
+    const extraFields = document.querySelectorAll(".extra-field");
 
     // すべての追加情報フィールドを隠す
-    extraFields.forEach(field => field.classList.add("hidden"))
+    extraFields.forEach(field => field.classList.add("hidden"));
 
     // 選択されたカテゴリーに応じて表示する
     if (selectedCategory === "食料") {
-      document.getElementById("food-field").classList.remove("hidden")
+      console.log("食料選択されました");
+      document.getElementById("food-field").classList.remove("hidden");
     } else if (selectedCategory === "飲料") {
-      document.getElementById("drink-field").classList.remove("hidden")
+      console.log("飲料選択されました");
+      document.getElementById("drink-field").classList.remove("hidden");
     } else if (selectedCategory === "電気機器") {
-      document.getElementById("electronics-field").classList.remove("hidden")
+      console.log("電気機器選択されました");
+      document.getElementById("electronics-field").classList.remove("hidden");
     } else if (selectedCategory === "衣類") {
-      document.getElementById("clothing-field").classList.remove("hidden")
+      console.log("衣類選択されました");
+      document.getElementById("clothing-field").classList.remove("hidden");
     } else if (selectedCategory === "乾電池") {
-      document.getElementById("battery-field").classList.remove("hidden")
+      console.log("乾電池選択されました");
+      document.getElementById("battery-field").classList.remove("hidden");
     } else if (selectedCategory === "医療・衛生") {
-      document.getElementById("medical-field").classList.remove("hidden")
+      console.log("医療・衛生選択されました");
+      document.getElementById("medical-field").classList.remove("hidden");
     }
   }
 }

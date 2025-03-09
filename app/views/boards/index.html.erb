@@ -3,8 +3,8 @@
 <%= form_with url: boards_path, method: :get, class: "search-form", data: { controller: "autocomplete" } do %>
   <div class="form-group">
     <%= label_tag :search, "検索" %>
-    <%= text_field_tag :search, params[:search], class: "form-control search-field", placeholder: "アイテム名・キーワードで検索", 
-          data: { autocomplete_target: "input", action: "input->autocomplete#search" } %>
+    <%= text_field_tag :search, params[:search], class: "form-control search-field", placeholder: "フリーワードで検索", 
+          autocomplete: "on", data: { autocomplete_target: "input", action: "input->autocomplete#search" } %>
 
     <!-- オートコンプリートの検索結果を表示 -->
     <ul class="autocomplete-results list-group" data-autocomplete-target="results" data-action="click->autocomplete#select"></ul>
