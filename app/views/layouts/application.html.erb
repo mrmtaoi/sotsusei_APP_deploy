@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%= javascript_include_tag "turbo", type: "module" %>
+
 <html>
   <head>
     <title>ストックサポーター</title>
@@ -6,36 +8,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-
-    <!-- Stimulusライブラリ -->
-    <script src="https://unpkg.com/@hotwired/stimulus"></script>
-    <script src="https://unpkg.com/@hotwired/stimulus-loading"></script>
-
-    <!-- Importmapを使ってモジュールとして読み込む -->
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+  <% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
-    <% if current_user.present? %> <!-- current_userが存在するかどうかを確認 -->
-      <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
-    <% else %>
-      <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
-    <% end %>
+  <% if user_logged_in? %> <!-- カスタムメソッドを使ってログイン状態を確認 -->
+    <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
+  <% else %>
+    <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
+  <% end %>
 
-    <!-- ビューのコンテンツを埋め込む場所 -->
-    <%= yield %>
+  <!-- ビューのコンテンツを埋め込む場所 -->
+  <%= yield %>
 
   </body>
 </html>

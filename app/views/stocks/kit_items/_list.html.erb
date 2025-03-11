@@ -4,6 +4,7 @@
       <li>
         <strong>アイテム:</strong> <%= kit_item.name %> |
         <strong>数量:</strong> <%= kit_item.quantity %>|
+        <strong>カテゴリー:</strong> <%= kit_item.category.present? ? kit_item.category.name : "未分類" %>|
         <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>
 
         <div class="button-container3">
