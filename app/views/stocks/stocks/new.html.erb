@@ -35,18 +35,19 @@
             <%= stock_item_fields.label :storage, "保管場所", class: "form-label" %>
             <%= stock_item_fields.text_field :storage, class: "form-control", autocomplete: "off" %>
           </div>
-        <% end %>
 
-        <%= f.fields_for :reminders do |reminder_fields| %>
-          <div class="mb-3">
-            <%= reminder_fields.label :expiration_date, "期限", class: "form-label" %>
-            <%= reminder_fields.date_field :expiration_date, class: "form-control", autocomplete: "off" %>
-          </div>
+          <%= stock_item_fields.fields_for :reminders do |reminder_fields| %>
+            <div class="mb-3">
+              <%= reminder_fields.label :expiration_date, "期限", class: "form-label" %>
+              <%= reminder_fields.date_field :expiration_date, class: "form-control", autocomplete: "off" %>
+            </div>
 
-          <div class="mb-3">
-            <%= reminder_fields.label :interval_months, "かくにんサイクル（月単位）", class: "form-label" %>
-            <%= reminder_fields.number_field :interval_months, class: "form-control", autocomplete: "off", min: 1, step: 1 %>
-          </div>
+            <div class="mb-3">
+              <%= reminder_fields.label :interval_months, "確認サイクル（月単位）", class: "form-label" %>
+              <%= reminder_fields.number_field :interval_months, class: "form-control", autocomplete: "off", min: 1, step: 1 %>
+            </div>
+          <% end %>
+
         <% end %>
 
         <%= f.submit "備蓄アイテムの登録", class: "btn btn-primary" %>

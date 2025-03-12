@@ -20,7 +20,14 @@ class Stocks::StocksController < ApplicationController
   def create
     @stock = Stock.new(stock_params)
     @stock.user = current_user
-
+  
+    # リマインダーに user_id を設定
+    @stock.stock_items.each do |stock_item|
+      stock_item.reminders.each do |reminder|
+        reminder.user = current_user if reminder.user.nil?
+      end
+    end
+  
     if @stock.save
       redirect_to stocks_stocks_path, notice: '備蓄アイテムが登録されました。'
     else
@@ -28,7 +35,24 @@ class Stocks::StocksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
+  
+  def update
+    @stock.assign_attributes(stock_params)
+  
+    # stock_items の reminder に user を設定
+    @stock.stock_items.each do |stock_item|
+      stock_item.reminders.each do |reminder|
+        reminder.user = current_user if reminder.user.nil? # user を設定
+      end
+    end
+  
+    if @stock.save
+      redirect_to stocks_stocks_path, notice: '備蓄アイテムが更新されました。'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
   def edit
     @stock = Stock.find(params[:id])
     # stock_items と reminders がすでに存在していない場合のみビルド
