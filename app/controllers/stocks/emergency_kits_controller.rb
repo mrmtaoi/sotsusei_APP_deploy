@@ -64,7 +64,7 @@ class Stocks::EmergencyKitsController < ApplicationController
       if @emergency_kit.save
         Rails.logger.debug "Saved emergency kit: #{@emergency_kit.inspect}"
         Rails.logger.debug "Associated reminders: #{@emergency_kit.reminders.inspect}"
-        redirect_to stocks_emergency_kits_path, notice: '防災バッグが登録できました！'
+        redirect_to stocks_emergency_kits_path, notice: '防災バッグを作成しました！さっそくバッグを開いてアイテムを登録してみましょう！'
       else
         Rails.logger.debug "Failed to save emergency kit: #{@emergency_kit.errors.full_messages}"
         render :new

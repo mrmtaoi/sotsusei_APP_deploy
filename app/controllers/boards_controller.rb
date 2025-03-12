@@ -81,6 +81,10 @@ class BoardsController < ApplicationController
   def edit
   end
 
+  def show
+    @emergency_kits = @board.emergency_kits
+  end
+
   def update
     if @board.update(board_params)
       redirect_to @board, notice: '防災バッグの投稿を更新しました'
