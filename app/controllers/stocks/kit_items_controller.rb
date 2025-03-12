@@ -61,6 +61,6 @@ class Stocks::KitItemsController < ApplicationController
   end
 
   def kit_item_params
-    params.require(:kit_item).permit(:name, :quantity, :category_id, :meal_count, :volume, :sub_category)
+    params.require(:kit_item).permit(:name, :quantity, :category_id)
   end
 end

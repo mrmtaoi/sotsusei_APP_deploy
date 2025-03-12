@@ -17,10 +17,9 @@
       <%= form.number_field :quantity, name: 'kit_item[quantity]', class: "input-field", min: 1, step: 1 %>
     </div>
 
-    <!-- カテゴリー選択フォームを追加 -->
     <div class="form-group">
       <%= form.label :category_id, "カテゴリー", class: "form-label" %>
-      <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" }, class: "input-field" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" }, { class: "input-field", name: "kit_item[category_id]" } %>
     </div>
 
     <div class="kit_item_remind form-group">
@@ -31,6 +30,7 @@
         </div>
       <% end %>
     </div>
+
     <div>
       <%= form.submit '追加する', class: "btn btn-primary" %>
     </div>

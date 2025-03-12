@@ -5,26 +5,27 @@ export default class extends Controller {
 
   search() {
     const query = this.inputTarget.value.trim();
-    if (query.length < 2) {
+    if (query.length < 2) { // 2文字以上で検索
       this.resultsTarget.innerHTML = "";
       return;
     }
 
-    fetch(`/boards/autocomplete?query=${query}`)
+    fetch(`/boards/autocomplete?query=${encodeURIComponent(query)}`)
       .then(response => response.json())
       .then(data => {
-        this.resultsTarget.innerHTML = data
-          .map(keyword => `<li class="autocomplete-item" data-action="click->autocomplete#select">${keyword}</li>`)
-          .join("");
-      })
-      .catch(error => {
-        console.error("Autocomplete error:", error);
-        this.resultsTarget.innerHTML = "<li>エラーが発生しました</li>";  // エラーメッセージを表示
+        this.resultsTarget.innerHTML = "";
+        data.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          li.classList.add("list-group-item", "autocomplete-item");
+          li.dataset.action = "click->autocomplete#select";
+          this.resultsTarget.appendChild(li);
+        });
       });
   }
 
   select(event) {
-    this.inputTarget.value = event.target.innerText;
+    this.inputTarget.value = event.target.textContent;
     this.resultsTarget.innerHTML = "";
   }
 }
