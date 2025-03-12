@@ -61,7 +61,7 @@ class Stocks::StocksController < ApplicationController
     params.require(:stock).permit(
       :body,
       stock_items_attributes: [
-        :id, :name, :quantity, :storage, :_destroy,
+        :id, :name, :category_id, :quantity, :storage, :_destroy,
         reminders_attributes: [:id, :expiration_date, :interval_months, :_destroy]
       ]
     )

@@ -9,6 +9,7 @@
             <div style="text-align: left;">
             <% stock.stock_items.each do |item| %>
               <strong><%= item.name.presence || '未設定' %></strong>
+              <br>カテゴリー: <%= item.category.present? ? item.category.name : "未分類" %>
               <br>ストック数: <%= item.quantity.presence || '未設定' %>
               <br>保管場所: <%= item.storage.presence || '未設定' %>
               <br>期限: <%= item.reminders.first&.expiration_date.presence || '未設定' %>
