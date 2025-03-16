@@ -1,11 +1,9 @@
 import { Application } from "@hotwired/stimulus"
-import AutocompleteController from "./autocomplete_controller"  // 独自のコントローラーをインポート
+import AutocompleteController from "./controllers/autocomplete_controller" // パスを確認
 
 const application = Application.start()
-application.register("autocomplete", AutocompleteController)  // 自作のAutocompleteControllerを登録
+application.register("autocomplete", AutocompleteController)
 
-// Configure Stimulus development experience
-application.debug = false
 window.Stimulus = application
 
 export { application }
