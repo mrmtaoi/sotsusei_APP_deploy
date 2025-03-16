@@ -30,14 +30,14 @@ export default class extends Controller {
       const li = document.createElement("li")
       li.classList.add("list-group-item")
       li.textContent = result
-      li.addEventListener("click", () => this.selectResult(result))
+      li.addEventListener("click", () => this.selectResult(result))  // クリックで選択
       this.resultsTarget.appendChild(li)
     })
   }
 
   // 結果を選択したとき
   selectResult(result) {
-    this.inputTarget.value = result
+    this.inputTarget.value = result  // 入力フィールドに選択された結果をセット
     this.clearResults()  // 結果を消去
   }
 
