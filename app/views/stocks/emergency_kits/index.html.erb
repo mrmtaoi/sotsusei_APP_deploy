@@ -21,8 +21,8 @@
             <!-- ボタンの配置を変更 -->
             <div class="button-container2">
               <%= link_to "開く", stocks_emergency_kit_path(emergency_kit), class: 'btn btn-secondary' %>
-              <%= link_to '削除', stocks_emergency_kit_path(emergency_kit), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>
-            </div>
+              <%= link_to '削除', stocks_emergency_kit_path(emergency_kit), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete }, class: 'btn btn-danger' %>
+              </div>
           </li>
         <% end %>
       </ul>

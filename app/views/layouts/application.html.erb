@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<%= javascript_include_tag "turbo", type: "module" %>
-
 <html>
   <head>
     <title>ストックサポーター</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload', rel: 'stylesheet', href: asset_path('application.css') %>
+
+    <!-- Turbo の読み込み -->
+    <%= javascript_include_tag "turbo", type: "module", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-  <% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
-<% if flash[:notice] %>
-  <div class="alert alert-success">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
-  <% if user_logged_in? %> <!-- カスタムメソッドを使ってログイン状態を確認 -->
-    <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
-  <% else %>
-    <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
-  <% end %>
+    <% if user_logged_in? %> <!-- カスタムメソッドを使ってログイン状態を確認 -->
+      <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
+    <% else %>
+      <%= render 'shared/header_signed_out' %> <!-- ログイン前のヘッダー -->
+    <% end %>
 
-  <!-- ビューのコンテンツを埋め込む場所 -->
-  <%= yield %>
-
+    <!-- ビューのコンテンツを埋め込む場所 -->
+    <%= yield %>
   </body>
 </html>

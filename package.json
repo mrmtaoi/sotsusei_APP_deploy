@@ -23,6 +23,7 @@
   "homepage": "https://github.com/mrmtaoi/sotsusei_APP_deploy#readme",
   "dependencies": {
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
+    "@hotwired/turbo-rails": "^8.0.13",
     "stimulus": "^3.2.2"
   }
 }

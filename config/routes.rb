@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  # ログイン状態に応じてトップページを動的に変更
+ # ログイン状態に応じてトップページを動的に変更
   root to: redirect { |path, req| req.session[:user_id].present? ? '/static_pages/top' : '/welcome' }
 
   # ユーザー登録

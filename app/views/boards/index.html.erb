@@ -2,22 +2,23 @@
 
 <%= form_with url: boards_path, method: :get, class: "search-form", data: { controller: "autocomplete" } do %>
   <div class="form-group">
-    <%= label_tag :search, "検索" %>
+    <%= label_tag :search, "検索", for: "search_input" %>
     <%= text_field_tag :search, params[:search], class: "form-control search-field", placeholder: "フリーワードで検索", 
-          autocomplete: "on", data: { autocomplete_target: "input", action: "input->autocomplete#search" } %>
+          autocomplete: "on", data: { autocomplete_target: "input", action: "input->autocomplete#search" }, 
+          id: "search_input", name: "search" %>
 
     <!-- オートコンプリートの検索結果を表示 -->
     <ul class="autocomplete-results list-group" data-autocomplete-target="results" data-action="click->autocomplete#select"></ul>
   </div>
 
   <div class="form-group">
-    <%= label_tag :age_group, "年代" %>
-    <%= select_tag :age_group, options_for_select([["未選択", nil], ["10歳未満", 0], ["10代", 1], ["20代", 2], ["30代", 3], ["40代", 4], ["50代", 5], ["60代", 6], ["70代", 7], ["80代", 8], ["90代", 9], ["100歳以上", 100]], selected: params[:age_group]), class: "form-control" %>
+    <%= label_tag :age_group, "年代", for: "age_group" %>
+    <%= select_tag :age_group, options_for_select([["未選択", nil], ["10歳未満", 0], ["10代", 1], ["20代", 2], ["30代", 3], ["40代", 4], ["50代", 5], ["60代", 6], ["70代", 7], ["80代", 8], ["90代", 9], ["100歳以上", 100]], selected: params[:age_group]), class: "form-control", id: "age_group", name: "age_group" %>
   </div>
 
   <div class="form-group">
-    <%= label_tag :gender, "性別" %>
-    <%= select_tag :gender, options_for_select([["未選択", nil], ["男性", "male"], ["女性", "female"], ["その他", "other"]], selected: params[:gender]), class: "form-control" %>
+    <%= label_tag :gender, "性別", for: "gender" %>
+    <%= select_tag :gender, options_for_select([["未選択", nil], ["男性", "male"], ["女性", "female"], ["その他", "other"]], selected: params[:gender]), class: "form-control", id: "gender", name: "gender" %>
   </div>
 
   <div class="form-group">

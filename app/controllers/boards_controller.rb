@@ -5,25 +5,23 @@ class BoardsController < ApplicationController
   def autocomplete
     query = params[:query].to_s.strip
     return render json: [] if query.blank?
-  
+
     Rails.logger.debug "検索ワード: #{query}"
-  
+
     # 検索ワードの前後に%を付けたクエリを定義
     wildcard_query = "%#{query}%"
-  
+
     # キーワード候補を取得（アイテム名と投稿タイトルを対象）
     keyword_results = KitItem.where("name ILIKE ?", wildcard_query).distinct.limit(5).pluck(:name)
     board_results = Board.where("title ILIKE ?", wildcard_query).distinct.limit(5).pluck(:title)
-  
+
     # キーワードをユニークにしてJSONで返す
     suggestions = (keyword_results + board_results).uniq.first(10)
-  
+
     Rails.logger.debug "検索候補: #{suggestions}"
-  
+
     render json: suggestions
   end
-  
-  
 
   def index
     @boards = Board.left_joins(emergency_kits: :kit_items).distinct
