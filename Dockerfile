@@ -3,6 +3,10 @@ FROM ruby:3.1.2
 # 必要なパッケージをインストール
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs curl
 
+# Node.js を最新バージョンに更新
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
+
 # Yarn のインストール
 RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
