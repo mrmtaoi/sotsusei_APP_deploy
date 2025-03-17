@@ -5,11 +5,10 @@ export default class extends Controller {
     return ["input", "results"]
   }
 
-  // 入力が変更されたときに検索を行う
   search(event) {
     const query = event.target.value
-    if (query.length < 2) { 
-      this.clearResults()  // 検索文字列が2文字未満の場合は結果をクリア
+    if (query.length < 1) { 
+      this.clearResults() 
       return
     }
 
@@ -20,7 +19,7 @@ export default class extends Controller {
       .then(data => this.displayResults(data))
   }
 
-  // 結果を表示する
+  // 結果を表示
   displayResults(results) {
     this.clearResults()  // 古い結果をクリア
 
