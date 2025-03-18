@@ -13,8 +13,51 @@ class Stocks::EmergencyKitsController < ApplicationController
   
     def show
       @emergency_kit_owner = @emergency_kit.owner
-      @kit_items = @emergency_kit.kit_items.includes(:reminders) # 関連するアイテムを取得
-    end  
+      @kit_items = @emergency_kit.kit_items.includes(:reminders)
+    
+      # カテゴリーごとの必要量（仮のデータ）
+      required_quantities = {
+        "食料" => 9, "飲料" => 9, "医療・衛生用品" => 3,
+        "防寒具" => 2, "寝具" => 2, "衣類" => 3,
+        "乾電池" => 6, "ライト" => 1, "ラジオ" => 1,
+        "スマホ充電機器" => 1, "その他" => 2
+      }
+    
+      # アドバイスメッセージ（不足時の提案）
+      advice_messages = {
+        "食料" => "食料が不足しているかもしれません。防災バッグには3日分の食事は備えておきたいです。",
+        "飲料" => "水が不足しています。1人1日3リットルを目安に備えましょう。",
+        "医療・衛生用品" => "応急処置セットが足りない可能性があります。消毒液や包帯などを準備しましょう。",
+        "防寒具" => "寒さ対策が不十分かもしれません。防寒シートやカイロを追加しましょう。",
+        "寝具" => "寝具が不足しているようです。簡易マットや寝袋を用意しましょう。",
+        "衣類" => "着替えの用意は十分ですか？長期間避難を考慮して準備しましょう。",
+        "乾電池" => "電池が足りないかもしれません。ラジオや懐中電灯のために備えておきましょう。",
+        "ライト" => "夜間の行動を考え、懐中電灯やランタンを追加しましょう。",
+        "ラジオ" => "情報収集用のラジオを準備しましょう。電池式や手回し式が便利です。",
+        "スマホ充電機器" => "スマホ充電機器が不足しています。モバイルバッテリーを準備しましょう。",
+        "その他" => "その他の必要なアイテムもチェックしましょう。"
+      }
+    
+      # 現在のバッグ内のアイテム数を集計
+      current_quantities = @kit_items.group(:category_id).sum(:quantity)
+    
+      # 不足アイテムの抽出
+      @missing_items = required_quantities.map do |category_name, required_quantity|
+        category = Category.find_by(name: category_name)
+        next unless category
+    
+        current_quantity = current_quantities[category.id] || 0
+        if current_quantity < required_quantity
+          {
+            name: category_name,
+            missing: required_quantity - current_quantity,
+            advice: advice_messages[category_name]
+          }
+        end
+      end.compact
+    end
+    
+    
   
     def new
       @emergency_kit = EmergencyKit.new

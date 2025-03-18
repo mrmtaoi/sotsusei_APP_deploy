@@ -83,10 +83,12 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 
-production: #ここに直接書き込むときは内部情報で記載
+production:
   adapter: postgresql
-  host: dpg-cuoq4iggph6c73dp7nb0-a.singapore-postgres.render.com
-  database: realworld_development_x6xb
-  username: aoi 
-  password: dDLT4qH9nuHkyowoifzCIFeOyinm8tTp
+  encoding: unicode
+  host: <%= ENV["PROD_DB_HOST"] %>
+  database: <%= ENV["PROD_DB_NAME"] %>
+  username: <%= ENV["PROD_DB_USER"] %>
+  password: <%= ENV["PROD_DB_PASSWORD"] %>
   port: 5432
+

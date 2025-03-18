@@ -6,6 +6,41 @@
 
   <%= render partial: 'stocks/kit_items/list', locals: { kit_items: @emergency_kit.kit_items } %>
 
+  <h3>不足しているアイテム</h3>
+  <% if @missing_items.any? %>
+    <ul>
+      <% @missing_items.each do |item| %>
+        <li>
+          <strong><%= item[:name] %></strong>: あと <%= item[:missing] %> 必要
+          <p class="advice"><%= item[:advice] %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h4>防災バッグに入れておきたいアイテム</h4>
+    <ul>
+      <li>飲料水3日分</li>
+      <li>食料品3日分</li>
+      <li>貴重品（預金通帳、印鑑、現金、健康保険証など）</li>
+      <li>非常用トイレ</li>
+      <li>救急用品（ばんそうこう、包帯、消毒液、常備薬など）</li>
+      <li>ヘルメット、防災ずきん</li>
+      <li>マスク</li>
+      <li>軍手</li>
+      <li>懐中電灯</li>
+      <li>モバイルバッテリー</li>
+      <li>衣類</li>
+      <li>下着</li>
+      <li>毛布、タオル</li>
+      <li>携帯ラジオ、予備電池</li>
+      <li>使い捨てカイロ</li>
+      <li>ウェットティッシュ</li>
+      <li>眼鏡</li>
+      <li>生理用品</li>
+    </ul>
+    <p class="note">※乳児のいるご家庭は、ミルク・紙おむつ・ほ乳びんなども用意しておきましょう。</p>
+  <% end %>
+  
   <h3>バックにアイテムを追加</h3>
   <%= form_with url: stocks_emergency_kit_kit_items_path(@emergency_kit), local: true do |form| %>
     <div class="form-group">
