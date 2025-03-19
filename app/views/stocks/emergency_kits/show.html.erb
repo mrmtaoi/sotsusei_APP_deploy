@@ -6,12 +6,12 @@
 
   <%= render partial: 'stocks/kit_items/list', locals: { kit_items: @emergency_kit.kit_items } %>
 
-  <h3>不足しているアイテム</h3>
+  <h3>アイテム追加のすすめ</h3>
   <% if @missing_items.any? %>
     <ul>
       <% @missing_items.each do |item| %>
         <li>
-          <strong><%= item[:name] %></strong>: あと <%= item[:missing] %> 必要
+          <strong><%= item[:name] %></strong>: あと <%= item[:missing] %> 個の追加をおすすめします
           <p class="advice"><%= item[:advice] %></p>
         </li>
       <% end %>
