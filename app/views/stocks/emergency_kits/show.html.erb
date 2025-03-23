@@ -1,4 +1,18 @@
 <h1 class="page-title1">バッグのなかみ</h1>
+
+<%= javascript_tag do %>
+  document.addEventListener("turbo:load", function() {
+    // ページがリロードされていないか確認
+    if (!localStorage.getItem("reloaded")) {
+      localStorage.setItem("reloaded", "true"); // リロードフラグを設定
+      location.reload();  // ページを強制的にリロード
+    } else {
+      // リロード後にフラグをリセット
+      localStorage.removeItem("reloaded");
+    }
+  });
+<% end %>
+
 <div class="kit_item_list">
   <p><strong>持ち主:</strong> <%= @emergency_kit.owner.name %></p>
   <p><strong>保管場所:</strong> <%= @emergency_kit.storage %></p>
@@ -40,6 +54,57 @@
     </ul>
     <p class="note">※乳児のいるご家庭は、ミルク・紙おむつ・ほ乳びんなども用意しておきましょう。</p>
   <% end %>
+
+  <h1>備蓄達成度</h1>
+  <canvas id="categoryProgressChart"></canvas>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    let categoryChart = null; // グローバル変数でグラフを管理
+  
+    function renderCategoryProgressChart() {
+      const canvas = document.getElementById('categoryProgressChart');
+      if (!canvas) return;
+  
+      const ctx = canvas.getContext('2d');
+      
+      const categoryNames = <%= raw @category_progress.map { |c| c[:name] }.to_json %>;
+      const categoryProgress = <%= raw @category_progress.map { |c| c[:progress] }.to_json %>;
+  
+      // 既存のグラフがある場合は破棄
+      if (categoryChart !== null) {
+        categoryChart.destroy();
+      }
+  
+      // 新しいグラフを作成
+      categoryChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: categoryNames,
+          datasets: [{
+            label: '備蓄達成度 (%)',
+            data: categoryProgress,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
+    }
+  
+    document.addEventListener("DOMContentLoaded", renderCategoryProgressChart);
+    document.addEventListener("turbo:load", renderCategoryProgressChart);
+  </script>
+  
   
   <h3>バックにアイテムを追加</h3>
   <%= form_with url: stocks_emergency_kit_kit_items_path(@emergency_kit), local: true do |form| %>

@@ -33,12 +33,13 @@
     </nav>
   </div>
   <%= image_tag 'top.jpg', style: 'width: 300px; height: 350px; position: absolute; top: 400px; left: 1100px; pointer-events: none;' %>
+
   <div class="inner_container">
     <nav>
       <div class="button-container-stock">
 
       <h3>アイテム追加のすすめ</h3>
-      <% if @missing_items.any? %>
+      <% if @missing_items.present? %>
         <ul>
           <% @missing_items.each do |item| %>
             <li>
@@ -48,29 +49,80 @@
           <% end %>
         </ul>
       <% else %>
-        <h4>防災バッグに入れておきたいアイテム</h4>
-        <ul>
-          <li>飲料水3日分</li>
-          <li>食料品3日分</li>
-          <li>貴重品（預金通帳、印鑑、現金、健康保険証など）</li>
-          <li>非常用トイレ</li>
-          <li>救急用品（ばんそうこう、包帯、消毒液、常備薬など）</li>
-          <li>ヘルメット、防災ずきん</li>
-          <li>マスク</li>
-          <li>軍手</li>
-          <li>懐中電灯</li>
-          <li>モバイルバッテリー</li>
-          <li>衣類</li>
-          <li>下着</li>
-          <li>毛布、タオル</li>
-          <li>携帯ラジオ、予備電池</li>
-          <li>使い捨てカイロ</li>
-          <li>ウェットティッシュ</li>
-          <li>眼鏡</li>
-          <li>生理用品</li>
-        </ul>
-        <p class="note">※乳児のいるご家庭は、ミルク・紙おむつ・ほ乳びんなども用意しておきましょう。</p>
-      <% end %>
+          <h4>防災バッグに入れておきたいアイテム</h4>
+          <ul>
+            <li>飲料水3日分</li>
+            <li>食料品3日分</li>
+            <li>貴重品（預金通帳、印鑑、現金、健康保険証など）</li>
+            <li>非常用トイレ</li>
+            <li>救急用品（ばんそうこう、包帯、消毒液、常備薬など）</li>
+            <li>ヘルメット、防災ずきん</li>
+            <li>マスク</li>
+            <li>軍手</li>
+            <li>懐中電灯</li>
+            <li>モバイルバッテリー</li>
+            <li>衣類</li>
+            <li>下着</li>
+            <li>毛布、タオル</li>
+            <li>携帯ラジオ、予備電池</li>
+            <li>使い捨てカイロ</li>
+            <li>ウェットティッシュ</li>
+            <li>眼鏡</li>
+            <li>生理用品</li>
+          </ul>
+          <p class="note">※乳児のいるご家庭は、ミルク・紙おむつ・ほ乳びんなども用意しておきましょう。</p>
+        <% end %>
+
+        <h1>備蓄達成度</h1>
+        <canvas id="categoryProgressChart"></canvas>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          let categoryChart = null; // グローバル変数でグラフを管理
+        
+          function renderCategoryProgressChart() {
+            const canvas = document.getElementById('categoryProgressChart');
+            if (!canvas) return;
+        
+            const ctx = canvas.getContext('2d');
+            
+            const categoryNames = <%= raw @category_progress.map { |c| c[:name] }.to_json %>;
+            const categoryProgress = <%= raw @category_progress.map { |c| c[:progress] }.to_json %>;
+        
+            // 既存のグラフがある場合は破棄
+            if (categoryChart !== null) {
+              categoryChart.destroy();
+            }
+        
+            // 新しいグラフを作成
+            categoryChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: categoryNames,
+                datasets: [{
+                  label: '備蓄達成度 (%)',
+                  data: categoryProgress,
+                  backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                responsive: true,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    max: 100
+                  }
+                }
+              }
+            });
+          }
+        
+          document.addEventListener("DOMContentLoaded", renderCategoryProgressChart);
+          document.addEventListener("turbo:load", renderCategoryProgressChart);
+        </script>        
+        
         <li><%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-primary custom-btn' %></li>
       </div>
     </nav>

@@ -57,7 +57,30 @@ class Stocks::EmergencyKitsController < ApplicationController
           }
         end
       end.compact
-    end
+
+    # 各カテゴリーの進捗度を計算
+    @category_progress = required_quantities.map do |category_name, required_quantity|
+      category = Category.find_by(name: category_name)
+      next unless category
+
+      current_quantity = current_quantities[category.id] || 0
+      progress = [current_quantity.to_f / required_quantity * 100, 100].min # 100%を上限に設定
+
+      {
+        name: category_name,
+        progress: progress,
+        missing: [required_quantity - current_quantity, 0].max, # 不足分を計算
+        advice: advice_messages[category_name]
+      }
+    end.compact
+
+    # グラフ用データの作成
+    @chart_data = @category_progress.map do |category|
+    { name: category[:name], progress: category[:progress] }
+end.to_json
+
+  end
+      
     
     
   
