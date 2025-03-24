@@ -1,5 +1,19 @@
 <h1 class="page-title1">備蓄アイテム一覧</h1>
 
+<%= javascript_tag do %>
+  document.addEventListener("turbo:load", function() {
+    const urlParts = window.location.pathname.split('/');
+    const kitId = urlParts[urlParts.length - 1];  // 最後の部分がid
+
+    if (kitId && !localStorage.getItem(`reloaded_${kitId}`)) {
+      localStorage.setItem(`reloaded_${kitId}`, "true");
+      location.reload();
+    } else {
+      localStorage.removeItem(`reloaded_${kitId}`);
+    }
+  });
+<% end %>
+
 <% if @stocks.present? %>
   <div class="inner_container">
     <nav>
@@ -7,48 +21,42 @@
         <% @stocks.each do |stock| %>
           <li>
             <div style="text-align: left;">
-            <% stock.stock_items.each do |item| %>
-              <strong><%= item.name.presence || '未設定' %></strong>
-              <br>カテゴリー: <%= item.category.present? ? item.category.name : "未分類" %>
-              <br>ストック数: <%= item.quantity.presence || '未設定' %>
-              <br>保管場所: <%= item.storage.presence || '未設定' %>
-              <br>期限: <%= item.reminders.first&.expiration_date.presence || '未設定' %>
-              <br>確認サイクル: 
-              <%= 
-                if item.reminders.first&.interval_months.present?
-                  "#{item.reminders.first&.interval_months}か月"
-                else
-                  '未設定'
-                end
-              %>
-            <% end %>
+              <% stock.stock_items.each do |item| %>
+                <strong><%= item.name.presence || '未設定' %></strong>
+                <br>カテゴリー: <%= item.category.present? ? item.category.name : "未分類" %>
+                <br>ストック数: <%= item.quantity.presence || '未設定' %>
+                <br>保管場所: <%= item.storage.presence || '未設定' %>
+                <br>期限: <%= item.reminders.first&.expiration_date.presence || '未設定' %>
+                <br>確認サイクル: 
+                <%= item.reminders.first&.interval_months.present? ? "#{item.reminders.first&.interval_months}か月" : '未設定' %>
+              <% end %>
             </div>
             <div class="button-container2">
               <%= link_to "編集", edit_stocks_stock_path(stock), class: 'btn btn-secondary' %>
-              <%= link_to '削除', stocks_stock_path(stock), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>
+              <%= link_to '削除', stocks_stock_path(stock), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete }, class: 'btn btn-danger' %>
             </div>
           </li>
         <% end %>
       </ul>
     </nav>
   </div>
+
   <%= image_tag 'top.jpg', style: 'width: 300px; height: 350px; position: absolute; top: 400px; left: 1100px; pointer-events: none;' %>
 
   <div class="inner_container">
     <nav>
       <div class="button-container-stock">
-
-      <h3>アイテム追加のすすめ</h3>
-      <% if @missing_items.present? %>
-        <ul>
-          <% @missing_items.each do |item| %>
-            <li>
-              <strong><%= item[:name] %></strong>: あと <%= item[:missing] %> 個の追加をおすすめします
-              <p class="advice"><%= item[:advice] %></p>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
+        <h3>アイテム追加のすすめ</h3>
+        <% if @missing_items.present? %>
+          <ul>
+            <% @missing_items.each do |item| %>
+              <li>
+                <strong><%= item[:name] %></strong>: あと <%= item[:missing] %> 個の追加をおすすめします
+                <p class="advice"><%= item[:advice] %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
           <h4>防災バッグに入れておきたいアイテム</h4>
           <ul>
             <li>飲料水3日分</li>
@@ -75,26 +83,24 @@
 
         <h1>備蓄達成度</h1>
         <canvas id="categoryProgressChart"></canvas>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
-          let categoryChart = null; // グローバル変数でグラフを管理
+          let categoryChart = null;
         
           function renderCategoryProgressChart() {
             const canvas = document.getElementById('categoryProgressChart');
             if (!canvas) return;
-        
+
             const ctx = canvas.getContext('2d');
             
             const categoryNames = <%= raw @category_progress.map { |c| c[:name] }.to_json %>;
             const categoryProgress = <%= raw @category_progress.map { |c| c[:progress] }.to_json %>;
-        
-            // 既存のグラフがある場合は破棄
+
             if (categoryChart !== null) {
               categoryChart.destroy();
             }
-        
-            // 新しいグラフを作成
+
             categoryChart = new Chart(ctx, {
               type: 'bar',
               data: {
@@ -118,11 +124,11 @@
               }
             });
           }
-        
+
           document.addEventListener("DOMContentLoaded", renderCategoryProgressChart);
           document.addEventListener("turbo:load", renderCategoryProgressChart);
-        </script>        
-        
+        </script>
+
         <li><%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-primary custom-btn' %></li>
       </div>
     </nav>

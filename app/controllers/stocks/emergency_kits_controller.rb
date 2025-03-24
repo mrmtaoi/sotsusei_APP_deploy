@@ -80,9 +80,6 @@ class Stocks::EmergencyKitsController < ApplicationController
 end.to_json
 
   end
-      
-    
-    
   
     def new
       @emergency_kit = EmergencyKit.new

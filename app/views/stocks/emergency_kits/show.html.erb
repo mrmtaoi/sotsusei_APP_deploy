@@ -2,13 +2,14 @@
 
 <%= javascript_tag do %>
   document.addEventListener("turbo:load", function() {
-    // ページがリロードされていないか確認
-    if (!localStorage.getItem("reloaded")) {
-      localStorage.setItem("reloaded", "true"); // リロードフラグを設定
-      location.reload();  // ページを強制的にリロード
+    const urlParts = window.location.pathname.split('/');
+    const kitId = urlParts[urlParts.length - 1];  // 最後の部分がid
+
+    if (kitId && !localStorage.getItem(`reloaded_${kitId}`)) {
+      localStorage.setItem(`reloaded_${kitId}`, "true");
+      location.reload();
     } else {
-      // リロード後にフラグをリセット
-      localStorage.removeItem("reloaded");
+      localStorage.removeItem(`reloaded_${kitId}`);
     }
   });
 <% end %>
@@ -103,7 +104,7 @@
   
     document.addEventListener("DOMContentLoaded", renderCategoryProgressChart);
     document.addEventListener("turbo:load", renderCategoryProgressChart);
-  </script>
+  </script>        
   
   
   <h3>バックにアイテムを追加</h3>
