@@ -24,23 +24,27 @@ class Stocks::KitItemsController < ApplicationController
   end
 
   def edit
+    # リマインダーが未設定の場合、新しいリマインダーを作成してフォームに表示
+    @kit_item.reminders.build if @kit_item.reminders.empty?
   end
 
   def update
     if @kit_item.update(kit_item_params)
-      # Reminderの更新処理
-      if params[:kit_item][:reminders_attributes] && params[:kit_item][:reminders_attributes]["0"][:expiration_date].present?
-        reminder = @kit_item.reminders.find_by(id: params[:kit_item][:reminders_attributes]["0"][:id])
-        if reminder
-          reminder.update(expiration_date: params[:kit_item][:reminders_attributes]["0"][:expiration_date])
+      # reminders_attributesが送信されている場合
+      if kit_item_params[:reminders_attributes].present?
+        kit_item_params[:reminders_attributes].each do |_, reminder_params|
+          reminder = @kit_item.reminders.find_or_initialize_by(id: reminder_params[:id])
+          reminder.assign_attributes(reminder_params)
+          reminder.user_id = current_user.id # user_idを設定
+          reminder.save # 保存
         end
       end
+  
       redirect_to stocks_emergency_kit_path(@emergency_kit), notice: 'アイテムが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
   end
-  
 
   def destroy
     @kit_item.destroy
@@ -61,6 +65,7 @@ class Stocks::KitItemsController < ApplicationController
   end
 
   def kit_item_params
-    params.require(:kit_item).permit(:name, :quantity, :category_id)
-  end
+    params.require(:kit_item).permit(:name, :quantity, :category_id,
+      reminders_attributes: [:id, :expiration_date, :_destroy, :user_id])
+  end  
 end

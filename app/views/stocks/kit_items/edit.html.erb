@@ -22,16 +22,19 @@
     <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリを選択" } %>
   </div>
 
-
   <div class="field">
     <%= form.label :ストック数 %>
     <%= form.number_field :quantity, min: 1, step: 1 %>
   </div>
 
-  <div>
-    <%= form.fields_for :reminders do |reminder_fields| %>
-      <%= reminder_fields.label :期限 %>
-      <%= reminder_fields.date_field :expiration_date, value: @kit_item.reminders.first&.expiration_date %>
+  <div class="kit_item_remind form-group">
+    <label>期限</label>
+    <% @kit_item.reminders.each do |reminder| %>
+      <%= form.fields_for :reminders, reminder do |reminder_fields| %>
+        <div class="reminder-field">
+          <%= reminder_fields.date_field :expiration_date, class: "input-field", autocomplete: "off" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
