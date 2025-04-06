@@ -15,6 +15,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem 'nokogiri', '~> 1.10'
 gem 'ransack'
+gem 'dotenv-rails'
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
