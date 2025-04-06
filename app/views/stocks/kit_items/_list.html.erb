@@ -5,8 +5,10 @@
         <strong>アイテム:</strong> <%= kit_item.name %> |
         <strong>数量:</strong> <%= kit_item.quantity %>|
         <strong>カテゴリー:</strong> <%= kit_item.category.present? ? kit_item.category.name : "未分類" %>|
-        <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>
-
+        <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>|
+        <%= link_to "楽天で検索", "https://search.rakuten.co.jp/search/mall/#{ERB::Util.url_encode(kit_item.name)}", target: "_blank", rel: "noopener", class: "rakuten-link" %>|
+        <%= link_to "Amazonで検索", "https://www.amazon.co.jp/s?k=#{ERB::Util.url_encode(kit_item.name)}", target: "_blank", rel: "noopener", class: "amazon-link" %>|
+        
         <div class="button-container3">
           <%= link_to "編集", edit_stocks_emergency_kit_kit_item_path(kit_item.emergency_kit, kit_item), class: 'btn btn-secondary' %>
           <%= link_to '削除', stocks_emergency_kit_kit_item_path(kit_item.emergency_kit, kit_item), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete } , class: 'btn btn-danger'%>

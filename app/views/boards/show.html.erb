@@ -15,10 +15,12 @@
           <ul>
             <% kit.kit_items.each do |kit_item| %>
               <li>
-              <strong>アイテム名:</strong> <%= kit_item.name %> |
-              <strong>カテゴリー:</strong> <%= kit_item.category.present? ? kit_item.category.name : "未分類" %>|
-              <strong>数量:</strong> <%= kit_item.quantity %>|
-              <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>
+                <strong>アイテム名:</strong> <%= kit_item.name %> |
+                <strong>カテゴリー:</strong> <%= kit_item.category.present? ? kit_item.category.name : "未分類" %>|
+                <strong>数量:</strong> <%= kit_item.quantity %>|
+                <strong>期限:</strong> <%= kit_item.reminders.first&.expiration_date || '未設定' %>|
+                <%= link_to "楽天で検索", "https://search.rakuten.co.jp/search/mall/#{ERB::Util.url_encode(kit_item.name)}", target: "_blank", rel: "noopener", class: "rakuten-link" %>|
+                <%= link_to "Amazonで検索", "https://www.amazon.co.jp/s?k=#{ERB::Util.url_encode(kit_item.name)}", target: "_blank", rel: "noopener", class: "amazon-link" %>|        
               </li>
             <% end %>
           </ul>
