@@ -1,5 +1,7 @@
 <h1 class="page-title">防災バッグ掲示板</h1>
-
+<div class="stocks_container">
+  <li><%=  link_to "防災アイテムを探してみよう！",items_search_path %></li>
+</div>
 <%= form_with url: boards_path, method: :get, class: "search-form", data: { controller: "autocomplete" } do %>
   <div class="form-group">
     <%= label_tag :search, "検索", for: "search_input" %>

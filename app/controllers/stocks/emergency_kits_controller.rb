@@ -152,7 +152,6 @@ end.to_json
       redirect_to stocks_emergency_kits_path, notice: '防災バッグが削除できました'
     end
     
-    
     private
   
     def set_emergency_kit

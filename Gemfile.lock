@@ -116,6 +116,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.10.2)
     logger (1.6.5)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -189,6 +190,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.2.1)
+    rakuten_web_service (1.13.2)
+      json (~> 2.3)
     ransack (4.3.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
@@ -263,11 +266,13 @@ DEPENDENCIES
   dotenv-rails
   importmap-rails
   jbuilder
+  json
   nokogiri (~> 1.10)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.7)
   rails-i18n (~> 7.0.0)
+  rakuten_web_service
   ransack
   sassc
   sassc-rails

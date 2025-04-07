@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get :autocomplete
     end
   end
+  get 'items/search'
 
   # ログイン関連
   get "login", to: "sessions#new"

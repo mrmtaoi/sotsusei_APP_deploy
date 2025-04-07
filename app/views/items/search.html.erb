@@ -1,0 +1,33 @@
+<div class="search-box">
+  <%= form_with url: items_search_path, method: :get, local: true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :keyword, class: "form-control", placeholder: "防災アイテムの品名やキーワードで検索しよう" %>
+      <%= f.submit "検索", class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <% if @items.present? %> 
+    <div class="search-results">
+      <h2>検索結果</h2>
+      <div class="items-container">
+        <% @items.each do |item| %>
+          <div class="item-card">
+            <div class="item-image">
+              <%= link_to image_tag(item.params['mediumImageUrls'].first, size: "150x150"), item.params['itemUrl'], target: "_blank" %>
+            </div>
+            <div class="item-details">
+              <h3><%= item.params['itemName'] %></h3>
+              <%= link_to "楽天で購入", "https://search.rakuten.co.jp/search/mall/#{ERB::Util.url_encode(item.name)}", target: "_blank", rel: "noopener", class: "rakuten-link" %>|
+              <%= link_to "Amazonで検索", "https://www.amazon.co.jp/s?k=#{ERB::Util.url_encode(item.name)}", target: "_blank", rel: "noopener", class: "amazon-link" %>| 
+              <p><%= item.params['itemCaption'] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="no-results">
+      検索結果はありません。検索フォームに品名やキーワードを入力してください。
+    </div>
+  <% end %>
+</div>

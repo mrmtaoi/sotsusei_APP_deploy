@@ -1,5 +1,8 @@
 <h1 class="page-title1">現在の備え一覧</h1>
 <div class="stocks_container">
+  <li><%=  link_to "防災アイテムを探してみよう！",items_search_path %></li>
+</div>
+<div class="stocks_container">
 <h2>防災バッグ一覧</h2>
 <% if @emergency_kits.present? %>
   <ul class="nav navbar-nav navbar-left">
