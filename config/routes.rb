@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
   get 'items/search'
-  get 'emergency_kits/share/:token', to: 'stocks/emergency_kits#shared', as: 'shared_emergency_kit'
+  get "shared/:token", to: "stocks/emergency_kits#shared", as: :shared_emergency_kit
 
   # ログイン関連
   get "login", to: "sessions#new"
