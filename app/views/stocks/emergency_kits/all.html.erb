@@ -7,8 +7,8 @@
   <div class="share-link">
     <p>
       共有リンク:  
-      <%= link_to shared_emergency_kit_url(@emergency_kits.first.share_token, protocol: Rails.application.config.force_ssl ? 'https' : 'http'), target: "_blank" do %>
-        <%= shared_emergency_kit_url(@emergency_kits.first.share_token, protocol: Rails.application.config.force_ssl ? 'https' : 'http') %>
+      <%= link_to shared_emergency_kit_url(@emergency_kits.first.share_token), target: "_blank" do %>
+        <%= shared_emergency_kit_url(@emergency_kits.first.share_token) %>
       <% end %>
     </p>
   </div>

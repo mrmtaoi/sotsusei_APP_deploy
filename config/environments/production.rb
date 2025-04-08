@@ -64,10 +64,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'https://sotsusei-app-deploy.onrender.com/' }
+  config.action_mailer.default_url_options = { host: 'sotsusei-app-deploy-4.onrender.com', protocol: 'https' }
+  Rails.application.routes.default_url_options[:host] = 'sotsusei-app-deploy-4.onrender.com'
 
-  Rails.application.routes.default_url_options[:host] = 'https://sotsusei-app-deploy-4.onrender.com'
-
+  config.force_ssl = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
