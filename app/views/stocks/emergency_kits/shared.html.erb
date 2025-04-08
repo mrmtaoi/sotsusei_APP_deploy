@@ -1,18 +1,4 @@
 <h1 class="page-title1">現在の備え一覧</h1>
-<div class="stocks_container">
-  <li><%=  link_to "防災アイテムを探してみよう！",items_search_path %></li>
-</div>
-
-<% if @emergency_kits.present? && @emergency_kits.first.share_token.present? %>
-  <div class="share-link">
-    <p>
-      共有リンク:  
-      <%= link_to shared_emergency_kit_url(@emergency_kits.first.share_token), target: "_blank" do %>
-        <%= shared_emergency_kit_url(@emergency_kits.first.share_token) %>
-      <% end %>
-    </p>
-  </div>
-<% end %>
 
 <!-- 並列表示用のラッパー -->
 <div class="stocks-wrapper">

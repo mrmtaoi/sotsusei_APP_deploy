@@ -70,3 +70,47 @@
   font-size: 18px;
   margin-bottom: 20px;
 }
+
+.stocks-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+
+  .stocks-container {
+    flex: 1;
+    min-width: 300px;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 1rem;
+      }
+    }
+
+  }
+
+}
+.stock-item {
+  margin-bottom: 1rem;
+
+  .stock-fields {
+    display: flex;
+    flex-wrap: wrap; // スマホ対応
+  }
+
+  .stock-field {
+    white-space: nowrap; // 改行防止
+    gap: 5rem;
+  }
+}

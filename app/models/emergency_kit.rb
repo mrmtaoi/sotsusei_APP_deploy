@@ -7,4 +7,11 @@ class EmergencyKit < ApplicationRecord
 
   has_many :board_emergency_kits
   has_many :boards, through: :board_emergency_kits
+  before_create :generate_share_token
+  
+  private
+  
+  def generate_share_token
+    self.share_token ||= SecureRandom.hex(10)
+  end
 end

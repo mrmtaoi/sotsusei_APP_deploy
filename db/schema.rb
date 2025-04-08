@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_09_160024) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_08_142350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_09_160024) do
     t.string "storage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "share_token"
     t.index ["owner_id"], name: "index_emergency_kits_on_owner_id"
     t.index ["user_id"], name: "index_emergency_kits_on_user_id"
   end
@@ -120,9 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_09_160024) do
     t.string "remember_digest"
     t.string "activation_digest"
     t.boolean "activated"
-    t.string "share_token"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["share_token"], name: "index_users_on_share_token", unique: true
   end
 
   add_foreign_key "board_emergency_kits", "boards"

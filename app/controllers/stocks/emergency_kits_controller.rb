@@ -1,7 +1,8 @@
 class Stocks::EmergencyKitsController < ApplicationController
   before_action :require_login
   before_action :set_emergency_kit, only: [:show, :edit, :update, :destroy]
-  
+  layout 'shared_public', only: [:shared]
+
     def index
       @emergency_kits = EmergencyKit.where(user: current_user) # ユーザーの防災バッグを取得
     end
@@ -151,6 +152,18 @@ end.to_json
       
       redirect_to stocks_emergency_kits_path, notice: '防災バッグが削除できました'
     end
+
+    def shared
+      @emergency_kit = EmergencyKit.find_by(share_token: params[:token])
+      
+      if @emergency_kit
+        # ユーザーの備蓄を取得（stock_itemsとcategoryを事前にロード）
+        @stocks = Stock.where(user_id: @emergency_kit.user_id).includes(stock_items: :category)
+        @emergency_kits = EmergencyKit.where(user_id: @emergency_kit.user_id) # ユーザーの他の防災バッグ
+      else
+        redirect_to root_path, alert: "無効なリンクです"
+      end
+    end    
     
     private
   
