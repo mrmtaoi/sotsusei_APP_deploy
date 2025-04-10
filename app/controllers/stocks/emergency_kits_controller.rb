@@ -1,5 +1,5 @@
 class Stocks::EmergencyKitsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:shared]
   before_action :set_emergency_kit, only: [:show, :edit, :update, :destroy]
   layout 'shared_public', only: [:shared]
 
