@@ -12,6 +12,6 @@ class EmergencyKit < ApplicationRecord
   private
   
   def generate_share_token
-    self.share_token ||= SecureRandom.hex(10)
+    self.share_token ||= SecureRandom.urlsafe_base64(16)
   end
 end

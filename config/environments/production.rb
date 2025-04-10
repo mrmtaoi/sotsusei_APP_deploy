@@ -4,8 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # config/environments/production.rb
 
-  config.hosts << "sotsusei-app-deploy-4.onrender.com"
-
+  config.hosts << "sotsusei-app-deploy.onrender.com"
   config.hosts << /.*\.onrender\.com/ # Renderのサブドメイン全てを許可
 
   # Render で指定されたポートを使用する
@@ -64,10 +63,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'sotsusei-app-deploy-4.onrender.com', protocol: 'https' }
-  Rails.application.routes.default_url_options[:host] = 'sotsusei-app-deploy-4.onrender.com'
-
-  config.force_ssl = true
+  config.action_mailer.default_url_options = { host: 'https://sotsusei-app-deploy.onrender.com/' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
