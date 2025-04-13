@@ -4,7 +4,7 @@
 @import "bootstrap";
 @import "style";
 @import "top";
-@import "_header";
+@import "header";
 @import "index";
 @import "stocks";
 @import "custom"; // カスタムスタイル
@@ -43,4 +43,11 @@
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
   }
+}
+
+.logo {
+  max-height: 60px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
 }

@@ -1,4 +1,4 @@
-# Pin npm packages by running ./bin/importmap
+# config/importmap.rb
 
 pin "application", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
@@ -8,6 +8,8 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "stimulus-autocomplete" # @3.1.0
 pin "stimulus", to: "stimulus.min.js", preload: true
 
-pin "bootstrap", to: "bootstrap.min.js", preload: true
-pin "@popperjs/core", to: "popper.js", preload: true
-pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+# BootstrapのCDNから読み込む設定
+pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+
+# Popper.jsのCDNを指定
+pin "@popperjs/core", to: "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

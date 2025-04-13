@@ -1,0 +1,36 @@
+/* ロゴサイズ調整 */
+.logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+
+  @media (max-width: 480px) {
+    height: 40px;
+  }
+}
+
+/* ナビゲーションリンク */
+.nav-link {
+  font-size: 16px;
+  font-weight: bold;
+  color: hwb(194 38% 3%);
+
+  &:hover {
+    color: rgb(242, 159, 91);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* モバイル用に中央揃え */
+.navbar-nav {
+  align-items: center;
+  text-align: center;
+}
