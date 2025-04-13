@@ -26,8 +26,8 @@ gem 'sassc'
 
 gem 'sassc-rails'
 
-# Bootstrap 4以降を使用
-gem 'bootstrap', '~> 5.0'
+gem 'bootstrap', '~> 5.3.3'
+gem 'jquery-rails'
 
 gem "bcrypt"
 

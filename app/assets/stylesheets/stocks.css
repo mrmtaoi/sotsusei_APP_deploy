@@ -59,4 +59,41 @@
   color: #999;
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.stocks-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.stocks-wrapper .stocks-container {
+  flex: 1;
+  min-width: 300px;
+}
+.stocks-wrapper .stocks-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+.stocks-wrapper .stocks-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+.stocks-wrapper .stocks-container ul li {
+  margin-bottom: 1rem;
+}
+
+.stock-item {
+  margin-bottom: 1rem;
+}
+.stock-item .stock-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+.stock-item .stock-field {
+  white-space: nowrap;
+  gap: 5rem;
 }/*# sourceMappingURL=stocks.css.map */
