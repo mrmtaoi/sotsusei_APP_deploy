@@ -139,3 +139,7 @@
     margin-top: 1.5rem;
   }
 }
+
+.search-form hr {
+  display: none; /* フリーワード検索欄の下の線を消す */
+}

@@ -22,13 +22,13 @@
             <div class="button-container2">
               <%= link_to "開く", stocks_emergency_kit_path(emergency_kit), class: 'btn btn-secondary' %>
               <%= link_to '削除', stocks_emergency_kit_path(emergency_kit), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete }, class: 'btn btn-danger' %>
-              </div>
+            </div>
           </li>
         <% end %>
       </ul>
     </nav>
   </div>
-  <%= image_tag 'top.jpg', style: 'width: 300px; height: 350px; position: absolute; top: 400px; left: 1100px; pointer-events: none;' %>
+
   <div class="inner_container">
     <nav>
       <div class="button-container">
@@ -36,14 +36,21 @@
       </div>
     </nav>
   </div>
+
+  <div class="image-container">
+    <%= image_tag 'top.jpg' %>
+  </div> 
+
 <% else %>
+  
   <p class="noitem">防災バッグは一つもありません...</p>
-  <%= image_tag 'nostock.png', style: 'width: 300px; height: 300px; position: absolute; top: 400px; left: 550px;' %>
-  <div class="inner_container-noitem">
-    <nav>
-      <ul class="nav navbar-nav navbar-left">
-        <li><%= link_to "新しい防災バッグを追加", new_stocks_emergency_kit_path, class: 'btn btn-noitem custom-btn' %></li>
-      </ul>
-    </nav>
+
+  <div class="noitem-wrapper">
+    <div class="noitem-button">
+      <%= link_to "新しい防災バッグを追加", new_stocks_emergency_kit_path, class: 'btn btn-noitem custom-btn' %>
+    </div>
+    <div class="noitem-image">
+      <%= image_tag 'nostock.png', width: 300, height: 300 %>
+    </div>
   </div>
 <% end %>

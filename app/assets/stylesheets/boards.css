@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .page-title {
   text-align: center;
   font-size: 2rem;
@@ -121,4 +122,8 @@
 }
 .board-entry hr {
   margin-top: 1.5rem;
+}
+
+.search-form hr {
+  display: none; /* フリーワード検索欄の下の線を消す */
 }/*# sourceMappingURL=boards.css.map */

@@ -48,8 +48,17 @@
       </ul>
     </nav>
   </div>
+  <div class="center-wrapper">
+  <div class="button-and-image">
+    <div class="button-container">
+      <%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-primary custom-btn' %>
+    </div>
 
-  <%= image_tag 'top.jpg', style: 'width: 300px; height: 350px; position: absolute; top: 400px; left: 1100px; pointer-events: none;' %>
+    <div class="image-container">
+      <%= image_tag 'top.jpg', class: 'top-image' %>
+    </div>
+  </div>
+</div>
 
   <div class="inner_container">
     <nav>
@@ -137,18 +146,17 @@
           document.addEventListener("turbo:load", renderCategoryProgressChart);
         </script>
 
-        <li><%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-primary custom-btn' %></li>
       </div>
     </nav>
   </div>
-<% else %>
+<% else %>  
   <p class="noitem">備蓄アイテムは一つもありません...</p>
-  <%= image_tag 'nostock.png', style: 'width: 300px; height: 300px; position: absolute; top: 400px; left: 550px;' %>
-  <div class="inner_container-noitem">
-    <nav>
-      <ul class="nav navbar-nav navbar-left2">
-        <li><%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-noitem custom-btn' %></li>
-      </ul>
-    </nav>
+  <div class="noitem-wrapper">
+    <div class="noitem-button">
+      <%= link_to "新しいアイテムを追加", new_stocks_stock_path, class: 'btn btn-noitem custom-btn' %>
+    </div>
+    <div class="noitem-image">
+      <%= image_tag 'nostock.png', width: 300, height: 300 %>
+    </div>
   </div>
 <% end %>

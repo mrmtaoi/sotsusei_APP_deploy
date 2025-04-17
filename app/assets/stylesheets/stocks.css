@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .page-title1 {
   text-align: center;
   font-size: 2rem;
@@ -5,39 +6,62 @@
   color: rgb(242, 159, 91);
 }
 
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-and-image {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.top-image {
+  max-width: 300px;
+  height: auto;
+}
+
 .inner_container {
   margin: 20px auto;
   max-width: 800px;
+  text-align: left; /* テキストを左揃え（リストアイテム用） */
 }
+
 .inner_container ul {
+  display: flex; /* 横並びにする */
+  flex-wrap: wrap; /* 画面が狭くなったら折り返す */
   list-style: none;
   padding: 0;
 }
-.inner_container ul li {
+
+.inner_container li {
   margin-bottom: 20px;
   padding: 15px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
+  flex: 1 1 30%; /* それぞれのアイテムが幅 30% で並ぶように設定 */
 }
-.inner_container ul li img {
-  max-width: 100px;
-  height: auto;
-  display: block;
-  margin-bottom: 10px;
-  border-radius: 4px;
-}
-.inner_container ul li .button-container2 {
+
+.inner_container .button-container2 {
   margin-top: 10px;
+  display: flex;
+  justify-content: center; /* ボタンを中央揃え */
+  gap: 10px; /* ボタン間のスペース */
 }
-.inner_container ul li .button-container2 a.btn {
+
+.inner_container .button-container2 .btn {
   margin-right: 10px;
 }
-.inner_container ul li .button-container2 a.btn.btn-secondary {
+
+.inner_container .button-container2 .btn-secondary {
   background-color: #6c757d;
   color: #fff;
 }
-.inner_container ul li .button-container2 a.btn.btn-danger {
+
+.inner_container .button-container2 .btn-danger {
   background-color: #dc3545;
   color: #fff;
 }
@@ -45,27 +69,42 @@
 .inner_container-noitem {
   text-align: center;
 }
-.inner_container-noitem ul {
-  padding: 0;
-}
-.inner_container-noitem ul li {
-  display: inline-block;
-}
-.inner_container-noitem ul li .btn-noitem {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-.inner_container-noitem ul li .btn-noitem:hover {
-  background-color: #0056b3;
-}
 
 .noitem {
-  color: #999;
-  font-size: 18px;
+  color: #403d3d;
+  font-size: 22px;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.noitem-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* ボタンと画像の間隔 */
+  margin-top: 30px;
+  flex-wrap: wrap; /* 画面が狭い時に折り返す */
+}
+
+.noitem-button {
+  text-align: center;
+}
+
+.noitem-button .btn.btn-noitem.custom-btn {
+  background-color: #007bff !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  border-radius: 5px !important;
+  text-decoration: none !important;
+}
+
+.noitem-button .btn.btn-noitem.custom-btn:hover {
+  background-color: #0056b3 !important;
+}
+
+.noitem-image img {
+  display: block;
+  margin: auto;
 }
 
 .stocks-wrapper {
@@ -75,24 +114,29 @@
   margin-top: 2rem;
   flex-wrap: wrap;
 }
-.stocks-wrapper .stocks-container {
+
+.stocks-container {
   flex: 1;
   min-width: 300px;
 }
-.stocks-wrapper .stocks-container h2 {
+
+.stocks-container h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid #ccc;
   padding-bottom: 0.5rem;
 }
-.stocks-wrapper .stocks-container ul {
+
+.stocks-container ul {
   list-style: none;
   padding-left: 0;
 }
-.stocks-wrapper .stocks-container ul li {
+
+.stocks-container ul li {
   margin-bottom: 1rem;
 }
-.stocks-wrapper .stocks-container ul li img {
+
+.stocks-container ul li img {
   max-width: 100px;
   height: auto;
   display: block;
@@ -105,16 +149,28 @@
 }
 .stock-item .stock-fields {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* スマホ対応 */
 }
 .stock-item .stock-field {
-  white-space: nowrap;
+  white-space: nowrap; /* 改行防止 */
   gap: 5rem;
 }
 
+/* レスポンシブ対応（画像をさらに小さく） */
 @media (max-width: 767px) {
   .inner_container ul li img,
   .stocks-wrapper .stocks-container ul li img {
     max-width: 80px;
   }
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+.image-container img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
 }/*# sourceMappingURL=stocks.css.map */
