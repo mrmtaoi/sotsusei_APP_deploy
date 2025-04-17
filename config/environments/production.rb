@@ -3,8 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # config/environments/production.rb
-
-  config.hosts << "sotsusei-app-deploy.onrender.com"
+  config.hosts << "sotsusei-rails7-app-0418.onrender.com"
   config.hosts << /.*\.onrender\.com/ # Renderのサブドメイン全てを許可
 
   # Render で指定されたポートを使用する
