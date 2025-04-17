@@ -1,6 +1,6 @@
 .page-title1 {
   text-align: center;
-  font-size: 5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
   color: rgb(242, 159, 91);
 }
@@ -19,6 +19,13 @@
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+.inner_container ul li img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 4px;
 }
 .inner_container ul li .button-container2 {
   margin-top: 10px;
@@ -85,6 +92,13 @@
 .stocks-wrapper .stocks-container ul li {
   margin-bottom: 1rem;
 }
+.stocks-wrapper .stocks-container ul li img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
 
 .stock-item {
   margin-bottom: 1rem;
@@ -96,4 +110,11 @@
 .stock-item .stock-field {
   white-space: nowrap;
   gap: 5rem;
+}
+
+@media (max-width: 767px) {
+  .inner_container ul li img,
+  .stocks-wrapper .stocks-container ul li img {
+    max-width: 80px;
+  }
 }/*# sourceMappingURL=stocks.css.map */

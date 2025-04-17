@@ -1,6 +1,6 @@
 .page-title1 {
   text-align: center;
-  font-size: 5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
   color: rgb(242, 159, 91);
 }
@@ -19,6 +19,14 @@
       background-color: #f9f9f9;
       border: 1px solid #ddd;
       border-radius: 5px;
+
+      img {
+        max-width: 100px;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 4px;
+      }
 
       .button-container2 {
         margin-top: 10px;
@@ -95,12 +103,19 @@
 
       li {
         margin-bottom: 1rem;
+
+        img {
+          max-width: 100px;
+          height: auto;
+          display: block;
+          margin-bottom: 10px;
+          border-radius: 4px;
+        }
       }
     }
-
   }
-
 }
+
 .stock-item {
   margin-bottom: 1rem;
 
@@ -112,5 +127,13 @@
   .stock-field {
     white-space: nowrap; // 改行防止
     gap: 5rem;
+  }
+}
+
+// レスポンシブ対応（画像をさらに小さく）
+@media (max-width: 767px) {
+  .inner_container ul li img,
+  .stocks-wrapper .stocks-container ul li img {
+    max-width: 80px;
   }
 }

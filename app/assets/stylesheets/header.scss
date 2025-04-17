@@ -1,10 +1,12 @@
 /* ロゴサイズ調整 */
 .logo {
-  height: 100%; /* ヘッダーの高さに合わせる */
-  max-height: none; /* 最大高さを制限しない */
-  width: auto;
-  object-fit: contain;
-  margin: 0; /* 上下の隙間を無くすためにマージンをリセット */
+  height: 100%;           // 親要素の高さに合わせる
+  max-height: 80px;       // 安全にヘッダーの高さに収める（bootstrapのnavbarの高さ）
+  width: auto;            // アスペクト比維持
+  object-fit: contain;    // 高さにフィットして切れないように
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
 /* ヘッダーの高さ調整 */
@@ -17,7 +19,7 @@
 
 /* ナビゲーションリンク */
 .nav-link {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
   color: hwb(194 38% 3%);
 
@@ -53,4 +55,10 @@
   height: 100%; /* メニューが全画面に表示される */
   background-color: rgba(0, 0, 0, 0.5); /* 背景色を暗くして視認性を向上 */
   z-index: 1050;
+}
+
+.navbar-brand {
+  height: 80px;
+  display: flex;
+  align-items: center;
 }

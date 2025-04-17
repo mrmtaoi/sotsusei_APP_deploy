@@ -1,53 +1,66 @@
 @charset "UTF-8";
-/* app/assets/stylesheets/_header.scss */
-/* モバイルデバイス */
-@media (max-width: 767px) {
-  .header {
-    flex-direction: column;
-  }
-  .nav-bar {
-    display: block;
-  }
-}
-/* タブレット */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .header {
-    flex-direction: row;
-  }
-  .nav-bar {
-    display: flex;
-  }
-}
-.navbar-brand {
-  position: relative;
-  top: -13px; /* 10px上に移動 */
+/* ロゴサイズ調整 */
+.logo {
+  height: 100%;
+  max-height: 80px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
-.navbar-nav li {
-  display: inline-block; /* 横並びにする */
-  margin-right: 30px; /* 右の間隔を調整 */
-  font-size: 2.5rem; /* フォントサイズを調整 */
-  top: -30px; /* 上の余白 */
+/* ヘッダーの高さ調整 */
+.navbar {
+  height: 80px; /* ヘッダーの高さを指定（お好みに合わせて調整） */
+  padding: 0; /* 内側の余白を0にして高さにフィットさせる */
+  display: flex; /* フレックスボックスを使用して中央揃えにする */
+  align-items: center; /* ロゴを縦方向で中央に配置 */
 }
 
-.navbar-nav li a {
-  color: hwb(194 38% 3%); /* デフォルトの色を変更 */
-  text-decoration: none; /* 下線を削除 */
-  font-weight: 600;
+/* ナビゲーションリンク */
+.nav-link {
+  font-size: 24px;
+  font-weight: bold;
+  color: hwb(194 38% 3%);
+}
+.nav-link:hover {
+  color: rgb(242, 159, 91);
+}
+@media (max-width: 768px) {
+  .nav-link {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }
 
-.navbar-nav li a:hover {
-  color: rgb(242, 159, 91); /* ホバー時の色を変更（例: トマト色） */
-}
-
-/* ナビゲーションメニュー */
+/* モバイル用に中央揃え */
 .navbar-nav {
-  list-style: none; /* リストの点を削除 */
-  padding: 0; /* 内側の余白を削除 */
-  margin: 0; /* 外側の余白を削除 */
-  display: flex; /* 横並びにする */
+  align-items: center;
+  text-align: center;
 }
 
-.navbar-nav li {
-  margin: 0px 15px; /* 各リストアイテムの左右の間隔を調整（以前の20pxから少し狭くする） */
+/* ナビゲーションメニューがハンバーガーメニューをクリックした際に前面に表示される */
+.navbar-collapse {
+  margin-top: 10px; /* メニューとハンバーガーボタンの間にスペースを追加 */
+  z-index: 1050; /* メニューが前面に表示されるようにする */
+  position: relative;
+}
+
+/* メニューが開いたときに背後のコンテンツを暗くする */
+.navbar-collapse.show {
+  position: fixed; /* メニューを画面に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* メニューが全画面に表示される */
+  background-color: rgba(0, 0, 0, 0.5); /* 背景色を暗くして視認性を向上 */
+  z-index: 1050;
+}
+
+.navbar-brand {
+  height: 80px;
+  display: flex;
+  align-items: center;
 }/*# sourceMappingURL=header.css.map */
