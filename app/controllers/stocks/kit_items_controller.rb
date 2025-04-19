@@ -29,22 +29,19 @@ class Stocks::KitItemsController < ApplicationController
   end
 
   def update
-    if @kit_item.update(kit_item_params)
-      # reminders_attributesが送信されている場合
-      if kit_item_params[:reminders_attributes].present?
-        kit_item_params[:reminders_attributes].each do |_, reminder_params|
-          reminder = @kit_item.reminders.find_or_initialize_by(id: reminder_params[:id])
-          reminder.assign_attributes(reminder_params)
-          reminder.user_id = current_user.id # user_idを設定
-          reminder.save # 保存
-        end
+    # ユーザーIDを reminders_attributes に注入
+    if params[:kit_item][:reminders_attributes].present?
+      params[:kit_item][:reminders_attributes].each do |_, reminder_attr|
+        reminder_attr[:user_id] = current_user.id
       end
+    end
   
+    if @kit_item.update(kit_item_params)
       redirect_to stocks_emergency_kit_path(@emergency_kit), notice: 'アイテムが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
-  end
+  end  
 
   def destroy
     @kit_item.destroy
