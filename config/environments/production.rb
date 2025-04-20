@@ -63,8 +63,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'https://sotsusei-app-deploy-4.onrender.com' }
-
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -94,4 +92,20 @@ Rails.application.configure do
 
   # アセットのプリコンパイル
   config.assets.precompile += %w( application.scss )
-end
+
+    # SendGridを使用するための設定
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      domain: 'render.com', # またはドメイン名
+      user_name: 'apikey',  # SendGridのAPIキーを使用する場合は、ユーザー名は「apikey」
+      password: ENV['SENDGRID_API_KEY'],  # APIキーを環境変数から取得
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
+  
+    # メール送信元の設定
+    config.action_mailer.default_url_options = { host: 'https://sotsusei-app-deploy-4.onrender.com' }
+
+  end

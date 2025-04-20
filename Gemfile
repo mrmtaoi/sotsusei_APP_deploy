@@ -26,6 +26,8 @@ gem 'sassc'
 
 gem 'sassc-rails'
 
+gem 'sendgrid-ruby', '~> 6.0'
+
 gem 'bootstrap', '~> 5.3.3'
 gem 'jquery-rails'
 
