@@ -1,11 +1,14 @@
+# config/routes.rb
+
 Rails.application.routes.draw do
- # ログイン状態に応じてトップページを動的に変更
+  # ログイン状態に応じてトップページを動的に変更
   root to: redirect { |path, req| req.session[:user_id].present? ? '/static_pages/top' : '/welcome' }
 
   # ユーザー登録
   get 'welcome', to: 'static_pages#welcome'
   get 'static_pages/top', to: 'static_pages#top', as: 'static_pages_top'
-  
+  get 'account_activations/:activation_token/edit', to: 'account_activations#edit', as: 'account_activation'
+
   # 他ルーティング
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :edit, :update, :destroy, :new, :create]
@@ -29,8 +32,12 @@ Rails.application.routes.draw do
       collection do
         get 'all'
       end
-      resources :kit_items, only: [:index, :create, :edit, :update, :destroy] do
-      end
+      resources :kit_items, only: [:index, :create, :edit, :update, :destroy]
     end
+  end
+
+  # LetterOpenerWeb のルーティング（開発環境限定）
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end  
 end

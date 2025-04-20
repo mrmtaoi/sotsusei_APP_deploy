@@ -1,7 +1,20 @@
 FROM ruby:3.1.2
 
 # 必要なパッケージをインストール
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs curl
+RUN apt-get update -qq && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    nodejs \
+    curl \
+    libxml2-dev \
+    libxslt-dev \
+    zlib1g-dev \
+    libssl-dev \
+    libreadline-dev \
+    libffi-dev \
+    libgdbm-dev \
+    libncurses5-dev \
+    libgmp-dev
 
 # Node.js を最新バージョンに更新
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
@@ -18,7 +31,7 @@ WORKDIR /myapp
 # Gemfile と Gemfile.lock を先にコピーして bundle install を実行
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
-RUN bundle install
+RUN bundle config build.nokogiri --use-system-libraries && bundle install
 
 # アプリケーションのソースコードをコピー
 COPY . /myapp

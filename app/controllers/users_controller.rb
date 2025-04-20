@@ -15,14 +15,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in(@user) # ユーザーをログイン
-      logger.debug "New user created: #{@user.inspect}"
-      redirect_to @user, notice: 'ユーザーが作成されました'
+      UserMailer.account_activation(@user).deliver_now  # 認証メールを送信
+      logger.debug "Activation email sent to: #{@user.email}"
+      redirect_to root_path, notice: "アカウントを作成しました。メールをご確認ください。"
     else
       logger.debug @user.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
+  
 
   def update
     if @user.update(user_params)

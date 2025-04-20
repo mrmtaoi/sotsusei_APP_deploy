@@ -33,6 +33,10 @@ gem "bcrypt"
 
 gem 'rails-i18n', '~> 7.0.0'
 
+group :development do
+  gem 'letter_opener_web'
+end
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
