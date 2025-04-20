@@ -39,7 +39,7 @@ class User < ApplicationRecord
   # メール認証に使用
   def activate
     update_columns(activated: true, activated_at: Time.zone.now)
-  endう
+  end
 
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
