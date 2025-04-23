@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
   include Rails.application.routes.url_helpers  # URL ヘルパーをインクルード
+  default from: "lets.stock2025@gmail.com"
 
   def account_activation(user)
     @user = user
