@@ -94,21 +94,18 @@ Rails.application.configure do
   # アセットのプリコンパイル
   config.assets.precompile += %w( application.scss )
 
-    # SendGridを使用するための設定
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-      address: 'smtp.sendgrid.net',
-      port: 587,
-      domain: 'sotsusei-app-deploy-4.onrender.com',
-      user_name: 'apikey',  # SendGridのAPIキーを使用する場合は、ユーザー名は「apikey」
-      password: ENV['SENDGRID_API_KEY'],  # APIキーを環境変数から取得
-      authentication: 'plain',
-      enable_starttls_auto: true
-    }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'stock-supporter2025.com',
+    user_name:            ENV['GMAIL_USERNAME'], # Gmail アドレス
+    password:             ENV['GMAIL_APP_PASSWORD'], # アプリパスワード
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
   
-    # メール内のリンク用URLホスト設定
-    config.action_mailer.default_url_options = {
-      host: 'sotsusei-app-deploy-4.onrender.com',
-      protocol: 'https'
-    }
+  # 本番環境のホスト設定も忘れずに
+  config.action_mailer.default_url_options = { host: 'stock-supporter2025.com', protocol: 'https' }
+
   end
