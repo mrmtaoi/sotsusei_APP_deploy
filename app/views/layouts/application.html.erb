@@ -3,11 +3,13 @@
   <head>
     <title>ストックサポーター</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+    <meta property="og:title" content="ストックサポーター" />
+    <meta property="og:description" content="アプリを活用して非常時に備えよう！" />
+    <meta property="og:image" content="<%= asset_path('top.jpg') %>" />
+    <meta property="og:url" content="https://stock-supporter2025.com/welcome" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload', rel: 'stylesheet', href: asset_path('application.css') %>
-
     <!-- Turbo の読み込み -->
     <%= javascript_include_tag "turbo", type: "module", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
