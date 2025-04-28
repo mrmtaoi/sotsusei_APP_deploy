@@ -18,7 +18,7 @@
 /* レスポンシブデザイン */
 @media (max-width: 767px) {
   .top-container img {
-    max-width: 40%; /* モバイルでは画像を80%に調整 */
+    max-width: 20%; /* モバイルでは画像を80%に調整 */
     height: auto;
   }
 }

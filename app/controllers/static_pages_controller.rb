@@ -9,7 +9,12 @@ class StaticPagesController < ApplicationController
 
   def welcome
   end
+  
+  def terms
+  end
 
+  def privacy_policy
+  end
 
   def top
     # 防災コメント
