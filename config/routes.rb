@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :internal do
+    post 'send_reminders', to: 'reminders#deliver'
+  end
+
   # LetterOpenerWeb のルーティング（開発環境限定）
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

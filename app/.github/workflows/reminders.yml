@@ -1,0 +1,15 @@
+name: Run Reminder Mail Task
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 毎日 0:00 UTC（日本時間で午前9時）
+  workflow_dispatch:      # 手動実行も可能にする
+
+jobs:
+  call_reminder_task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call reminder endpoint on Render
+        run: |
+          curl -X POST "https://stock-supporter2025.com/internal/send_reminders?token=${{ secrets.REMINDER_TASK_TOKEN }}"
