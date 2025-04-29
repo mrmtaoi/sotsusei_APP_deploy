@@ -1,1 +1,26 @@
-<p><%= @reminder.kit_item&.name || @reminder.stock_item&.name %> の期限が近づいています。</p>
+<!DOCTYPE html>
+<html>
+  <body>
+    <p><%= @reminder.user.name %> さん</p>
+
+    <p>こんにちは。Stock Supporter からのお知らせです。</p>
+
+    <p>
+      備蓄アイテム「<%= @reminder.stock_item.name %>」は<br>
+      登録から <%= @reminder.interval_months %> ヶ月ごとの点検時期にあたります。
+    </p>
+
+    <p>
+      劣化・使用期限・数量などをご確認いただき、必要に応じて補充をお願いします。
+    </p>
+
+    <p>
+      ご確認はこちらから：<br>
+      <a href="https://stock-supporter2025.com/stocks/<%= @reminder.stock_item.stock_id %>">
+        備蓄リストを見る
+      </a>
+    </p>
+
+    <p>今後とも Stock Supporter をよろしくお願いいたします。</p>
+  </body>
+</html>

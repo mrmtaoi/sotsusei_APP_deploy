@@ -20,6 +20,10 @@ gem 'dotenv-rails'
 gem 'json'
 gem 'rake'
 
+group :development do
+  gem 'whenever', require: false
+end
+
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 

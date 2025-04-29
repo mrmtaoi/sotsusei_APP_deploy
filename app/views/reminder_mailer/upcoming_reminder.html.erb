@@ -1,1 +1,35 @@
-<p><%= @reminder.kit_item&.name || @reminder.stock_item&.name %> の期限が近づいています。</p>
+<!DOCTYPE html>
+<html>
+  <body>
+    <p><%= @reminder.user.name %> さん</p>
+
+    <p>こんにちは。Stock Supporter からのお知らせです。</p>
+
+    <p>
+      登録されたアイテム「<%= @reminder.kit_item&.name || @reminder.stock_item&.name %>」の<br>
+      期限日は本日 <%= @reminder.expiration_date.strftime("%Y年%m月%d日") %> で設定されております。
+    </p>
+
+    <p>
+      必要に応じて入れ替えや補充をお願いいたします。
+    </p>
+
+    <% if @reminder.kit_item.present? %>
+      <p>
+        詳細ページ：<br>
+        <a href="https://stock-supporter2025.com/emergency_kits/<%= @reminder.kit_item.emergency_kit_id %>">
+          防災バッグを見る
+        </a>
+      </p>
+    <% elsif @reminder.stock_item.present? %>
+      <p>
+        詳細ページ：<br>
+        <a href="https://stock-supporter2025.com/stocks/<%= @reminder.stock_item.stock_id %>">
+          備蓄リストを見る
+        </a>
+      </p>
+    <% end %>
+
+    <p>引き続き Stock Supporter をよろしくお願いいたします。</p>
+  </body>
+</html>
