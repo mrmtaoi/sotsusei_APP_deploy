@@ -21,7 +21,7 @@ class User < ApplicationRecord
                        allow_nil: true
 
   has_many :stocks
-  has_many :emergency_kits
+  has_many :emergency_kits, dependent: :destroy
   has_many :emergency_kit_owners, dependent: :destroy
   has_many :boards
 
