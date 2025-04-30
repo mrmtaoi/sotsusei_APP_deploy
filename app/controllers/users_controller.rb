@@ -34,18 +34,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    # ユーザー削除前に関連するレコードを削除
     log_out if logged_in?
-
-    # 関連する emergency_kit_owners と emergency_kits を削除
-    @user.emergency_kit_owners.destroy_all
+  
+    # 関連する emergency_kits を先に削除する
     @user.emergency_kits.destroy_all
-
-    # ユーザー削除
+  
+    # その後、emergency_kit_owners を削除する
+    @user.emergency_kit_owners.destroy_all
+  
     @user.destroy
-    
+  
     redirect_to welcome_path, notice: 'アカウントを削除しました'
   end
+  
 
   private
 
