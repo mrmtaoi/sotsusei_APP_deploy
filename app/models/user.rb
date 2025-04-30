@@ -20,10 +20,10 @@ class User < ApplicationRecord
                        length: { minimum: 6, message: "は最低 %{count} 文字必要です" },
                        allow_nil: true
 
-  has_many :stocks
+  has_many :stocks, dependent: :destroy
   has_many :emergency_kits, dependent: :destroy
   has_many :emergency_kit_owners, dependent: :destroy
-  has_many :boards
+  has_many :boards, dependent: :destroy
 
   # ランダムなトークンを生成する
   def self.new_token
