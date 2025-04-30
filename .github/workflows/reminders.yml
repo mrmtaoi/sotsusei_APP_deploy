@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Call reminder endpoint on Render
         run: |
-          curl -X POST "https://stock-supporter2025.com/internal/send_reminders?token=40df428b3306dff6a15cbcb078c888f6908b7d7ba21da4805478a5ba776055e9"
+          curl -X POST "https://stock-supporter2025.com/internal/reminders?token=40df428b3306dff6a15cbcb078c888f6908b7d7ba21da4805478a5ba776055e9"
