@@ -7,7 +7,9 @@
 
     <p>
       登録されたアイテム「<%= @reminder.kit_item&.name || @reminder.stock_item&.name %>」の<br>
-      期限日は本日 <%= @reminder.expiration_date.strftime("%Y年%m月%d日") %> で設定されております。
+      期限日は本日 
+      <%= @reminder.expiration_date.present? ? @reminder.expiration_date.strftime("%Y年%m月%d日") : '未設定' %> 
+      で設定されております。
     </p>
 
     <p>

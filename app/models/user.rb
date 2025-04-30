@@ -58,6 +58,14 @@ class User < ApplicationRecord
     update(remember_digest: nil)
   end
 
+    # ユーザー削除時に関連するレコードを削除
+    def destroy_user
+      # 関連する emergency_kit_owners と emergency_kits を削除
+      emergency_kit_owners.destroy_all
+      emergency_kits.destroy_all
+      destroy
+    end
+
   private
 
   # メール認証用ダイジェストを作成
