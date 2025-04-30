@@ -5,3 +5,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link_tree ../../javascript/controllers .js
 //= link popper.js
+//= link application.scss
