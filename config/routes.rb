@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   end
 
   namespace :internal do
-    post 'reminders', to: 'reminders#deliver'
+    post 'send_reminders', to: 'reminders#deliver'
   end
 
   # LetterOpenerWeb のルーティング（開発環境限定）
