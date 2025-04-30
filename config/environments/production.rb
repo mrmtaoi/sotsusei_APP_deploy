@@ -1,5 +1,3 @@
-# config/environments/production.rb
-
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -96,19 +94,18 @@ Rails.application.configure do
   # アセットのプリコンパイル
   config.assets.precompile += %w( application.scss )
 
-  # ActionMailerの設定
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
-    port:                 587,  # TLSの標準ポート
+    port:                 587,
     domain:               'stock-supporter2025.com',
-    user_name:            ENV['GMAIL_USERNAME'],  # Gmailアドレス
-    password:             ENV['GMAIL_APP_PASSWORD'],  # Gmailアプリパスワード
+    user_name:            ENV['GMAIL_USERNAME'], # Gmail アドレス
+    password:             ENV['GMAIL_APP_PASSWORD'], # アプリパスワード
     authentication:       'plain',
     enable_starttls_auto: true
   }
-
-  # 本番環境のホスト設定
+  
+  # 本番環境のホスト設定も忘れずに
   config.action_mailer.default_url_options = { host: 'stock-supporter2025.com', protocol: 'https' }
 
-end
+  end
