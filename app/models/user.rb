@@ -17,8 +17,9 @@ class User < ApplicationRecord
   # password のバリデーション
   has_secure_password
   validates :password, presence: { message: "を入力してください" },
-                       length: { minimum: 6, message: "は最低 %{count} 文字必要です" },
-                       allow_nil: true
+                     length: { minimum: 6, message: "は最低 %{count} 文字必要です" },
+                     allow_nil: true,
+                     unless: :sns_login?
 
   has_many :stocks, dependent: :destroy
   has_many :emergency_kits, dependent: :destroy
@@ -72,5 +73,10 @@ class User < ApplicationRecord
   def create_activation_digest
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
+  end
+
+  # SNSログイン時はパスワード不要
+  def sns_login?
+  provider.present? && uid.present?
   end
 end

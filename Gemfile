@@ -19,6 +19,8 @@ gem 'rakuten_web_service'
 gem 'dotenv-rails'
 gem 'json'
 gem 'rake'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
 
 group :development do
   gem 'whenever', require: false

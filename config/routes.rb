@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete 'logout', to: 'sessions#destroy', as: 'destroy_user_session'
+  get '/auth/:provider/callback', to: 'sessions#google_auth'
+  get '/auth/failure', to: redirect('/')  
 
   # ストック関連
   namespace :stocks do
