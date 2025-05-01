@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :google_auth
   def create
     if params[:session].blank?
       flash.now[:alert] = "不正なリクエストです"

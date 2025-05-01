@@ -6,10 +6,6 @@ Rails.application.configure do
   config.hosts << "https://sotsusei-app-deploy-4.onrender.com"
 
   config.hosts << /.*\.onrender\.com/ # Renderのサブドメイン全てを許可
-
-  config.middleware.use OmniAuth::Builder do
-    provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
-  end
   
   # Render で指定されたポートを使用する
   config.hosts << ENV["PORT"] if ENV["PORT"]
