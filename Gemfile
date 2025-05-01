@@ -21,6 +21,7 @@ gem 'json'
 gem 'rake'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 group :development do
   gem 'whenever', require: false
