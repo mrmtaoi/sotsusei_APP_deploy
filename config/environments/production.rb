@@ -7,6 +7,11 @@ Rails.application.configure do
 
   config.hosts << /.*\.onrender\.com/ # Renderのサブドメイン全てを許可
   
+  config.middleware.use OmniAuth::Builder do
+    provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email,profile'
+    OmniAuth.config.logger = Rails.logger
+  end  
+
   # Render で指定されたポートを使用する
   config.hosts << ENV["PORT"] if ENV["PORT"]
 
