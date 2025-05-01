@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get 'static_pages/top', to: 'static_pages#top', as: 'static_pages_top'
   get 'account_activations/:activation_token/edit', to: 'account_activations#edit', as: 'account_activation'
 
-
   # 他ルーティング
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :edit, :update, :destroy, :new, :create]
