@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'static_pages/top', to: 'static_pages#top', as: 'static_pages_top'
   get 'account_activations/:activation_token/edit', to: 'account_activations#edit', as: 'account_activation'
 
+
   # 他ルーティング
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :edit, :update, :destroy, :new, :create]
@@ -26,8 +27,9 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete 'logout', to: 'sessions#destroy', as: 'destroy_user_session'
-  get '/auth/:provider/callback', to: 'sessions#google_auth'
-  get '/auth/failure', to: redirect('/')  
+  # Google OAuth2のコールバックルート
+  get '/auth/google_oauth2/callback', to: 'sessions#google_auth'
+  get '/auth/failure', to: redirect('/')  # 認証失敗時のリダイレクト先
 
   # ストック関連
   namespace :stocks do
