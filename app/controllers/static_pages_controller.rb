@@ -7,14 +7,11 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def welcome
-  end
-  
-  def terms
-  end
+  def welcome; end
 
-  def privacy_policy
-  end
+  def terms; end
+
+  def privacy_policy; end
 
   def top
     # 防災コメント
@@ -44,7 +41,7 @@ class StaticPagesController < ApplicationController
       "身分証明書や健康保険証、お薬手帳などは、コピーをとって防災バッグに入れておこう！",
       "非常時の電化製品は防水防塵性能のものが安心だよ！",
       "ペットがいる場合は、ペット用の食事、水、薬を最低でも7日分は備えておこう!",
-      "ペットがいる場合は、事前に自治体に同行避難について相談し、状況を想定した準備をしよう！",
+      "ペットがいる場合は、事前に自治体に同行避難について相談し、状況を想定した準備をしよう！"
     ]
     # ランダムにコメントを選択
     @random_comment = comments.sample

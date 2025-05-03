@@ -1,8 +1,8 @@
 class EmergencyKitOwner < ApplicationRecord
   belongs_to :user
-  has_many :emergency_kits
+  has_many :emergency_kits, dependent: :destroy
 
-  enum gender: { male: 0, female: 1, other: 2 }
+  enum :gender, { male: 0, female: 1, other: 2 }
 
   def self.genders_i18n
     { '男性' => :male, '女性' => :female, 'その他' => :other }
@@ -14,7 +14,7 @@ class EmergencyKitOwner < ApplicationRecord
   def gender_i18n
     I18n.t("enums.gender.#{gender}")
   end
-  
+
   private
 
   def normalize_gender

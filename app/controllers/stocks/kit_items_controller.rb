@@ -6,6 +6,11 @@ class Stocks::KitItemsController < ApplicationController
     @kit_items = @emergency_kit.kit_items
   end
 
+  def edit
+    # リマインダーが未設定の場合、新しいリマインダーを作成してフォームに表示
+    @kit_item.reminders.build if @kit_item.reminders.empty?
+  end
+
   def create
     @kit_item = @emergency_kit.kit_items.build(kit_item_params)
 
@@ -23,25 +28,20 @@ class Stocks::KitItemsController < ApplicationController
     end
   end
 
-  def edit
-    # リマインダーが未設定の場合、新しいリマインダーを作成してフォームに表示
-    @kit_item.reminders.build if @kit_item.reminders.empty?
-  end
-
   def update
     # ユーザーIDを reminders_attributes に注入
     if params[:kit_item][:reminders_attributes].present?
-      params[:kit_item][:reminders_attributes].each do |_, reminder_attr|
+      params[:kit_item][:reminders_attributes].each_value do |reminder_attr|
         reminder_attr[:user_id] = current_user.id
       end
     end
-  
+
     if @kit_item.update(kit_item_params)
       redirect_to stocks_emergency_kit_path(@emergency_kit), notice: 'アイテムが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
-  end  
+  end
 
   def destroy
     @kit_item.destroy
@@ -63,6 +63,6 @@ class Stocks::KitItemsController < ApplicationController
 
   def kit_item_params
     params.require(:kit_item).permit(:name, :quantity, :category_id,
-      reminders_attributes: [:id, :expiration_date, :_destroy, :user_id])
-  end  
+                                     reminders_attributes: [:id, :expiration_date, :_destroy, :user_id])
+  end
 end

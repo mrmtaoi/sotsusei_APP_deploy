@@ -2,20 +2,18 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def show; end
+
   def new
     @user = User.new
   end
 
-  def show
-  end
-
-  def edit
-  end
+  def edit; end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.account_activation(@user).deliver_now  # 認証メールを送信
+      UserMailer.account_activation(@user).deliver_now # 認証メールを送信
       logger.debug "Activation email sent to: #{@user.email}"
       redirect_to root_path, notice: "アカウントを作成しました。メールをご確認ください。"
     else
@@ -23,7 +21,6 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
 
   def update
     if @user.update(user_params)
@@ -36,8 +33,8 @@ class UsersController < ApplicationController
   def destroy
     # ユーザー削除前にログアウト
     log_out if logged_in?
-    @user.destroy  # ユーザー削除
-    
+    @user.destroy # ユーザー削除
+
     redirect_to welcome_path, notice: 'アカウントを削除しました'
   end
 

@@ -1,5 +1,4 @@
 module SessionsHelper
-
   # ユーザーをログイン状態にする
   def log_in(user)
     session[:user_id] = user.id
@@ -21,27 +20,28 @@ module SessionsHelper
 
   # 現在ログインしているユーザーを取得（記憶トークンがあれば自動ログイン）
   def current_user
-    if (user_id = session[:user_id])
-      @current_user ||= User.find_by(id: user_id)
-    elsif (user_id = cookies.signed[:user_id])
-      user = User.find_by(id: user_id)
-      if user&.authenticated?(cookies[:remember_token])
-        log_in(user)  # セッションに保存
-        @current_user = user
-      end
-    end
+    return @current_user if defined?(@current_user)
+
+    @current_user = if (user_id = session[:user_id])
+                      User.find_by(id: user_id)
+                    elsif (user_id = cookies.signed[:user_id])
+                      user = User.find_by(id: user_id)
+                      if user&.authenticated?(cookies[:remember_token])
+                        log_in(user)
+                        user
+                      end
+                    end
   end
 
   # ユーザーがログインしているかを判定
   def logged_in?
-    !current_user.nil?
+    current_user.present?
   end
 
   # ログアウト処理（セッションとクッキーの削除）
   def log_out
     forget(current_user)
     session.delete(:user_id)
-    @current_user = nil
+    remove_instance_variable(:@memoized_current_user) if defined?(@memoized_current_user)
   end
-
 end

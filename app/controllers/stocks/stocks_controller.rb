@@ -5,7 +5,7 @@ class Stocks::StocksController < ApplicationController
   def index
     @stocks = current_user.stocks
     @stock_items = StockItem.joins(:stock).where(stocks: { user: current_user })
-  
+
     # カテゴリーごとの必要量（仮のデータ）
     required_quantities = {
       "食料" => 21, "飲料" => 21, "医療・衛生用品" => 3,
@@ -13,7 +13,7 @@ class Stocks::StocksController < ApplicationController
       "乾電池" => 5, "ライト" => 1, "ラジオ" => 1,
       "スマホ充電機器" => 1, "トイレ用品" => 10, "貴重品・身分証明書関係" => 2, "その他" => 2
     }
-  
+
     # アドバイスメッセージ（不足時の提案）
     advice_messages = {
       "食料" => "食料が不足しているかもしれません。1週間分の食事は備えておきたいです。",
@@ -30,29 +30,29 @@ class Stocks::StocksController < ApplicationController
       "貴重品・身分証明書関係" => "貴重品・身分証明書関係が不足しているかもしれません。現金や身分証のコピーなどを備えましょう。",
       "その他" => "その他の必要なアイテムはありませんか。眼鏡や爪切り、哺乳瓶など、自分や家族の必需品を準備しておきましょう。"
     }
-    
+
     # 現在のバッグ内のアイテム数を集計
     current_quantities = @stock_items.group(:category_id).sum(:quantity)
 
     # 不足アイテムの計算
-    @missing_items = required_quantities.map do |category_name, required_quantity|
+    @missing_items = required_quantities.filter_map do |category_name, required_quantity|
       category = Category.find_by(name: category_name)
       next unless category
 
       current_quantity = current_quantities[category.id] || 0
       missing = [required_quantity - current_quantity, 0].max
 
-      if missing > 0
-        {
-          name: category_name,
-          missing: missing,
-          advice: advice_messages[category_name]
-        }
-      end
-    end.compact # 不足しているアイテムのみを返す
+      next unless missing.positive?
+
+      {
+        name: category_name,
+        missing: missing,
+        advice: advice_messages[category_name]
+      }
+    end
 
     # 各カテゴリーの進捗度を計算
-    @category_progress = required_quantities.map do |category_name, required_quantity|
+    @category_progress = required_quantities.filter_map do |category_name, required_quantity|
       category = Category.find_by(name: category_name)
       next unless category
 
@@ -65,18 +65,12 @@ class Stocks::StocksController < ApplicationController
         missing: [required_quantity - current_quantity, 0].max, # 不足分を計算
         advice: advice_messages[category_name]
       }
-    end.compact
+    end
 
     # グラフ用データの作成
     @chart_data = @category_progress.map do |category|
-    { name: category[:name], progress: category[:progress] }
-end.to_json
-
-  end
-
-  def destroy
-    @stock.destroy
-    redirect_to stocks_stocks_path, notice: 'Stock was successfully destroyed.'
+      { name: category[:name], progress: category[:progress] }
+    end.to_json
   end
 
   def new
@@ -85,42 +79,6 @@ end.to_json
     @stock.stock_items.build.reminders.build
   end
 
-  def create
-    @stock = Stock.new(stock_params)
-    @stock.user = current_user
-  
-    # リマインダーに user_id を設定
-    @stock.stock_items.each do |stock_item|
-      stock_item.reminders.each do |reminder|
-        reminder.user = current_user if reminder.user.nil?
-      end
-    end
-  
-    if @stock.save
-      redirect_to stocks_stocks_path, notice: '備蓄アイテムが登録されました。'
-    else
-      Rails.logger.debug @stock.errors.full_messages # デバッグ用: エラー内容をログに出力
-      render :new, status: :unprocessable_entity
-    end
-  end
-  
-  def update
-    @stock.assign_attributes(stock_params)
-  
-    # stock_items の reminder に user を設定
-    @stock.stock_items.each do |stock_item|
-      stock_item.reminders.each do |reminder|
-        reminder.user = current_user if reminder.user.nil? # user を設定
-      end
-    end
-  
-    if @stock.save
-      redirect_to stocks_stocks_path, notice: '備蓄アイテムが更新されました。'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-  
   def edit
     @stock = Stock.find(params[:id])
     # stock_items と reminders がすでに存在していない場合のみビルド
@@ -130,6 +88,47 @@ end.to_json
     end
   end
 
+  def create
+    @stock = Stock.new(stock_params)
+    @stock.user = current_user
+
+    # リマインダーに user_id を設定
+    @stock.stock_items.each do |stock_item|
+      stock_item.reminders.each do |reminder|
+        reminder.user = current_user if reminder.user.nil?
+      end
+    end
+
+    if @stock.save
+      redirect_to stocks_stocks_path, notice: '備蓄アイテムが登録されました。'
+    else
+      Rails.logger.debug @stock.errors.full_messages # デバッグ用: エラー内容をログに出力
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @stock.assign_attributes(stock_params)
+
+    # stock_items の reminder に user を設定
+    @stock.stock_items.each do |stock_item|
+      stock_item.reminders.each do |reminder|
+        reminder.user = current_user if reminder.user.nil? # user を設定
+      end
+    end
+
+    if @stock.save
+      redirect_to stocks_stocks_path, notice: '備蓄アイテムが更新されました。'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @stock.destroy
+    redirect_to stocks_stocks_path, notice: 'Stock was successfully destroyed.'
+  end
+
   private
 
   def stock_params
@@ -137,10 +136,10 @@ end.to_json
       :body,
       stock_items_attributes: [
         :id, :name, :category_id, :quantity, :storage, :_destroy,
-        reminders_attributes: [:id, :expiration_date, :interval_months, :_destroy]
+        { reminders_attributes: [:id, :expiration_date, :interval_months, :_destroy] }
       ]
     )
-  end  
+  end
 
   def set_stock
     @stock = Stock.find(params[:id])

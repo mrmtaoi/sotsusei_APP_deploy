@@ -6,4 +6,3 @@ class StockItem < ApplicationRecord
 
   validates :name, presence: true
 end
-  

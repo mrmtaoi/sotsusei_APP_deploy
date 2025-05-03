@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
       logger.debug "User authenticated successfully"
-      log_in(user)  # ユーザーをセッションに保存
+      log_in(user) # ユーザーをセッションに保存
 
       # チェックボックスがオンなら記憶する
       if params[:session][:remember_me] == "1"
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
 
     user = User.find_or_create_by(email: user_info['info']['email']) do |u|
       u.name = user_info['info']['name']
-      u.password = SecureRandom.hex(15)  # 任意のランダムパスワード（バリデーションを通すため）
+      u.password = SecureRandom.hex(15) # 任意のランダムパスワード（バリデーションを通すため）
     end
 
     session[:user_id] = user.id
@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out if logged_in?  # ログアウト処理（クッキー削除も含む）
+    log_out if logged_in? # ログアウト処理（クッキー削除も含む）
     flash[:notice] = "ログアウトしました"
     redirect_to login_path
   end

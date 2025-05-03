@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   # ログイン状態に応じてトップページを動的に変更
-  root to: redirect { |path, req| req.session[:user_id].present? ? '/static_pages/top' : '/welcome' }
+  root to: redirect { |_path, req| req.session[:user_id].present? ? '/static_pages/top' : '/welcome' }
 
   # ユーザー登録
   get 'welcome', to: 'static_pages#welcome'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: 'destroy_user_session'
   # Google OAuth2のコールバックルート
   get '/auth/google_oauth2/callback', to: 'sessions#google_auth'
-  get '/auth/failure', to: redirect('/')  # 認証失敗時のリダイレクト先
+  get '/auth/failure', to: redirect('/') # 認証失敗時のリダイレクト先
 
   # ストック関連
   namespace :stocks do
@@ -46,7 +46,5 @@ Rails.application.routes.draw do
   end
 
   # LetterOpenerWeb のルーティング（開発環境限定）
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end  
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
