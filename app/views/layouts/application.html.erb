@@ -16,18 +16,12 @@
   </head>
 
   <body>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
+    <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key %>">
+        <%= message %>
       </div>
     <% end %>
-
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-
+  
     <% if user_logged_in? %> <!-- カスタムメソッドを使ってログイン状態を確認 -->
       <%= render 'shared/header_signed_in' %> <!-- ログイン後のヘッダー -->
     <% else %>
