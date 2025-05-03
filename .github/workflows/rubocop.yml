@@ -17,7 +17,7 @@ jobs:
       - name: Ruby のセットアップ
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2' # ← あなたの環境に合わせて調整
+          ruby-version: '3.1.2'
           bundler-cache: true
 
       - name: RuboCop を実行
