@@ -1,8 +1,10 @@
 require:
+  - ./config/initializers/inflections
+
+plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - ./config/initializers/inflections
 
 AllCops:
   SuggestExtensions: false

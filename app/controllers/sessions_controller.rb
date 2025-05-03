@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy], if: -> { Rails.env.test? }
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+
   def create
     if params[:session].blank?
       flash.now[:alert] = "不正なリクエストです"
@@ -34,7 +35,7 @@ class SessionsController < ApplicationController
 
     user = User.find_or_create_by(email: user_info['info']['email']) do |u|
       u.name = user_info['info']['name']
-      u.password = SecureRandom.hex(15) # 任意のランダムパスワード（バリデーションを通すため）
+      u.password = SecureRandom.hex(15)
     end
 
     session[:user_id] = user.id
