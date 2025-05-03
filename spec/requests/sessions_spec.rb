@@ -41,14 +41,14 @@ RSpec.describe "Sessions", type: :request do
       post login_path, params: { session: { email: user.email, password: 'password' } }
       delete destroy_user_session_path
     end
-  
+
     it "ログアウトに成功してリダイレクトされる" do
       expect(response).to redirect_to(login_path)
     end
-  
+
     it "ログアウト後のメッセージが表示される" do
       follow_redirect!
       expect(response.body).to include("ログアウトしました")
     end
-  end  
+  end
 end
