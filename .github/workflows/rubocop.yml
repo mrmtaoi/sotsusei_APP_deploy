@@ -1,0 +1,24 @@
+name: RuboCop
+
+on:
+  push:
+    branches: [main, develop] 
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v3
+
+      - name: Ruby のセットアップ
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2' # ← あなたの環境に合わせて調整
+          bundler-cache: true
+
+      - name: RuboCop を実行
+        run: bundle exec rubocop
