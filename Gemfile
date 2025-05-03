@@ -29,6 +29,10 @@ gem 'rubocop-rspec', require: false
 
 group :development do
   gem 'whenever', require: false
+  gem 'letter_opener_web'
+  gem "web-console"
+  gem 'spring', '4.3.0'
+  gem 'spring-commands-rspec'
 end
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -47,16 +51,10 @@ gem "bcrypt"
 
 gem 'rails-i18n', '~> 7.0.0'
 
-group :development do
-  gem 'letter_opener_web'
-end
-
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-end
-
-group :development do
-  gem "web-console"
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :test do
