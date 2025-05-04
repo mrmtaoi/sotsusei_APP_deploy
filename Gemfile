@@ -27,6 +27,7 @@ gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'faker'
+gem 'whenever', require: false
 
 group :development do
   gem 'whenever', require: false

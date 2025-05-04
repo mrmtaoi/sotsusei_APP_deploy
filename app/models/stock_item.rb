@@ -1,6 +1,6 @@
 class StockItem < ApplicationRecord
   belongs_to :stock
-  has_many :reminders, dependent: :destroy # 複数のリマインダーを持つ
+  has_many :reminders, inverse_of: :stock_item, dependent: :destroy
   accepts_nested_attributes_for :reminders, allow_destroy: true # リマインダーをネストできるようにする
   belongs_to :category
 
