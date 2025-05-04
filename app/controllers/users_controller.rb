@@ -33,8 +33,8 @@ class UsersController < ApplicationController
   def destroy
     # ユーザー削除前にログアウト
     log_out if logged_in?
-    @user.destroy # ユーザー削除
-
+    @user.destroy  # ユーザー削除
+    
     redirect_to welcome_path, notice: 'アカウントを削除しました'
   end
 
