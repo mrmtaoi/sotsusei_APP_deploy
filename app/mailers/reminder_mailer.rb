@@ -10,8 +10,8 @@ class ReminderMailer < ApplicationMailer
     mail(to: kit.user.email, subject: "防災バッグの定期点検のお知らせ")
   end
 
-  def interval_notification_stock(stock_item)
-    @stock_item = stock_item
-    mail(to: stock_item.stock.user.email, subject: "備蓄品の定期点検のお知らせ")
-  end
+  def interval_notification_stock(reminder)
+    @stock_item = reminder.stock_item
+    mail(to: reminder.user.email, subject: "備蓄品の定期点検のお知らせ")
+  end  
 end

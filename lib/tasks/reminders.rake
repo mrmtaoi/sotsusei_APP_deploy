@@ -1,3 +1,5 @@
+# lib/tasks/reminder_mailer.rake
+
 namespace :reminders do
     desc "期限や周期が来たアイテムにメール通知"
     task send_reminders: :environment do
