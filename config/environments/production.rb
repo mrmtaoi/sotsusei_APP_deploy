@@ -110,7 +110,10 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   
-  # 本番環境のホスト設定も忘れずに
   config.action_mailer.default_url_options = { host: 'stock-supporter2025.com', protocol: 'https' }
+# メールログ出力と例外出力の明示
+config.action_mailer.logger = Logger.new(STDOUT)
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_deliveries = true
 
   end

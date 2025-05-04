@@ -8,14 +8,16 @@ class Reminder < ApplicationRecord
 
   validates :user, presence: true
 
-  # 🔽 仮想属性：通知日を動的に計算
   def remind_on
     return expiration_date if expiration_date.present?
     return created_at.to_date + interval_months.months if interval_months.present?
     nil
   end
 
-  # 🔽 今日が通知日か？
+  def remind_today?
+    remind_on.present? && remind_on == Time.zone.today
+  end
+
   def remind_today?
     remind_on == Date.today
   end

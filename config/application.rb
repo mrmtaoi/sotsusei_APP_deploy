@@ -13,6 +13,9 @@ module Myapp
     config.i18n.available_locales = [:ja, :en] # 必要に応じて、利用するロケールを指定
 
     config.hosts << 'stock-supporter2025.com'
+    
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
