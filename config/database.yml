@@ -85,8 +85,8 @@ test:
 
 production: #ここに直接書き込むときは内部情報で記載
   adapter: postgresql
-  host: dpg-d00jr9p5pdvs73d5mvrg-a.singapore-postgres.render.com
-  database: realworld_development_lvd8_wcb4
+  host: dpg-d0bks4uuk2gs73fv65b0-a.singapore-postgres.render.com
+  database: realworld_development_v41g
   username: aoi 
-  password: cYqaXOO7eUFszSGK3weVnAHct8qG4TDO
+  password: iR1X0BtWVZYFZadEABC50QqCLY6zxpIs
   port: 5432
