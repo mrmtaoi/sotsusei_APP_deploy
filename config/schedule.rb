@@ -1,7 +1,5 @@
 # config/schedule.rb
 
-every 1.month, at: '10:00 am' do
+every '15 17 5 * *' do
   runner "Reminder.send_monthly_notifications"
 end
-
-
