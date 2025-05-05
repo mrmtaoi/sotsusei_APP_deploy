@@ -10,11 +10,11 @@
 }
 
 .image-container img {
-  width: 50px;
+  width: 20px;
   height: auto;
   display: block;
   max-width: 50%; /* 親要素に収める */
-  margin: 0 10px; /* 画像間の間隔を調整 */
+  margin: 0 4px; /* 画像間の間隔を調整 */
 }
 
 /* レスポンシブデザイン */
@@ -126,7 +126,7 @@
 .random-comment {
   font-size: 1.2rem;
   color: #333;
-  background-color: #fffac9;
+  background-color: #b2ecff;
   padding: 1rem;
   border-left: 4px solid hwb(194 43% 3%);
   margin: 1.5rem 0;
