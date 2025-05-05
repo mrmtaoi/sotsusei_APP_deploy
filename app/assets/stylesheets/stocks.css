@@ -18,6 +18,16 @@
   gap: 30px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.button-container .custom-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
 .top-image {
   max-width: 300px;
   height: auto;

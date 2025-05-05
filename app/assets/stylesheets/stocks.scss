@@ -17,6 +17,17 @@
   gap: 30px; // ボタンと画像の間のスペース
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+
+  .custom-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+
 .top-image {
   max-width: 300px;
   height: auto;

@@ -1,27 +1,45 @@
 @charset "UTF-8";
 /* 画像の調整 */
 .image-container {
-  display: flex; /* 横並びにする */
-  justify-content: center; /* 中央に配置 */
-  align-items: center; /* 垂直方向でも中央に配置 */
-  height: calc(100vh - 134px); /* 高さを調整 */
   position: relative;
-  overflow: hidden; /* はみ出さないようにする */
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  overflow: hidden;
 }
 
 .image-container img {
-  width: 20px;
+  position: absolute;
   height: auto;
+  max-width: 40%; /* 必要に応じて調整 */
   display: block;
-  max-width: 50%; /* 親要素に収める */
-  margin: 0 4px; /* 画像間の間隔を調整 */
+  transition: all 0.3s ease;
 }
 
-/* レスポンシブデザイン */
+.front-image {
+  left: 0;
+  z-index: 2;
+}
+
+.back-image {
+  left: 25%; /* front-image と1/3程度重なる */
+  z-index: 1;
+  opacity: 0.9; /* 後方感を出すなら */
+}
+
+/* モバイル対応 */
 @media (max-width: 767px) {
-  .top-container img {
-    max-width: 100%; /* モバイルでは画像を100%に調整 */
+  .image-container {
+    display: block;
+    text-align: center;
+    position: relative;
     height: auto;
+  }
+  .image-container img {
+    position: static;
+    max-width: 80%;
+    margin: 0 auto 10px;
+    display: block;
   }
 }
 /* .top-inner-text h1 */
