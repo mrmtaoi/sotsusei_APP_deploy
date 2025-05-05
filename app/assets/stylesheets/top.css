@@ -140,4 +140,8 @@
   margin: 1.5rem 0;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.nav navbar-right-top {
+  display: inline-block; /* 横並びにする */
 }/*# sourceMappingURL=top.css.map */
