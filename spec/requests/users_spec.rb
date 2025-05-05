@@ -37,7 +37,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /users/:id/edit" do
-    context "ユーザー１" do
+    context "when the user is logged in" do
       before { login(user1) }
 
       it "ユーザー情報編集ページが表示される" do

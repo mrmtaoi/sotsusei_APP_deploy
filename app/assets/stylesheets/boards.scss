@@ -133,5 +133,6 @@
 }
 
 .search-form .form-control.search-field {
-  border-bottom: none !important;
+  border: none; // 全てのボーダーを消す
+  box-shadow: none; // 影がある場合も消す
 }

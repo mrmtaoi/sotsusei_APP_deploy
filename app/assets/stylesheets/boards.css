@@ -116,5 +116,6 @@
 }
 
 .search-form .form-control.search-field {
-  border-bottom: none !important;
+  border: none;
+  box-shadow: none;
 }/*# sourceMappingURL=boards.css.map */
