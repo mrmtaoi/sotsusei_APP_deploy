@@ -1,7 +1,6 @@
 class EmergencyKitOwner < ApplicationRecord
   belongs_to :user
-  has_many :emergency_kits, foreign_key: :owner_id, dependent: :destroy
-
+  has_many :emergency_kits, foreign_key: :owner_id, dependent: :destroy, inverse_of: :owner
   enum :gender, { male: 0, female: 1, other: 2 }
 
   def self.genders_i18n

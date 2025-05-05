@@ -1,17 +1,17 @@
 <div class="top-container">
   <h1>Let's stock!</h1>
 
-  <!-- ランダムなコメントを表示 -->
-  <p class="random-comment"><%= @random_comment || "コメントがありません" %></p>
+  <p class="random-comment">
+    💬 <%= @random_comment || "コメントがありません" %>
+  </p>
+
+  <div class="policy-links">
+    <%= link_to "利用規約", terms_path %> |
+    <%= link_to "プライバシーポリシー", privacy_policy_path %>
+  </div>
 
   <div class="image-container">
     <%= image_tag 'bousaiset.png' %>
     <%= image_tag 'top.jpg' %>
-  </div>
-
-  <!-- ここからリンクを追加 -->
-  <div class="policy-links">
-    <%= link_to "利用規約", terms_path %> |
-    <%= link_to "プライバシーポリシー", privacy_policy_path %>
   </div>
 </div>

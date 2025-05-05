@@ -126,4 +126,8 @@
 
 .search-form hr {
   display: none; /* フリーワード検索欄の下の線を消す */
+}
+
+.search-field {
+  border-bottom: none !important;
 }/*# sourceMappingURL=boards.css.map */

@@ -10,7 +10,7 @@
 
 /* 画像を中央に並べるための調整 */
 .top-container img {
-  max-width: 20%; /* 画像の最大幅を50%に設定 */
+  max-width: 10%; /* 画像の最大幅を10%に設定 */
   height: auto; /* 高さは自動調整 */
   margin: 0 10px; /* 画像間の間隔を調整 */
 }
@@ -122,7 +122,18 @@
   }
   /* 画像の調整 */
   .top-container img {
-    max-width: 30%; /* 画像が親要素に収まるように調整 */
+    max-width: 20%; /* 画像が親要素に収まるように調整 */
     height: auto; /* 高さは自動調整 */
   }
+}
+.random-comment {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #333;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-left: 4px solid #007bff;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }/*# sourceMappingURL=top.css.map */
