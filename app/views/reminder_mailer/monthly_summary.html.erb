@@ -34,11 +34,16 @@
   <ul>
     <% @emergency_kit_reminders.each do |reminder| %>
       <li>
-        <strong><%= reminder.kit.owner.name %></strong><br>
+        <% if reminder.emergency_kit&.owner.present? %>
+          <strong><%= reminder.emergency_kit.owner.name %>の防災バッグ</strong><br>
+        <% else %>
+          <strong>不明な所有者の防災バッグ</strong><br>
+        <% end %>
         リマインダー間隔: <%= reminder.interval_months %>ヶ月
       </li>
     <% end %>
   </ul>
 <% end %>
+
 
 <p>備えあれば憂いなし。今月も安全確認をお願いします。</p>
