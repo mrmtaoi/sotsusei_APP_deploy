@@ -8,6 +8,11 @@ class Reminder < ApplicationRecord
 
   validates :user, presence: true
 
+  # 今月のリマインダーに該当するアイテムをチェック
+  def self.remind_for_current_month
+    where("remind_on >= ? AND remind_on <= ?", Date.current.beginning_of_month, Date.current.end_of_month)
+  end
+
   def remind_on
     return expiration_date if expiration_date.present?
     return created_at.to_date + interval_months.months if interval_months.present?
@@ -15,11 +20,7 @@ class Reminder < ApplicationRecord
   end
 
   def remind_today?
-    remind_on.present? && remind_on == Time.zone.today
-  end
-
-  def remind_today?
-    remind_on == Date.today
+    remind_on.present? && remind_on == Date.current
   end
 
   private
