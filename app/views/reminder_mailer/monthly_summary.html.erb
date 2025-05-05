@@ -34,7 +34,7 @@
   <ul>
     <% @emergency_kit_reminders.each do |reminder| %>
       <li>
-        <strong><%= reminder.emergency_kit.name %></strong><br>
+        <strong><%= reminder.kit.owner.name %></strong><br>
         リマインダー間隔: <%= reminder.interval_months %>ヶ月
       </li>
     <% end %>
