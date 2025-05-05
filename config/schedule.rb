@@ -1,5 +1,5 @@
 # config/schedule.rb
 
-every '26 17 5 * *' do
-  runner "Reminder.send_monthly_notifications"
+every '10 18 5 * *' do
+  runner "ReminderJob.perform_now"
 end
