@@ -173,4 +173,9 @@
   max-width: 300px;
   height: auto;
   border-radius: 10px;
+}
+
+.share-link .share-url {
+  font-size: 0.85rem;
+  word-break: break-all;
 }/*# sourceMappingURL=stocks.css.map */

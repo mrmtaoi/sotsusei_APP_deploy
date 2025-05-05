@@ -1,3 +1,11 @@
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
 .all-content {
     display: flex;
     justify-content: space-between;
@@ -34,5 +42,15 @@
 
   .hidden {
     display: none;
+  }
+
+  .mypage_contents {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
   
