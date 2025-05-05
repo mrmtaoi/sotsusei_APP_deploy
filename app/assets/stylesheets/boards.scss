@@ -52,6 +52,9 @@
 
     .search-field {
       position: relative;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
     }
 
     .autocomplete-results {
@@ -138,12 +141,4 @@
   hr {
     margin-top: 1.5rem;
   }
-}
-
-.search-form hr {
-  display: none; /* フリーワード検索欄の下の線を消す */
-}
-
-.search-field {
-  border-bottom: none !important;
 }
