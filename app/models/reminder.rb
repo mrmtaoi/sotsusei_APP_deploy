@@ -6,16 +6,15 @@ class Reminder < ApplicationRecord
 
   before_validation :set_user_id_from_item
 
-  validates :user, presence: true
-
   # 今月のリマインダーに該当するアイテムをチェック
   def self.remind_for_current_month
-    where("remind_on >= ? AND remind_on <= ?", Date.current.beginning_of_month, Date.current.end_of_month)
+    where(remind_on: Date.current.all_month)
   end
 
   def remind_on
     return expiration_date if expiration_date.present?
     return created_at.to_date + interval_months.months if interval_months.present?
+
     nil
   end
 

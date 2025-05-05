@@ -1,4 +1,4 @@
-#app/jobs/reminder_job.rb
+# app/jobs/reminder_job.rb
 class ReminderJob < ApplicationJob
   queue_as :default
 
@@ -26,10 +26,8 @@ class ReminderJob < ApplicationJob
         # interval_months によるチェック
         if reminder.interval_months.present?
           base_date = reminder.created_at.to_date
-          months_since_base = (target_month.year * 12 + target_month.month) - (base_date.year * 12 + base_date.month)
-          if months_since_base >= 0 && months_since_base % reminder.interval_months == 0
-            match = true
-          end
+          months_since_base = ((target_month.year * 12) + target_month.month) - ((base_date.year * 12) + base_date.month)
+          match = true if months_since_base >= 0 && (months_since_base % reminder.interval_months).zero?
         end
 
         next unless match

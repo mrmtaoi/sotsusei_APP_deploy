@@ -67,7 +67,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   # rails_helper.rb のどこか（通常は下の方）にこれが必要
-  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
   RSpec.configure do |config|
     config.include LoginHelper, type: :request
   end

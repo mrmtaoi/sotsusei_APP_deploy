@@ -21,7 +21,7 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /users" do
     it "ユーザー作成に成功" do
-      expect {
+      expect do
         post users_path, params: {
           user: {
             name: "新規ユーザー",
@@ -30,7 +30,7 @@ RSpec.describe "Users", type: :request do
             password_confirmation: "password"
           }
         }
-      }.to change(User, :count).by(1)
+      end.to change(User, :count).by(1)
 
       expect(response).to redirect_to(root_path)
     end
@@ -90,9 +90,9 @@ RSpec.describe "Users", type: :request do
     before { login(user1) }
 
     it "アカウント削除" do
-      expect {
+      expect do
         delete user_path(user1)
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
 
       expect(response).to redirect_to(welcome_path)
     end

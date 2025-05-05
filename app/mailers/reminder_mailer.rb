@@ -22,15 +22,14 @@ class ReminderMailer < ApplicationMailer
       emergency_kit_reminders = user_reminders.select { |r| r.emergency_kit.present? }
 
       # いずれかのリストに対象があれば送信
-      if stock_reminders.any? || kit_item_reminders.any? || emergency_kit_reminders.any?
-        ReminderMailer.monthly_summary(
-          user: user,
-          stock_reminders: stock_reminders,
-          kit_item_reminders: kit_item_reminders,
-          emergency_kit_reminders: emergency_kit_reminders
-        ).deliver_now
-      end
+      next unless stock_reminders.any? || kit_item_reminders.any? || emergency_kit_reminders.any?
+
+      ReminderMailer.monthly_summary(
+        user: user,
+        stock_reminders: stock_reminders,
+        kit_item_reminders: kit_item_reminders,
+        emergency_kit_reminders: emergency_kit_reminders
+      ).deliver_now
     end
   end
 end
-
