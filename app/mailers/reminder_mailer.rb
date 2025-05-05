@@ -1,12 +1,12 @@
 # app/mailers/reminder_mailer.rb
 class ReminderMailer < ApplicationMailer
-  def monthly_summary(user:, stock_reminders:, kit_item_reminders:, emergency_kit_reminders:)
-    @user = user
-    @stock_reminders = stock_reminders
-    @kit_item_reminders = kit_item_reminders
-    @emergency_kit_reminders = emergency_kit_reminders
+  def monthly_summary
+    @user = params[:user]
+    @stock_reminders = params[:stock_reminders]
+    @kit_item_reminders = params[:kit_item_reminders]
+    @emergency_kit_reminders = params[:emergency_kit_reminders]
 
-    mail(to: @user.email, subject: "【今月の防災アイテム確認リスト】期限・点検のお知らせ")
+    mail(to: @user.email, subject: '今月の防災用品リマインダー')
   end
 
   def self.send_monthly_notifications

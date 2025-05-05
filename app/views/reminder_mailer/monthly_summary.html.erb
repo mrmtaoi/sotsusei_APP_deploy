@@ -1,53 +1,44 @@
-<p>こんにちは、<%= @user.name %> 様</p>
+<h1><%= @user.name %> さん、こんにちは</h1>
 
-<p>今月、以下の防災アイテムについて確認や期限が予定されています。<br>
-必要に応じて、内容の見直しや補充をご検討ください。</p>
+<p>以下は、今月チェックが必要な防災用品のリマインダーです。</p>
 
 <% if @stock_reminders.any? %>
-  <h3>■ 備蓄品（stock_item）</h3>
+  <h2>備蓄品（Stock Items）</h2>
   <ul>
     <% @stock_reminders.each do |reminder| %>
       <li>
         <strong><%= reminder.stock_item.name %></strong><br>
         <% if reminder.expiration_date.present? %>
-          - 賞味・使用期限: <%= reminder.expiration_date.strftime("%Y年%m月%d日") %><br>
+          賞味期限: <%= reminder.expiration_date.strftime('%Y年%m月%d日') %><br>
         <% end %>
-        <% if reminder.interval_months.present? %>
-          - 次回確認日: <%= reminder.remind_on.strftime("%Y年%m月%d日") %><br>
-        <% end %>
+        リマインダー間隔: <%= reminder.interval_months.present? ? "#{reminder.interval_months}ヶ月" : "なし" %>
       </li>
     <% end %>
   </ul>
 <% end %>
 
 <% if @kit_item_reminders.any? %>
-  <h3>■ 防災バッグのアイテム（kit_item）</h3>
+  <h2>防災バッグ内アイテム（Kit Items）</h2>
   <ul>
     <% @kit_item_reminders.each do |reminder| %>
       <li>
         <strong><%= reminder.kit_item.name %></strong><br>
-        - 賞味・使用期限: <%= reminder.expiration_date.strftime("%Y年%m月%d日") %><br>
+        消費期限: <%= reminder.expiration_date.strftime('%Y年%m月%d日') %>
       </li>
     <% end %>
   </ul>
 <% end %>
 
 <% if @emergency_kit_reminders.any? %>
-  <h3>■ 防災バッグ全体（emergency_kit）</h3>
+  <h2>防災バッグ（Emergency Kits）</h2>
   <ul>
     <% @emergency_kit_reminders.each do |reminder| %>
       <li>
         <strong><%= reminder.emergency_kit.name %></strong><br>
-        - 次回確認日: <%= reminder.remind_on.strftime("%Y年%m月%d日") %>
+        リマインダー間隔: <%= reminder.interval_months %>ヶ月
       </li>
     <% end %>
   </ul>
 <% end %>
 
-<% if @stock_reminders.empty? && @kit_item_reminders.empty? && @emergency_kit_reminders.empty? %>
-  <p>今月確認や期限が予定されているアイテムはありません。</p>
-<% end %>
-
-<p>ご不明な点がございましたら、お気軽にご連絡ください。</p>
-
-<p>※このメールは自動送信されています。</p>
+<p>備えあれば憂いなし。今月も安全確認をお願いします。</p>
