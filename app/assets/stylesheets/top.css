@@ -142,6 +142,18 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.nav navbar-right-top {
-  display: inline-block; /* 横並びにする */
+.navbar-right-top {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.navbar-right-top li {
+  margin: 0 10px;
+}
+.navbar-right-top .btn-primary-top,
+.navbar-right-top .btn-secondary-top {
+  padding: 10px 20px;
+  font-size: 16px;
 }/*# sourceMappingURL=top.css.map */

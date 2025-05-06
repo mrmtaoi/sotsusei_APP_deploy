@@ -143,6 +143,20 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.nav navbar-right-top {
-  display: inline-block; /* 横並びにする */
+.navbar-right-top {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+
+  li {
+    margin: 0 10px;
+  }
+
+  .btn-primary-top,
+  .btn-secondary-top {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
 }
