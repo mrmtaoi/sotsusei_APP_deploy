@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .image-container {
   display: flex;
-  flex-wrap: wrap; /* 必要に応じて折り返す */
+  flex-wrap: wrap; /* 折り返す */
   justify-content: center; /* 中央揃え */
   align-items: center;
   overflow: hidden;
@@ -156,4 +156,17 @@
 .navbar-right-top .btn-secondary-top {
   padding: 10px 20px;
   font-size: 16px;
+}
+
+.navbar-right-top {
+  list-style: none; /* リストマーカーを消す */
+  padding: 0;
+  margin: 0;
+  display: flex; /* 横並びに */
+  justify-content: center; /* 中央揃え（必要に応じて変更） */
+  gap: 10px; /* ボタン間のスペース */
+}
+
+.navbar-right-top li {
+  display: inline; /* 横並び（flex内ではオプション） */
 }/*# sourceMappingURL=top.css.map */

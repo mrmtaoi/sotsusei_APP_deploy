@@ -189,8 +189,10 @@
 }
 
 .share-link {
-  .share-url {
-    font-size: 0.75rem; // 必要に応じて調整（例: 0.75rem〜0.9remなど）
-    word-break: break-all; // 長いURLが折り返されるように
-  }
+  overflow-wrap: break-word; /* 折り返す */
+  word-break: break-all; /* 強制的に折り返す */
+  max-width: 100%;
+  font-size: 0.75rem;
+  box-sizing: border-box;
 }
+
