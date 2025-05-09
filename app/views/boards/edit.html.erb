@@ -1,2 +1,39 @@
-<h1>Boards#edit</h1>
-<p>Find me in app/views/boards/edit.html.erb</p>
+<h1>投稿を編集</h1>
+
+<%= form_with(model: @board, local: true) do |form| %>
+  <% if @board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@board.errors.count, "件のエラー") %>が発生しました:</h2>
+      <ul>
+        <% @board.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, 'タイトル' %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, '説明' %>
+    <%= form.text_area :description, rows: 5, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+  <%= form.label :emergency_kit_ids, "投稿する防災バッグを選択" %>
+  <%= form.collection_select :emergency_kit_ids, 
+        @emergency_kits, 
+        :id, 
+        lambda { |kit| "#{kit.owner.name}の防災バッグ（#{kit.storage}）" }, 
+        { prompt: "選択してください" }, 
+        { multiple: true, class: "form-control" } %>
+</div>
+
+  <div class="actions">
+    <%= form.submit '更新する', class: "btn btn-primary" %>
+    <%= link_to '戻る', board_path(@board), class: "btn btn-secondary" %>
+  </div>
+<% end %>

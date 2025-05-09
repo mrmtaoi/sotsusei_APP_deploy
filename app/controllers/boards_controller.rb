@@ -65,7 +65,11 @@ class BoardsController < ApplicationController
     @emergency_kits = current_user.emergency_kits
   end
 
-  def edit; end
+  def edit
+    @board = Board.find(params[:id])
+    @emergency_kits = current_user.emergency_kits
+  end
+  
 
   def create
     Rails.logger.debug { "Received board params: #{params[:board]}" }
