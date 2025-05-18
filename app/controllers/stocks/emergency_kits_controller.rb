@@ -173,6 +173,7 @@ class Stocks::EmergencyKitsController < ApplicationController
       :owner_name,
       :age,
       :gender,
+      owner_attributes: [:id, :name, :age, :gender],
       reminders_attributes: [:interval_months, :user_id]
     )
   end
