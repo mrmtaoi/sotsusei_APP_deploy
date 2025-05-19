@@ -5,7 +5,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     ENV['GOOGLE_CLIENT_SECRET'],
     {
       scope: 'email,profile',
-      redirect_uri: 'https://stock-supporter2025.com/auth/google_oauth2/callback',
-      provider_ignores_state: true
+      prompt: 'select_account',
+      provider_ignores_state: false
     }
 end  
