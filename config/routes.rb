@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "shared/:token", to: "stocks/emergency_kits#shared", as: :shared_emergency_kit
   get 'terms', to: 'static_pages#terms'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'about', to: 'static_pages#about'
 
   # ログイン関連
   get "login", to: "sessions#new"
