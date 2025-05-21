@@ -169,4 +169,33 @@
 
 .navbar-right-top li {
   display: inline; /* 横並び（flex内ではオプション） */
+}
+
+.navbar-left-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.navbar-left-top .image-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.navbar-left-top-container {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  z-index: 1;
+}
+
+.navbar-left-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }/*# sourceMappingURL=top.css.map */

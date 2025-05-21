@@ -26,7 +26,6 @@
   }
 }
 
-
 /* レスポンシブデザイン */
 @media (max-width: 767px) {
   .top-container img {
@@ -172,4 +171,34 @@
 
 .navbar-right-top li {
   display: inline; /* 横並び（flex内ではオプション） */
+}
+
+.navbar-left-top {
+  display: flex;
+  justify-content: center; // 中央寄せ
+  align-items: center;
+  gap: 30px; // 画像とボタンの間隔
+  flex-wrap: wrap; // スマホで縦並びに
+
+  .image-container {
+    flex: 1;
+    max-width: 400px; // 必要に応じて調整
+  }
+}
+
+.navbar-left-top-container {
+  position: absolute;
+  top: 100px; // 適宜調整
+  left: 20px; // 左に寄せる
+  z-index: 1;
+}
+
+.navbar-left-top {
+  display: flex;
+  flex-direction: column; // 縦並び
+  align-items: flex-start; // 左寄せ
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
