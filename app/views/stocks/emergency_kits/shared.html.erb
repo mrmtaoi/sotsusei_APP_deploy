@@ -1,11 +1,8 @@
 <h1 class="page-title1">現在の備え一覧</h1>
 
-<!-- 並列表示用のラッパー -->
 <div class="stocks-wrapper">
-
-  <!-- 防災バッグ一覧（左） -->
   <div class="stocks-container">
-    <h2>防災バッグ一覧</h2>
+    <h3>防災バッグ一覧</h3>
     <% if @emergency_kits.present? %>
       <ul class="kit-list">
         <% @emergency_kits.each do |kit| %>
@@ -22,9 +19,8 @@
     <% end %>
   </div>
 
-  <!-- 備蓄一覧（右） -->
   <div class="stocks-container">
-    <h2>備蓄一覧</h2>
+    <h3>備蓄一覧</h3>
     <% if @stocks.present? %>
       <ul class="stock-list">
         <% @stocks.each do |stock| %>
