@@ -48,5 +48,6 @@
 
 <% if current_user == @board.user %>
   <%= link_to "防災バッグ一覧へ", stocks_emergency_kits_path(@emergency_kits), class: "btn btn-warning" %>
+  <%= link_to "編集する", edit_board_path(@board), class: "btn btn-primary" %>
   <%= link_to '投稿を削除', board_path(@board), method: :delete, data: { confirm: '本当に削除しますか？', turbo_method: :delete }, class: 'btn btn-danger' %>
 <% end %>

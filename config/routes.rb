@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # 他ルーティング
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :edit, :update, :destroy, :new, :create]
-  resources :boards, only: [:index, :show, :new, :create, :edit, :destroy] do
+  resources :boards, only: [:index, :show, :new, :create, :edit, :destroy, :update] do
     collection do
       get :autocomplete
     end
