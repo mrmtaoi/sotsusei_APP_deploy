@@ -1,0 +1,37 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background-color: #f0f2f5;
+}
+.signup-container .signup-card {
+  background-color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+.signup-container .signup-card h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.signup-container .signup-card .form-group {
+  margin-bottom: 1.2rem;
+}
+.signup-container .signup-card .form-group label {
+  font-weight: bold;
+}
+.signup-container .signup-card .form-group .form-control {
+  width: 100%;
+}
+.signup-container .signup-card .btn-block {
+  width: 100%;
+}
+.signup-container .signup-card .mt-3 {
+  margin-top: 1rem;
+}
+.signup-container .signup-card .alert {
+  margin-bottom: 1.5rem;
+}/*# sourceMappingURL=users.css.map */

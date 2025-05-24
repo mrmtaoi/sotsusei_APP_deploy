@@ -1,35 +1,41 @@
-<!-- app/views/users/new.html.erb -->
-<h2>新規ユーザー登録</h2>
+<div class="signup-container">
+  <div class="signup-card">
+    <h2>新規ユーザー登録</h2>
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-danger">
-      <h4>登録に失敗しました:</h4>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <h4>登録に失敗しました:</h4>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with(model: @user, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "ユーザー名" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "ユーザー名を入力" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control", placeholder: "example@example.com" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, class: "form-control", placeholder: "パスワードを入力" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "登録する", class: "btn btn-success btn-block" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-3">
+      <%= link_to "すでにアカウントをお持ちの方はこちら", login_path %>
     </div>
-  <% end %>
-
-  <div>
-    <%= f.label :name, "ユーザー名" %>
-    <%= f.text_field :name %>
   </div>
-
-  <div>
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div>
-    <%= f.label :password, "パスワード" %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.submit "登録する" %>
-  </div>
-<% end %>
-<%= link_to "新規登録済みの方はこちら", login_path %>
+</div>
