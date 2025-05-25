@@ -5,12 +5,17 @@
     <%= form_with url: login_path, method: :post, data: { turbo: false } do |form| %>
       <div class="form-group">
         <%= form.label :email, "メールアドレス" %>
-        <%= form.email_field :email, class: "form-control", placeholder: "example@example.com", required: true %>
+        <%= form.email_field :email, name: 'session[email]', class: "form-control", placeholder: "example@example.com", required: true %>
       </div>
     
       <div class="form-group">
         <%= form.label :password, "パスワード" %>
-        <%= form.password_field :password, class: "form-control", placeholder: "パスワードを入力", required: true %>
+        <%= form.password_field :password, name: 'session[password]', class: "form-control", placeholder: "パスワードを入力", required: true %>
+      </div>
+    
+      <div class="form-group">
+        <%= form.check_box :remember_me, name: 'session[remember_me]', value: "1" %>
+        <%= form.label :remember_me, "ログイン情報を記憶する" %>
       </div>
     
       <div class="form-group">
