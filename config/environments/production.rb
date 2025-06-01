@@ -116,4 +116,6 @@ config.action_mailer.logger = Logger.new(STDOUT)
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.perform_deliveries = true
 
-  end
+# public/ 配下のファイル（sitemap.xml.gz など）にブラウザからアクセスするための設定
+config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+end
