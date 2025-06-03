@@ -17,6 +17,9 @@ module Myapp
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.assets.paths << Rails.root.join("app/assets/stylesheets")
