@@ -24,7 +24,7 @@
     <% end %>
 
   <!-- Googleログインボタン -->
-  <%= button_to "/auth/google_oauth2", method: :post, class: "gsi-material-button", data: { turbo: false } do %>
+  <%= button_to "/auth/google_oauth2", form: { method: :post }, class: "gsi-material-button", data: { turbo: false } do %>
     <div class="gsi-material-button-state"></div>
     <div class="gsi-material-button-content-wrapper" style="display: flex; align-items: center">
       <div class="gsi-material-button-icon">
