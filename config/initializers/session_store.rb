@@ -4,3 +4,4 @@ Rails.application.config.session_store :cookie_store,
   domain: Rails.env.production? ? '.stock-supporter2025.com' : nil,
   same_site: Rails.env.production? ? :none : :lax,
   secure: Rails.env.production?
+  
