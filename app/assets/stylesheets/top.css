@@ -1,8 +1,8 @@
 @charset "UTF-8";
 .image-container {
   display: flex;
-  flex-wrap: wrap; /* 折り返す */
-  justify-content: center; /* 中央揃え */
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
   max-width: 100%;
@@ -14,29 +14,20 @@
   margin: 8px;
 }
 
-/* モバイル対応 */
+/* モバイル対応（スマホサイズ） */
 @media (max-width: 767px) {
   .image-container {
-    font-size: 2rem; /* モバイル画面で文字サイズを調整 */
-    flex-direction: column; /* スマホでは縦並びに */
+    flex-direction: column;
     align-items: center;
   }
   .image-container img {
-    max-width: 60%; /* モバイルでは画像を縮小 */
+    max-width: 60%; /* モバイルでは縮小 */
   }
 }
-/* レスポンシブデザイン */
-@media (max-width: 767px) {
-  .top-container img {
-    max-width: 100%; /* モバイルでは画像を100%に調整 */
-    height: auto;
-  }
-}
-/* PCサイズ（768px以上）のときだけ画像を大きく表示 */
+/* PC表示でのみ画像を大きくする */
 @media (min-width: 768px) {
   .image-container img {
-    max-width: 150%; /* 例：PCでは画像を大きめに表示 */
-    height: auto;
+    max-width: 120%; /* PCでは少し拡大 */
   }
 }
 /* .top-inner-text h1 */
@@ -195,4 +186,11 @@
   top: 100px;
   left: 20px;
   z-index: 1;
+}
+
+/* 追加するCSS */
+.description-list {
+  text-align: left;
+  padding-left: 1.5rem; /* 必要なら左インデント */
+  margin-left: 0; /* ulのデフォルトマージンを調整 */
 }/*# sourceMappingURL=top.css.map */
