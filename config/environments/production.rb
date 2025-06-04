@@ -3,7 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # config/environments/production.rb
-  config.hosts << "stock-supporter2025.com"
   config.hosts << "sotsusei-app-deploy-4.onrender.com"
   config.hosts << /.*\.onrender\.com/
     
@@ -11,6 +10,9 @@ Rails.application.configure do
     provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email,profile'
     OmniAuth.config.logger = Rails.logger
   end  
+
+  # Render で指定されたポートを使用する
+  config.hosts << ENV["PORT"] if ENV["PORT"]
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -27,6 +29,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -46,7 +49,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true  # HTTPSを強制する設定
+  config.force_ssl = true  # HTTPSを強制する設定（必要なら）
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).

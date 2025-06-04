@@ -3,7 +3,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2,
     ENV['GOOGLE_CLIENT_ID'],
-    ENV['GOOGLE_CLIENT_SECRET'],
+    ENV['GOOGLE_CLIENT_SECRET'],More actions
     {
       scope: 'openid email profile',
       redirect_uri: ENV['GOOGLE_REDIRECT_URI'],
@@ -12,6 +12,3 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       provider_ignores_state: true
     }
 end
-
-OmniAuth.config.allowed_request_methods = [:post, :get]
-OmniAuth.config.silence_get_warning = true
