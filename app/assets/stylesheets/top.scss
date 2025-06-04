@@ -42,7 +42,7 @@
   transform: translate(-50%, -50%);
   width: 100%;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: rgb(234, 241, 11);
   font-size: 6rem; /* デフォルトのフォントサイズ */
   
   /* モバイル対応 */
@@ -83,7 +83,7 @@
 }
 
 .navbar-nav li a:hover {
-  color: rgb(0, 0, 0); /* ホバー時の色を変更（例: トマト色） */
+  color: rgb(0, 0, 0); /* ホバー時の色を変更 */
 }
 
 /* ボタンのカスタマイズ */
