@@ -3,10 +3,10 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # config/environments/production.rb
-  config.hosts << "https://sotsusei-app-deploy-4.onrender.com"
-
-  config.hosts << /.*\.onrender\.com/ # Renderのサブドメイン全てを許可
-  
+  config.hosts << "stock-supporter2025.com"
+  config.hosts << "sotsusei-app-deploy-4.onrender.com"
+  config.hosts << /.*\.onrender\.com/
+    
   config.middleware.use OmniAuth::Builder do
     provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email,profile'
     OmniAuth.config.logger = Rails.logger
