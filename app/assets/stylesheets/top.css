@@ -32,6 +32,13 @@
     height: auto;
   }
 }
+/* PCサイズ（768px以上）のときだけ画像を大きく表示 */
+@media (min-width: 768px) {
+  .image-container img {
+    max-width: 150%; /* 例：PCでは画像を大きめに表示 */
+    height: auto;
+  }
+}
 /* .top-inner-text h1 */
 .top-inner-text h1 {
   position: absolute;
