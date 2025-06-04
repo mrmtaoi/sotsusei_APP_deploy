@@ -12,9 +12,6 @@ Rails.application.configure do
     OmniAuth.config.logger = Rails.logger
   end  
 
-  # Render で指定されたポートを使用する
-  config.hosts << ENV["PORT"] if ENV["PORT"]
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -30,7 +27,6 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -50,7 +46,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true  # HTTPSを強制する設定（必要なら）
+  config.force_ssl = true  # HTTPSを強制する設定
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
