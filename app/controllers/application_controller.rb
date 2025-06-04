@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception  # ← OmniAuth の csrf_detectedエラーへの対応で追加
+
   include SessionsHelper
   helper_method :user_logged_in?, :current_user # current_user をヘルパーメソッドとしても使えるようにする
 
