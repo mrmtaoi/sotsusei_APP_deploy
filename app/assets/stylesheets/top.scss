@@ -7,20 +7,11 @@
   max-width: 100%;
 }
 
-@media (min-width: 768px) {
-  .image-container img {
-    width: 150%;
-    max-width: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .image-container img {
   max-width: 100%;
   height: auto;
   margin: 8px;
+  display: block;
 }
 
 /* モバイル対応（スマホサイズ） */
@@ -31,14 +22,17 @@
   }
 
   .image-container img {
-    max-width: 60%; /* モバイルでは縮小 */
+    max-width: 60%;
   }
 }
 
-/* PC表示でのみ画像を大きくする */
+/* PC表示で画像を拡大 */
 @media (min-width: 768px) {
   .image-container img {
-    max-width: 120%; /* PCでは少し拡大 */
+    width: 150%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
