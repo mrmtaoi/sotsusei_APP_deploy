@@ -7,7 +7,7 @@
   max-width: 100%;
 }
 
-.image-container img {
+.welcome-image {
   max-width: 100%;
   height: auto;
   margin: 8px;
@@ -21,14 +21,14 @@
     align-items: center;
   }
 
-  .image-container img {
+  .welcome-image {
     max-width: 60%;
   }
 }
 
 /* PC表示で画像を拡大 */
 @media (min-width: 768px) {
-  .image-container img {
+  .welcome-image {
     width: 250%;
     max-width: none;
     margin-left: auto;

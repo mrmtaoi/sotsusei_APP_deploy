@@ -1,0 +1,52 @@
+// app/assets/stylesheets/terms_policy.scss
+
+.terms_policy {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    line-height: 1.8;
+    color: #333;
+  
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+  
+    h4 {
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #007BFF;
+      padding-left: 0.75rem;
+      color: #007BFF;
+    }
+  
+    p {
+      margin-bottom: 1rem;
+    }
+  
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+  
+      li {
+        margin-bottom: 0.5rem;
+        list-style: disc;
+  
+        ul {
+          list-style: circle;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  
+    > p:last-child {
+      margin-top: 3rem;
+      text-align: right;
+      font-style: italic;
+    }
+  }
+  
