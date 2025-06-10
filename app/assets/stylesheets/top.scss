@@ -6,6 +6,13 @@
   overflow: hidden;
 }
 
+.welcome-image {
+  width: 100%;
+  max-width: 1200px; // PCでの最大幅を拡大
+  height: auto;     // アスペクト比を維持
+  border-radius: 12px;
+}
+
 /* モバイル対応（スマホサイズ） */
 @media (max-width: 767px) {
   .image-container {
