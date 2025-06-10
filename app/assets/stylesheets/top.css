@@ -9,7 +9,7 @@
 
 .welcome-image {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px !important;
   height: auto;
   border-radius: 12px;
 }
@@ -169,10 +169,6 @@
   align-items: center;
   gap: 30px;
   flex-wrap: wrap;
-}
-.navbar-left-top .image-container {
-  flex: 1;
-  max-width: 400px;
 }
 
 .navbar-left-top-container {

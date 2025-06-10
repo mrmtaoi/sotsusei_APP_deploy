@@ -8,7 +8,7 @@
 
 .welcome-image {
   width: 100%;
-  max-width: 1200px; // PCでの最大幅を拡大
+  max-width: 1200px !important; // PCでの最大幅を拡大
   height: auto;     // アスペクト比を維持
   border-radius: 12px;
 }
@@ -170,11 +170,6 @@
   align-items: center;
   gap: 30px; // 画像とボタンの間隔
   flex-wrap: wrap; // スマホで縦並びに
-
-  .image-container {
-    flex: 1;
-    max-width: 400px; // 必要に応じて調整
-  }
 }
 
 .navbar-left-top-container {
