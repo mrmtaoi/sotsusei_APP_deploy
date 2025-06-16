@@ -56,8 +56,7 @@
       <%= form.submit '追加する', class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <h4>✅ アイテム追加のすすめ</h4>
+  <!-- <h4>✅ アイテム追加のすすめ</h4> -->
   <h4><%= image_tag('check.png', alt: 'チェックマーク', class: 'check-icon') %> アイテム追加のすすめ</h4>
 
   <% if @missing_items.any? %>
@@ -95,7 +94,7 @@
     <p class="note">※乳児のいるご家庭は、ミルク・紙おむつ・ほ乳びんなども用意しておきましょう。</p>
   <% end %>
 
-  <h4>✅ 備蓄達成度</h4>
+  <!-- <h4>✅ 備蓄達成度</h4> -->
   <h4><%= image_tag('check.png', alt: 'チェックマーク', class: 'check-icon') %> 備蓄達成度</h4>
 
   <canvas id="categoryProgressChart"></canvas>

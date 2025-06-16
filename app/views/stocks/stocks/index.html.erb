@@ -67,7 +67,8 @@
   <div class="inner_container">
     <nav>
       <div class="button-container-stock">
-        <h3>アイテム追加のすすめ</h3>
+      <!-- <h4>✅ アイテム追加のすすめ</h4> -->
+      <h4><%= image_tag('check.png', alt: 'チェックマーク', class: 'check-icon') %> アイテム追加のすすめ</h4>
         <% if @missing_items.present? %>
           <ul>
             <% @missing_items.each do |item| %>
@@ -102,7 +103,8 @@
           <p class="note">※乳児のいるご家庭は、ミルク・紙おむつ・ほ乳びんなども用意しておきましょう。</p>
         <% end %>
 
-        <h1>備蓄達成度</h1>
+        <!-- <h4>✅ 備蓄達成度</h4> -->
+        <h4><%= image_tag('check.png', alt: 'チェックマーク', class: 'check-icon') %> 備蓄達成度</h4>
         <canvas id="categoryProgressChart"></canvas>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
