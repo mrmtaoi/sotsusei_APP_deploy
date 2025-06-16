@@ -58,6 +58,8 @@
   <% end %>
 
   <h4>✅ アイテム追加のすすめ</h4>
+  <h4><%= image_tag('check.png', alt: 'チェックマーク', class: 'check-icon') %> アイテム追加のすすめ</h4>
+
   <% if @missing_items.any? %>
     <ul>
       <% @missing_items.each do |item| %>
@@ -94,6 +96,8 @@
   <% end %>
 
   <h4>✅ 備蓄達成度</h4>
+  <h4><%= image_tag('check.png', alt: 'チェックマーク', class: 'check-icon') %> 備蓄達成度</h4>
+
   <canvas id="categoryProgressChart"></canvas>
   
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
