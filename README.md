@@ -1,4 +1,5 @@
 ⛑️ プロジェクト名：『ストックサポーター』
+![ロゴ](app/assets/images/logo.png)
 
 📑 目次
 
