@@ -15,7 +15,7 @@ RSpec.describe "Users", type: :request do
     it "新規登録ページ表示" do
       get new_user_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include("新規登録")
+      expect(response.body).to include("新規ユーザー登録")
     end
   end
 
