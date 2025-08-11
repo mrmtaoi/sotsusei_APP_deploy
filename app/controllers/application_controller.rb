@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   include SessionsHelper
   helper_method :user_logged_in?, :current_user # current_user をヘルパーメソッドとしても使えるようにする
 

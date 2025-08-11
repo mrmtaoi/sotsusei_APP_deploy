@@ -68,7 +68,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   # rails_helper.rb のどこか（通常は下の方）にこれが必要
   Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
-  RSpec.configure do |rspec_config|
+  RSpec.configure do |_rspec_config|
     config.include LoginHelper, type: :request
   end
 end
